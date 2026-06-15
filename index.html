@@ -77,6 +77,7 @@
     <input id="password" type="password" placeholder="password" autocomplete="current-password" required>
     <button type="submit" class="btn primary" id="loginBtn">Sign in</button>
     <p id="loginErr" class="err"></p>
+    <a href="dm-karte.html" style="text-align:center;color:var(--muted);font-size:13px;text-decoration:none">🗺️ Prospektu karte (232 līdi, bez login) →</a>
   </form>
 </div>
 
@@ -84,7 +85,10 @@
 <div id="app" class="wrap hidden">
   <div class="apphead">
     <h1>Beauty Salon <span>Outreach Leads</span></h1>
-    <button id="signout" class="btn">Sign out</button>
+    <div style="display:flex;gap:8px;align-items:center">
+      <a class="btn" href="dm-karte.html" style="text-decoration:none">🗺️ Prospektu karte (232)</a>
+      <button id="signout" class="btn">Sign out</button>
+    </div>
   </div>
   <p class="sub" id="who"></p>
 
