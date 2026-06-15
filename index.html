@@ -35,6 +35,7 @@
   .card .top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:4px}
   .card h3{font-size:16px;font-weight:600}
   .badge{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:3px 8px;border-radius:20px;white-space:nowrap}
+  .cat-tag{font-size:10.5px;font-weight:600;color:var(--gold);background:rgba(201,169,106,.12);border:1px solid rgba(201,169,106,.28);padding:3px 9px;border-radius:20px;white-space:nowrap}
   .badge.hi{background:rgba(224,72,77,.15);color:#ff8a8d}
   .badge.med{background:rgba(224,162,58,.15);color:#ffce7a}
   .badge.low{background:rgba(90,143,107,.15);color:#8fd4a6}
@@ -77,16 +78,16 @@
     <input id="password" type="password" placeholder="password" autocomplete="current-password" required>
     <button type="submit" class="btn primary" id="loginBtn">Sign in</button>
     <p id="loginErr" class="err"></p>
-    <a href="dm-karte.html" style="text-align:center;color:var(--muted);font-size:13px;text-decoration:none">🗺️ Prospektu karte (232 līdi, bez login) →</a>
+    <p class="sub" style="text-align:center;margin:0;font-size:12px">269 līdi · saraksts + karte aiz login</p>
   </form>
 </div>
 
 <!-- ===== APP ===== -->
 <div id="app" class="wrap hidden">
   <div class="apphead">
-    <h1>Beauty Salon <span>Outreach Leads</span></h1>
+    <h1><span>Outreach</span> Leads</h1>
     <div style="display:flex;gap:8px;align-items:center">
-      <a class="btn" href="dm-karte.html" style="text-decoration:none">🗺️ Prospektu karte (232)</a>
+      <a class="btn primary" href="dm-karte.html" style="text-decoration:none">🗺️ Karte (269)</a>
       <button id="signout" class="btn">Sign out</button>
     </div>
   </div>
@@ -98,6 +99,7 @@
     <button class="btn" data-f="hi">High</button>
     <button class="btn" data-f="med">Medium</button>
     <button class="btn" data-f="low">Low</button>
+    <select class="sort" id="catFilter"><option value="all">All categories</option></select>
     <select class="sort" id="sort">
       <option value="updated">Sort: Recently updated</option>
       <option value="name">Sort: Name A–Z</option>
@@ -127,10 +129,11 @@ const appEl   = document.getElementById('app');
 const boardEl = document.getElementById('board');
 const STATUS = { todo:'To do', contacted:'Contacted', replied:'Replied', client:'Client' };
 const PR_LABEL = { hi:'High priority', med:'Medium', low:'Low' };
+const CAT_LABELS = { saloni:'Saloni', frizieri:'Frizētavas', nagi:'Nagu studijas', skropstas:'Skropstas/uzacis', kosmetika:'Kosmetika/PMU', spa:'SPA/masāža', konditoreja:'Konditorejas', dzivnieki:'Dzīvnieku saloni', autoservisi:'Autoservisi', juristi:'Juristi', restorani:'Restorāni', zobarsti:'Zobārsti' };
 
 let clients = [];          // current rows
 let currentEmail = '';
-let filter = 'all', hideDone = false, sortMode = 'updated';
+let filter = 'all', catFilter = 'all', hideDone = false, sortMode = 'updated';
 
 /* ---------- auth ---------- */
 async function boot() {
@@ -161,6 +164,9 @@ document.getElementById('signout').addEventListener('click', async () => {
 });
 
 async function startApp(session) {
+  // if we were sent here by the map gate, bounce back after auth
+  const next = new URLSearchParams(location.search).get('next');
+  if (next === 'dm-karte.html') { location.replace('dm-karte.html'); return; }
   currentEmail = session.user.email;
   document.getElementById('who').textContent = 'Signed in as ' + currentEmail;
   loginEl.classList.add('hidden');
@@ -228,11 +234,13 @@ function cardHtml(c) {
     ? `<div class="contacted-line">✓ ${esc(c.contacted_by)} · ${fmtDate(c.contacted_at)}</div>` : '';
   const markBtn = (c.status === 'todo')
     ? `<button class="mark-btn" data-mark="${c.id}">Mark contacted</button>` : '';
+  const cat = c.category || '';
+  const catLabel = CAT_LABELS[cat] || cat;
   return `<div class="card ${pr}${done?' done':''}" data-id="${c.id}"
-      data-s="${esc(((c.name||'')+' '+(c.contact||'')+' '+(c.notes||'')).toLowerCase())}"
-      data-pr="${pr}" data-status="${c.status||'todo'}">
+      data-s="${esc(((c.name||'')+' '+(c.contact||'')+' '+(c.notes||'')+' '+catLabel).toLowerCase())}"
+      data-pr="${pr}" data-cat="${cat}" data-status="${c.status||'todo'}">
     <div class="top"><h3>${esc(c.name)}</h3>
-      <div class="top-right"><span class="badge ${pr}">${pr}</span></div>
+      <div class="top-right">${cat?`<span class="cat-tag">${esc(catLabel)}</span>`:''}<span class="badge ${pr}">${pr}</span></div>
     </div>
     ${c.contact ? `<div class="meta">${esc(c.contact)}</div>` : ''}
     ${c.notes ? `<div class="note">${esc(c.notes)}</div>` : ''}
@@ -256,8 +264,21 @@ function render() {
       <div class="grid">${groups[pr].map(cardHtml).join('')}</div></div>`;
   });
   boardEl.innerHTML = html || '<p class="sub">No clients yet.</p>';
+  populateCats();
   updateStat();
   applyFilter();
+}
+
+function populateCats() {
+  const sel = document.getElementById('catFilter');
+  const cur = sel.value;
+  const counts = {};
+  clients.forEach(c => { if (c.category) counts[c.category] = (counts[c.category] || 0) + 1; });
+  const cats = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
+  sel.innerHTML = `<option value="all">All categories (${clients.length})</option>` +
+    cats.map(c => `<option value="${c}">${CAT_LABELS[c] || c} (${counts[c]})</option>`).join('');
+  sel.value = (cur === 'all' || cats.includes(cur)) ? cur : 'all';
+  catFilter = sel.value;
 }
 
 function sortItems(items) {
@@ -280,7 +301,8 @@ function applyFilter() {
     const okF = filter === 'all' || card.dataset.pr === filter;
     const okQ = !q || card.dataset.s.includes(q);
     const okD = !hideDone || card.dataset.status === 'todo';
-    card.classList.toggle('hidden', !(okF && okQ && okD));
+    const okC = catFilter === 'all' || card.dataset.cat === catFilter;
+    card.classList.toggle('hidden', !(okF && okQ && okD && okC));
   });
   document.querySelectorAll('.group').forEach(g => {
     const vis = g.querySelectorAll('.card:not(.hidden)').length;
@@ -289,6 +311,7 @@ function applyFilter() {
   });
 }
 searchEl.addEventListener('input', applyFilter);
+document.getElementById('catFilter').addEventListener('change', (e) => { catFilter = e.target.value; applyFilter(); });
 document.querySelectorAll('.btn[data-f]').forEach(b => b.addEventListener('click', () => {
   document.querySelectorAll('.btn[data-f]').forEach(x => x.classList.remove('active'));
   b.classList.add('active'); filter = b.dataset.f; applyFilter();

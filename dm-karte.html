@@ -428,6 +428,14 @@
 </style>
 </head>
 <body>
+<div id="authGate" style="position:fixed;inset:0;z-index:99999;background:#0b0d11;display:grid;place-items:center;color:#a9a39a;font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:14px;letter-spacing:0.05em">Pārbauda piekļuvi…</div>
+<script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+  const sb = createClient('https://wcwugxgyylvdorsrqzep.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indjd3VneGd5eWx2ZG9yc3JxemVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1MzI2MzAsImV4cCI6MjA5NzEwODYzMH0.ZTKtbZOPevM39MVJYkuWqoZcYsDsjc7YwQsex72-Lmg');
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) location.replace('index.html?next=dm-karte.html');
+  else document.getElementById('authGate').remove();
+</script>
 <div class="grain" aria-hidden="true"></div>
 
 <div class="app">
@@ -737,9 +745,21 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
 }).addTo(map);
 
 /* ---------- dati: esošie saloni + tīmeklī pārbaudītie prospekti ---------- */
-LEADS.forEach(l => { if (!l.category) l.category = 'skaistumkopsana'; });
+function deacc(s){ return (s||'').normalize('NFKD').replace(/[̀-ͯ]/g,''); }
+function categorize(text){
+  const t = deacc(text).toLowerCase();
+  if (/nagu|manikir|nails?|pedikir|podolog/.test(t)) return 'nagi';
+  if (/sunu|kaku|dzivniek|groom/.test(t)) return 'dzivnieki';
+  if (/skropst|uzac|lash|brow/.test(t)) return 'skropstas';
+  if (/kondit|torte|maiz|bakery|patisser|cepu/.test(t)) return 'konditoreja';
+  if (/spa|masaz|massage|wellness|facial|sejas|skincare/.test(t)) return 'spa';
+  if (/kosmetolog|permanent|pmu|grims|makeup|vizaz|cosmetol|aesthetic|estet/.test(t)) return 'kosmetika';
+  if (/frizetav|frizier/.test(t) || (/hair/.test(t) && !/beauty/.test(t))) return 'frizieri';
+  return 'saloni';
+}
+LEADS.forEach(l => { if (!l.category) l.category = categorize((l.cat || '') + ' ' + l.name); });
 const DATA = LEADS.concat(typeof PROSPECT_LEADS !== 'undefined' ? PROSPECT_LEADS : []);
-const CATS = { skaistumkopsana:'Skaistumkopšana', frizieri:'Frizētavas', auto_servisi:'Autoservisi', juristi:'Juristi', restorani:'Restorāni', zobarsti:'Zobārsti' };
+const CATS = { saloni:'Saloni', frizieri:'Frizētavas', nagi:'Nagu studijas', skropstas:'Skropstas/uzacis', kosmetika:'Kosmetika/PMU', spa:'SPA/masāža', konditoreja:'Konditorejas', dzivnieki:'Dzīvnieku saloni', autoservisi:'Autoservisi', juristi:'Juristi', restorani:'Restorāni', zobarsti:'Zobārsti' };
 
 function pinHtml(d) {
   const col = d.lvl === 1 ? 'var(--l1)' : 'var(--l2)';
