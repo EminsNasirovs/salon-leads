@@ -355,25 +355,37 @@
 
   /* ---------- responsive ---------- */
   @media (max-width: 900px) {
-    body { overflow: auto; }
-    .app { flex-direction: column; height: auto; min-height: 100dvh; }
-    .map-wrap { order: -1; height: 52vh; min-height: 340px; flex: 0 0 auto; position: relative; }
+    body { overflow: hidden; }
+    /* map fixed on top, list scrolls beneath — map always visible */
+    .app { flex-direction: column; height: 100dvh; }
+    .map-wrap { order: -1; height: 40vh; min-height: 240px; flex: 0 0 auto; position: relative; }
     #map { position: absolute; inset: 0; }
-    .rail { width: 100%; flex: 1 1 auto; border-left: none; border-top: 1px solid var(--hair); box-shadow: none; }
-    .rail__head { padding: 22px 20px 16px; }
-    .controls { padding: 14px 20px 10px; }
-    .list { overflow-y: visible; max-height: none; padding: 8px 14px 40px; }
-    .group__label { top: 0; background: var(--panel); padding-top: 14px; padding-bottom: 8px; }
-    .legend { bottom: 14px; left: 12px; padding: 9px 11px; }
+    .rail { width: 100%; flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column;
+            border-left: none; border-top: 1px solid var(--hair); box-shadow: none; }
+    .rail__head { flex: 0 0 auto; padding: 14px 18px 8px; }
+    .subtitle { display: none; }
+    .title { font-size: clamp(22px, 6vw, 30px); margin: 10px 0 2px; }
+    .stats { margin-top: 12px; }
+    .controls { flex: 0 0 auto; padding: 10px 18px 8px; }
+    .cat-filter { margin-top: 8px; }
+    .list { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 6px 14px 24px; }
+    .group__label { top: 0; background: var(--panel); padding-top: 12px; padding-bottom: 8px; }
+    .legend { bottom: 12px; left: 12px; padding: 8px 10px; }
     .legend .row { font-size: 11px; }
-    .fit-btn { bottom: 14px; right: 12px; padding: 9px 12px; }
-    .title { font-size: clamp(28px, 8vw, 36px); }
+    .fit-btn { bottom: 12px; right: 12px; padding: 9px 12px; }
   }
   @media (max-width: 420px) {
     .stats { flex-direction: row; }
     .stat { padding: 9px 10px; }
     .stat .n { font-size: 21px; }
     .map-tag { display: none; }
+  }
+  /* short viewports (landscape phones, on-screen toolbars): shrink map + let the
+     whole rail scroll so the filters and lead list are always reachable */
+  @media (max-width: 900px) and (max-height: 640px) {
+    .map-wrap { height: 32vh; min-height: 160px; }
+    .rail { overflow-y: auto; }
+    .list { flex: 0 0 auto; overflow: visible; }
   }
 
   /* touch devices — enlarge tap targets to >=40px */
@@ -420,6 +432,23 @@
     box-shadow: 0 8px 20px -6px rgba(0,0,0,0.85), 0 0 0 6px rgba(251,90,60,0.07);
   }
 
+  /* ---- status (synced with the tracker / clients table) ---- */
+  .statusrow { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-top: 11px; }
+  .st-badge { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; padding: 3px 9px; border-radius: 20px; }
+  .st-todo { background: rgba(255,255,255,0.06); color: var(--ink-mid); }
+  .st-contacted { background: rgba(127,211,155,0.16); color: #9ce0b4; }
+  .st-replied { background: rgba(122,162,255,0.16); color: #a9c2ff; }
+  .st-client { background: rgba(231,178,74,0.18); color: #f0cf86; }
+  .st-sel { background: rgba(0,0,0,0.25); border: 1px solid var(--hair); color: var(--ink); border-radius: 7px; padding: 4px 7px; font: inherit; font-size: 11.5px; cursor: pointer; }
+  .st-mark { background: rgba(127,211,155,0.14); border: 1px solid rgba(127,211,155,0.4); color: #9ce0b4; border-radius: 7px; padding: 4px 9px; font: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer; transition: background 0.2s var(--ease); }
+  .st-mark:hover { background: rgba(127,211,155,0.26); }
+  .st-by { font-size: 11px; color: var(--ink-faint); }
+  .card.is-done { opacity: 0.78; }
+  .card.is-done .card__name { text-decoration: line-through; text-decoration-color: var(--ink-faint); }
+  .pin--done svg path { fill: #6b7280 !important; }
+  .pin--done .pin__ring { animation: none !important; }
+  .pin--done::after { content: '✓'; position: absolute; top: -1px; right: -1px; width: 15px; height: 15px; background: #7fd39b; color: #0b0d11; border-radius: 50%; font-size: 10px; font-weight: 800; display: grid; place-items: center; box-shadow: 0 1px 4px rgba(0,0,0,0.55); }
+
   /* reduce motion */
   @media (prefers-reduced-motion: reduce) {
     .pin--l1 .pin__ring { animation: none; }
@@ -434,7 +463,7 @@
   const sb = createClient('https://wcwugxgyylvdorsrqzep.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indjd3VneGd5eWx2ZG9yc3JxemVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1MzI2MzAsImV4cCI6MjA5NzEwODYzMH0.ZTKtbZOPevM39MVJYkuWqoZcYsDsjc7YwQsex72-Lmg');
   const { data: { session } } = await sb.auth.getSession();
   if (!session) location.replace('index.html?next=dm-karte.html');
-  else document.getElementById('authGate').remove();
+  else { document.getElementById('authGate').remove(); if (window.__onAuth) window.__onAuth(sb); }
 </script>
 <div class="grain" aria-hidden="true"></div>
 
@@ -492,6 +521,19 @@
         <button class="chip" data-f="l2" aria-pressed="false">Sena lapa <span class="c" id="cL2">3</span></button>
       </div>
       <select class="cat-filter" id="catFilter" aria-label="Filtrēt pēc nozares"></select>
+      <select class="cat-filter" id="prioFilter" aria-label="Filtrēt pēc prioritātes">
+        <option value="all">Visas prioritātes</option>
+        <option value="hi">Augsta prioritāte</option>
+        <option value="med">Vidēja prioritāte</option>
+        <option value="low">Zema prioritāte</option>
+      </select>
+      <select class="cat-filter" id="statusFilter" aria-label="Filtrēt pēc statusa">
+        <option value="all">Visi statusi</option>
+        <option value="todo">Nav sazināts</option>
+        <option value="contacted">Sazināts</option>
+        <option value="replied">Atbildēja</option>
+        <option value="client">Klients</option>
+      </select>
     </div>
 
     <div class="list" id="list"></div>
@@ -761,9 +803,26 @@ LEADS.forEach(l => { if (!l.category) l.category = categorize((l.cat || '') + ' 
 const DATA = LEADS.concat(typeof PROSPECT_LEADS !== 'undefined' ? PROSPECT_LEADS : []);
 const CATS = { saloni:'Saloni', frizieri:'Frizētavas', nagi:'Nagu studijas', skropstas:'Skropstas/uzacis', kosmetika:'Kosmetika/PMU', spa:'SPA/masāža', konditoreja:'Konditorejas', dzivnieki:'Dzīvnieku saloni', autoservisi:'Autoservisi', juristi:'Juristi', restorani:'Restorāni', zobarsti:'Zobārsti' };
 
+/* ---------- statuss (sinhronizēts ar clients tabulu, tāpat kā trackerī) ---------- */
+const STLABEL = { todo:'Nav sazināts', contacted:'Sazināts', replied:'Atbildēja', client:'Klients' };
+function normName(s){ return deacc(s).toLowerCase().replace(/[^a-z0-9]/g,''); }
+function esc(s){ return (s||'').replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m])); }
+function fmtD(ts){ try { return new Date(ts).toLocaleDateString('lv-LV', {day:'numeric', month:'short'}); } catch(_){ return ''; } }
+function statusRowHtml(d){
+  const st = d.status || 'todo';
+  if (!d.cid) return `<div class="statusrow"><span class="st-badge st-${st}">${STLABEL[st]}</span></div>`;
+  const opts = ['todo','contacted','replied','client'].map(s => `<option value="${s}"${s===st?' selected':''}>${STLABEL[s]}</option>`).join('');
+  const mark = st === 'todo' ? `<button class="st-mark" type="button" onclick="event.stopPropagation();mapMark(${d.n})">✓ Sazināts</button>` : '';
+  const by = d.contacted_by ? `<span class="st-by">${esc(d.contacted_by)}${d.contacted_at ? ' · ' + fmtD(d.contacted_at) : ''}</span>` : '';
+  return `<div class="statusrow"><span class="st-badge st-${st}">${STLABEL[st]}</span><select class="st-sel" onclick="event.stopPropagation()" onchange="mapSetStatus(${d.n}, this.value)">${opts}</select>${mark}${by}</div>`;
+}
+function mapMark(n){ const d = DATA.find(x => x.n === n); if (d) setStatus(d, 'contacted'); }
+function mapSetStatus(n, s){ const d = DATA.find(x => x.n === n); if (d) setStatus(d, s); }
+
 function pinHtml(d) {
   const col = d.lvl === 1 ? 'var(--l1)' : 'var(--l2)';
-  return `<div class="pin pin--l${d.lvl}${d.approx ? ' pin--approx' : ''}" data-id="${d.n}">
+  const done = d.status && d.status !== 'todo' ? ' pin--done' : '';
+  return `<div class="pin pin--l${d.lvl}${d.approx ? ' pin--approx' : ''}${done}" data-id="${d.n}">
     <span class="pin__ring"></span>
     <svg width="36" height="46" viewBox="0 0 36 46">
       <path d="M18 1C9 1 1.6 8.3 1.6 17.3c0 11 12.4 24.4 15.3 27.4a1.6 1.6 0 0 0 2.3 0c2.9-3 15.2-16.4 15.2-27.4C34.4 8.3 27 1 18 1Z"
@@ -779,10 +838,11 @@ const cluster = L.markerClusterGroup({
 });
 map.addLayer(cluster);
 
+function pinIcon(d){ return L.divIcon({ className: 'pin-wrap', html: pinHtml(d), iconSize: [36,46], iconAnchor: [18,46], popupAnchor: [0,-44] }); }
+
 const markers = {};
 DATA.forEach(d => {
-  const icon = L.divIcon({ className: 'pin-wrap', html: pinHtml(d), iconSize: [36,46], iconAnchor: [18,46], popupAnchor: [0,-44] });
-  const m = L.marker([d.lat, d.lng], { icon, riseOnHover: true, title: d.name });
+  const m = L.marker([d.lat, d.lng], { icon: pinIcon(d), riseOnHover: true, title: d.name });
   const links = d.links.map(l => `<a class="tag" href="${l.u}" target="_blank" rel="noopener">${ICON[l.k]||''} ${l.t}</a>`).join('');
   m.bindPopup(`<div class="pop">
       <span class="pop__lvl l${d.lvl}">${d.lvl===1?'Nav lapas':'Sena lapa'}</span>
@@ -810,7 +870,7 @@ function cardHtml(d) {
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
         </button>` : '';
   const approxTag = d.approx ? `<span class="tag tag--approx">≈ aptuvena vieta</span>` : '';
-  return `<article class="card card--l${d.lvl}" data-id="${d.n}" data-lvl="${d.lvl}" data-name="${d.name.toLowerCase()}" tabindex="0" role="button" aria-label="Skatīt ${d.name} kartē">
+  return `<article class="card card--l${d.lvl}${d.status && d.status !== 'todo' ? ' is-done' : ''}" data-id="${d.n}" data-lvl="${d.lvl}" data-prio="${d.priority || ''}" data-status="${d.status || 'todo'}" data-name="${d.name.toLowerCase()}" tabindex="0" role="button" aria-label="Skatīt ${d.name} kartē">
     <div class="badge">${d.n}</div>
     <div class="card__body">
       <div class="card__top">
@@ -821,38 +881,43 @@ function cardHtml(d) {
       <div class="meta">
         ${phoneTag}${links}${approxTag}
       </div>
+      ${statusRowHtml(d)}
     </div>
   </article>`;
 }
 
 const listEl = document.getElementById('list');
-const L1 = DATA.filter(d => d.lvl === 1);
-const L2 = DATA.filter(d => d.lvl === 2);
-listEl.innerHTML = `
-  <div class="group group--l1" data-group="1">
-    <div class="group__label"><span class="tick"></span> 1. līmenis — nav īstas lapas <span class="ct">${L1.length}</span></div>
-    ${L1.map(cardHtml).join('')}
-  </div>
-  <div class="group group--l2" data-group="2">
-    <div class="group__label"><span class="tick"></span> 2. līmenis — vāja / sena lapa <span class="ct">${L2.length}</span></div>
-    ${L2.map(cardHtml).join('')}
-  </div>`;
-
-// empty-state node + per-level totals derived from data (cannot desync)
 const emptyEl = document.createElement('div');
 emptyEl.className = 'list-empty';
 emptyEl.innerHTML = 'Nav rezultātu <button type="button" id="listClear">notīrīt</button>';
-listEl.appendChild(emptyEl);
+
+function rebuildList() {
+  const L1 = DATA.filter(d => d.lvl === 1);
+  const L2 = DATA.filter(d => d.lvl === 2);
+  listEl.innerHTML = `
+    <div class="group group--l1" data-group="1">
+      <div class="group__label"><span class="tick"></span> 1. līmenis — nav īstas lapas <span class="ct">${L1.length}</span></div>
+      ${L1.map(cardHtml).join('')}
+    </div>
+    <div class="group group--l2" data-group="2">
+      <div class="group__label"><span class="tick"></span> 2. līmenis — vāja / sena lapa <span class="ct">${L2.length}</span></div>
+      ${L2.map(cardHtml).join('')}
+    </div>`;
+  listEl.appendChild(emptyEl);
+}
+rebuildList();
+
 emptyEl.querySelector('#listClear').addEventListener('click', () => {
   document.getElementById('searchInput').value = '';
   filter = 'all';
   document.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.f === 'all' ? 'true' : 'false'));
   applyFilter();
 });
-document.getElementById('statL1').textContent = L1.length;
-document.getElementById('statL2').textContent = L2.length;
-document.getElementById('cL1').textContent = L1.length;
-document.getElementById('cL2').textContent = L2.length;
+const nL1 = DATA.filter(d => d.lvl === 1).length, nL2 = DATA.filter(d => d.lvl === 2).length;
+document.getElementById('statL1').textContent = nL1;
+document.getElementById('statL2').textContent = nL2;
+document.getElementById('cL1').textContent = nL1;
+document.getElementById('cL2').textContent = nL2;
 
 // industry filter options (derived from data, busiest first)
 const catSel = document.getElementById('catFilter');
@@ -924,14 +989,18 @@ listEl.addEventListener('mouseout', e => {
 /* ---------- filtri ---------- */
 let filter = 'all';
 let catFilter = 'all';
+let prioFilter = 'all';
+let statFilter = 'all';
 function applyFilter() {
   const q = document.getElementById('searchInput').value.trim().toLowerCase();
   let visible = 0; const shown = [];
   DATA.forEach(d => {
     const okLvl = filter === 'all' || (filter === 'l1' && d.lvl === 1) || (filter === 'l2' && d.lvl === 2);
     const okCat = catFilter === 'all' || d.category === catFilter;
+    const okPrio = prioFilter === 'all' || d.priority === prioFilter;
+    const okStat = statFilter === 'all' || (d.status || 'todo') === statFilter;
     const okText = !q || d.name.toLowerCase().includes(q) || (d.cat || '').toLowerCase().includes(q);
-    const show = okLvl && okCat && okText;
+    const show = okLvl && okCat && okPrio && okStat && okText;
     if (show) { visible++; shown.push(markers[d.n]); }
     const card = document.querySelector(`.card[data-id="${d.n}"]`);
     if (card) {
@@ -960,9 +1029,62 @@ document.querySelectorAll('.chip').forEach(chip => {
   });
 });
 catSel.addEventListener('change', () => { catFilter = catSel.value; applyFilter(); });
+document.getElementById('prioFilter').addEventListener('change', (e) => { prioFilter = e.target.value; applyFilter(); });
+document.getElementById('statusFilter').addEventListener('change', (e) => { statFilter = e.target.value; applyFilter(); });
 document.getElementById('searchInput').addEventListener('input', applyFilter);
 applyFilter(); // initial counts + populate cluster
 fitAll();      // frame all of Latvia
+
+/* ---------- statuss no clients tabulas (caur login sesiju, tāpat kā trackerī) ---------- */
+function updateCard(d) {
+  const card = document.querySelector(`.card[data-id="${d.n}"]`);
+  if (card) {
+    const st = d.status || 'todo';
+    card.dataset.status = st;
+    card.classList.toggle('is-done', st !== 'todo');
+    const sr = card.querySelector('.statusrow');
+    if (sr) sr.outerHTML = statusRowHtml(d);
+  }
+  if (markers[d.n]) markers[d.n].setIcon(pinIcon(d));
+}
+
+async function setStatus(d, status) {
+  if (!d || !d.cid || !window.__sb) return;
+  const patch = { status };
+  if (status !== 'todo' && !d.contacted_at) { patch.contacted_by = window.__me; patch.contacted_at = new Date().toISOString(); }
+  Object.assign(d, patch);
+  updateCard(d); applyFilter();
+  const { error } = await window.__sb.from('clients').update(patch).eq('id', d.cid);
+  if (error) console.warn('status update failed:', error.message);
+}
+
+window.__onAuth = async (sb) => {
+  window.__sb = sb;
+  try {
+    const { data: { user } } = await sb.auth.getUser();
+    window.__me = (user && user.email) || '';
+    const { data: rows, error } = await sb.from('clients').select('id,name,status,priority,contacted_by,contacted_at');
+    if (error) { console.warn('clients load failed:', error.message); return; }
+    const byName = {};
+    (rows || []).forEach(r => { byName[normName(r.name)] = r; });
+    DATA.forEach(d => {
+      const r = byName[normName(d.name)];
+      if (r) { d.cid = r.id; d.status = r.status || 'todo'; if (r.priority) d.priority = r.priority; d.contacted_by = r.contacted_by; d.contacted_at = r.contacted_at; }
+      else { d.status = d.status || 'todo'; }
+    });
+    rebuildList();
+    DATA.forEach(d => { if (markers[d.n]) markers[d.n].setIcon(pinIcon(d)); });
+    applyFilter();
+    try { const { data: { session } } = await sb.auth.getSession(); if (session) sb.realtime.setAuth(session.access_token); } catch (_) {}
+    sb.channel('clients-map').on('postgres_changes', { event: '*', schema: 'public', table: 'clients' }, (p) => {
+      if (!p.new || !p.new.id) return;
+      const d = DATA.find(x => x.cid === p.new.id);
+      if (d) { d.status = p.new.status; if (p.new.priority) d.priority = p.new.priority; d.contacted_by = p.new.contacted_by; d.contacted_at = p.new.contacted_at; updateCard(d); applyFilter(); }
+    }).subscribe();
+  } catch (e) { console.warn('onAuth error:', e); }
+};
+// if auth already resolved before this script defined the hook
+if (window.__sb) window.__onAuth(window.__sb);
 
 /* ---------- ielādes animācija ---------- */
 requestAnimationFrame(() => {

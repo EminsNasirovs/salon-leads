@@ -100,6 +100,7 @@
     <button class="btn" data-f="med">Medium</button>
     <button class="btn" data-f="low">Low</button>
     <select class="sort" id="catFilter"><option value="all">All categories</option></select>
+    <select class="sort" id="statusFilter"><option value="all">All statuses</option><option value="todo">To do</option><option value="contacted">Contacted</option><option value="replied">Replied</option><option value="client">Client</option></select>
     <select class="sort" id="sort">
       <option value="updated">Sort: Recently updated</option>
       <option value="name">Sort: Name A–Z</option>
@@ -133,7 +134,7 @@ const CAT_LABELS = { saloni:'Saloni', frizieri:'Frizētavas', nagi:'Nagu studija
 
 let clients = [];          // current rows
 let currentEmail = '';
-let filter = 'all', catFilter = 'all', hideDone = false, sortMode = 'updated';
+let filter = 'all', catFilter = 'all', statusFilter = 'all', hideDone = false, sortMode = 'updated';
 
 /* ---------- auth ---------- */
 async function boot() {
@@ -302,7 +303,8 @@ function applyFilter() {
     const okQ = !q || card.dataset.s.includes(q);
     const okD = !hideDone || card.dataset.status === 'todo';
     const okC = catFilter === 'all' || card.dataset.cat === catFilter;
-    card.classList.toggle('hidden', !(okF && okQ && okD && okC));
+    const okS = statusFilter === 'all' || card.dataset.status === statusFilter;
+    card.classList.toggle('hidden', !(okF && okQ && okD && okC && okS));
   });
   document.querySelectorAll('.group').forEach(g => {
     const vis = g.querySelectorAll('.card:not(.hidden)').length;
@@ -312,6 +314,7 @@ function applyFilter() {
 }
 searchEl.addEventListener('input', applyFilter);
 document.getElementById('catFilter').addEventListener('change', (e) => { catFilter = e.target.value; applyFilter(); });
+document.getElementById('statusFilter').addEventListener('change', (e) => { statusFilter = e.target.value; applyFilter(); });
 document.querySelectorAll('.btn[data-f]').forEach(b => b.addEventListener('click', () => {
   document.querySelectorAll('.btn[data-f]').forEach(x => x.classList.remove('active'));
   b.classList.add('active'); filter = b.dataset.f; applyFilter();
