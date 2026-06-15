@@ -62,12 +62,60 @@
   .card.done h3{text-decoration:line-through;text-decoration-color:var(--muted)}
   .card.done .out-row span{color:var(--low)}
   .badge.done{background:rgba(90,143,107,.18);color:#8fd4a6}
+  .contacted{font-size:11px;color:var(--low);margin-top:6px}
+  /* --- session / connection chrome --- */
+  .topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+  .who{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:10px}
+  .who .dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}
+  .who .dot.live{background:var(--low);box-shadow:0 0 0 3px rgba(90,143,107,.18)}
+  .who a{color:var(--gold);cursor:pointer}
+  /* --- login gate --- */
+  .gate{position:fixed;inset:0;background:rgba(15,14,15,.96);display:flex;align-items:center;justify-content:center;z-index:50}
+  .gate.hidden{display:none}
+  .gate .box{width:340px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px}
+  .gate h2{font-size:20px;margin-bottom:4px}
+  .gate h2 span{color:var(--gold)}
+  .gate p{font-size:12px;color:var(--muted);margin-bottom:18px}
+  .gate input{width:100%;background:#252225;border:1px solid var(--line);color:var(--txt);padding:11px 13px;border-radius:9px;font-size:14px;margin-bottom:10px}
+  .gate input:focus{outline:none;border-color:var(--gold)}
+  .gate button{width:100%;background:var(--gold);color:#1a160f;border:none;padding:11px;border-radius:9px;font-size:14px;font-weight:600;cursor:pointer;margin-top:4px}
+  .gate .err{color:#ff8a8d;font-size:12px;min-height:16px;margin-top:8px}
+  .banner{background:rgba(224,162,58,.12);border:1px solid var(--med);color:#ffce7a;font-size:13px;padding:12px 16px;border-radius:10px;margin-bottom:20px}
 </style>
 </head>
 <body>
+
+<!-- ====================================================================
+     CONFIG — paste your Supabase creds here (anon key is safe to commit;
+     your data is protected by RLS + only your two accounts can log in)
+     ==================================================================== -->
+<script>
+  const SUPABASE_URL      = "https://wcwugxgyylvdorsrqzep.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indjd3VneGd5eWx2ZG9yc3JxemVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1MzI2MzAsImV4cCI6MjA5NzEwODYzMH0.ZTKtbZOPevM39MVJYkuWqoZcYsDsjc7YwQsex72-Lmg"; // anon / public
+</script>
+
+<!-- login gate -->
+<div class="gate" id="gate">
+  <div class="box">
+    <h2>Outreach <span>Leads</span></h2>
+    <p>Sign in to view and update the shared list.</p>
+    <input id="gEmail" type="email" placeholder="Email" autocomplete="username">
+    <input id="gPass"  type="password" placeholder="Password" autocomplete="current-password">
+    <button id="gBtn">Sign in</button>
+    <div class="err" id="gErr"></div>
+  </div>
+</div>
+
 <div class="wrap">
-  <h1>Beauty Salon <span>Outreach Leads</span></h1>
-  <p class="sub">66 leads &middot; Riga, Jurmala, Liepaja, Jelgava &middot; sorted by priority (no website = hottest)</p>
+  <div class="topbar">
+    <div>
+      <h1>Beauty Salon <span>Outreach Leads</span></h1>
+      <p class="sub" id="sub">Riga, Jurmala, Liepaja, Jelgava &middot; sorted by priority (no website = hottest)</p>
+    </div>
+    <div class="who" id="who"></div>
+  </div>
+
+  <div id="cfgBanner" class="banner hidden">⚠️ Supabase is not configured yet — paste your Project URL + anon key in the CONFIG block at the top of this file.</div>
 
   <div class="controls">
     <input id="search" type="text" placeholder="Search name, type, city, note...">
@@ -84,13 +132,19 @@
     <button class="btn" id="hideDone">Hide outreached</button>
     <button class="btn" id="restore">↺ Restore deleted (<span id="delCount">0</span>)</button>
   </div>
-  <p class="sub" style="margin-top:-16px"><b id="outStat" style="color:var(--low)">0 / 66 outreached</b></p>
+  <p class="sub" style="margin-top:-16px"><b id="outStat" style="color:var(--low)">0 / 0 outreached</b></p>
 
   <div id="board"></div>
 </div>
 
-<script>
-const leads = [
+<script type="module">
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+/* ====================================================================
+   STARTER LIST — only used to seed an EMPTY table (one click, once).
+   After seeding, the database is the source of truth.
+   ==================================================================== */
+const SEED = [
  // ===== HIGH PRIORITY — NO WEBSITE (Instagram / Facebook / Fresha / Versum only) =====
  {n:"RIGANAILS",t:"Nails / Brows",c:"Riga – Centrs",a:"Strelnieku iela 5",p:"+371 26922200",e:"",ig:"riganails",w:"",book:"Instagram only",pr:"hi",note:"Active IG only — no website at all."},
  {n:"Nail ID Riga",t:"Nails",c:"Riga – Zemgale Suburb",a:"Kalnciema iela 9A",p:"",e:"",ig:"",w:"",book:"Fresha",pr:"hi",note:"Riverside premium nail studio — only on Fresha."},
@@ -169,71 +223,151 @@ const leads = [
  {n:"Taka Spa",t:"Day spa",c:"Riga",a:"",p:"",e:"",ig:"",w:"takaspa.lv",book:"",pr:"low",note:"Has site."},
  {n:"VSpa",t:"Massage / Spa",c:"Riga",a:"",p:"+371 26961181",e:"",ig:"",w:"vspa.lv",book:"",pr:"low",note:"Has site."}
 ];
+// map a SEED row -> DB column shape
+const seedToRow = s => ({
+  name:s.n, type:s.t||null, city:s.c||null, address:s.a||null, phone:s.p||null,
+  email:s.e||null, ig:s.ig||null, fb:s.fb||null, website:s.w||null,
+  booking:s.book||null, note:s.note||null, priority:s.pr||'med'
+});
+
+/* ==================================================================== */
 
 const labels = {hi:"High priority — no website",med:"Medium — outdated website",low:"Low — already has a site"};
-const board = document.getElementById('board');
+const board  = document.getElementById('board');
+const $ = id => document.getElementById(id);
 
-// ---- deleted leads persist in the browser ----
-let deleted = new Set(JSON.parse(localStorage.getItem('deletedLeads') || '[]'));
-function saveDeleted(){
-  localStorage.setItem('deletedLeads', JSON.stringify([...deleted]));
-  document.getElementById('delCount').textContent = deleted.size;
+const configured = SUPABASE_URL.startsWith('http') && !SUPABASE_ANON_KEY.startsWith('PASTE');
+if(!configured) $('cfgBanner').classList.remove('hidden');
+
+const sb = configured ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+let state = [];          // all rows from DB (including deleted)
+let me    = null;        // current user email
+let sortMode = 'default';
+let filter = 'all';
+let hideDone = false;
+
+/* ---------------- auth ---------------- */
+async function initAuth(){
+  if(!configured){ $('gate').classList.add('hidden'); return; }
+  const { data:{ session } } = await sb.auth.getSession();
+  if(session) onSignedIn(session); else $('gate').classList.remove('hidden');
+  sb.auth.onAuthStateChange((_e, s)=>{ if(s) onSignedIn(s); });
+}
+async function signIn(){
+  $('gErr').textContent = '';
+  const email = $('gEmail').value.trim(), password = $('gPass').value;
+  const { error } = await sb.auth.signInWithPassword({ email, password });
+  if(error) $('gErr').textContent = error.message;
+}
+async function signOut(){ await sb.auth.signOut(); location.reload(); }
+async function onSignedIn(session){
+  me = session.user.email;
+  $('gate').classList.add('hidden');
+  renderWho(true);
+  await load();
+  subscribe();
+}
+function renderWho(live){
+  $('who').innerHTML = me
+    ? `<span class="dot ${live?'live':''}" title="${live?'Live sync on':'connecting…'}"></span> ${me} &middot; <a id="out">sign out</a>`
+    : '';
+  if($('out')) $('out').onclick = signOut;
 }
 
-// ---- per-lead overrides (custom priority + comment) persist in the browser ----
-let overrides = JSON.parse(localStorage.getItem('leadOverrides') || '{}');
-function saveOverrides(){ localStorage.setItem('leadOverrides', JSON.stringify(overrides)); }
-function getPr(l){ return (overrides[l.n] && overrides[l.n].pr) || l.pr; }
-function getComment(l){ return (overrides[l.n] && overrides[l.n].comment) || ''; }
-function getOutreached(l){ return !!(overrides[l.n] && overrides[l.n].outreached); }
-function setOverride(name, key, val){
-  overrides[name] = overrides[name] || {};
-  overrides[name][key] = val;
-  saveOverrides();
+/* ---------------- data ---------------- */
+async function load(){
+  const { data, error } = await sb.from('leads').select('*');
+  if(error){ console.error(error); return; }
+  state = data || [];
+  render();
+}
+function subscribe(){
+  sb.channel('leads-live')
+    .on('postgres_changes', { event:'*', schema:'public', table:'leads' }, payload=>{
+      const r = payload.new || payload.old;
+      if(payload.eventType === 'DELETE'){ state = state.filter(x=>x.id!==r.id); }
+      else {
+        const i = state.findIndex(x=>x.id===r.id);
+        if(i>=0) state[i] = payload.new; else state.push(payload.new);
+      }
+      render();
+    })
+    .subscribe(status=>{ renderWho(status==='SUBSCRIBED'); });
 }
 
+// optimistic local patch + DB write
+async function patch(id, fields){
+  const i = state.findIndex(x=>x.id===id);
+  if(i>=0){ state[i] = {...state[i], ...fields}; }
+  const { error } = await sb.from('leads').update(fields).eq('id', id);
+  if(error){ console.error(error); alert('Save failed: '+error.message); await load(); }
+}
+
+async function seed(){
+  if(!confirm('Import the 66 starter leads into the shared database?')) return;
+  const rows = SEED.map(seedToRow);
+  const { error } = await sb.from('leads').insert(rows);
+  if(error){ alert('Import failed: '+error.message); return; }
+  await load();
+}
+
+/* ---------------- rendering ---------------- */
+function fmtWhen(ts){
+  if(!ts) return '';
+  const d = new Date(ts);
+  return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'}) + ' ' +
+         d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+}
 function card(l){
   const links = [];
-  if(l.p)  links.push(`<a href="tel:${l.p.split(' / ')[0].replace(/\s/g,'')}">📞 Call</a>`);
-  if(l.e)  links.push(`<a href="mailto:${l.e}">✉️ Email</a>`);
-  if(l.ig) links.push(`<a href="https://instagram.com/${l.ig}" target="_blank">📷 @${l.ig}</a>`);
-  if(l.fb) links.push(`<a href="https://facebook.com/${l.fb}" target="_blank">📘 Facebook</a>`);
-  if(l.w)  links.push(`<a href="https://${l.w}" target="_blank">🌐 ${l.w}</a>`);
-  if(l.book && !l.w) links.push(`<span style="font-size:12px;color:var(--muted);padding:5px 0">via ${l.book}</span>`);
-  const pr = getPr(l);
-  const comment = getComment(l);
-  const done = getOutreached(l);
+  if(l.phone)   links.push(`<a href="tel:${l.phone.split(' / ')[0].replace(/\s/g,'')}">📞 Call</a>`);
+  if(l.email)   links.push(`<a href="mailto:${l.email}">✉️ Email</a>`);
+  if(l.ig)      links.push(`<a href="https://instagram.com/${l.ig}" target="_blank">📷 @${l.ig}</a>`);
+  if(l.fb)      links.push(`<a href="https://facebook.com/${l.fb}" target="_blank">📘 Facebook</a>`);
+  if(l.website) links.push(`<a href="https://${l.website}" target="_blank">🌐 ${l.website}</a>`);
+  if(l.booking && !l.website) links.push(`<span style="font-size:12px;color:var(--muted);padding:5px 0">via ${l.booking}</span>`);
+  const pr = l.priority, done = l.outreached;
+  const cmt = l.comment || '';
   const opt = (v,t)=>`<option value="${v}"${pr===v?' selected':''}>${t}</option>`;
-  return `<div class="card ${pr}${done?' done':''}" data-pr="${pr}" data-out="${done?1:0}" data-name="${l.n.replace(/"/g,'&quot;')}" data-s="${(l.n+' '+l.t+' '+l.c+' '+l.note+' '+comment).toLowerCase()}">
-    <div class="top"><h3>${l.n}</h3><div class="top-right">${done?'<span class="badge done">✓ Sent</span>':''}<span class="badge ${pr}">${pr}</span><button class="del" title="Delete lead">&times;</button></div></div>
-    <div class="type">${l.t}</div>
-    ${l.c?`<div class="meta">📍 <b>${l.c}</b>${l.a?` — ${l.a}`:''}</div>`:''}
-    ${l.p?`<div class="meta">${l.p}</div>`:''}
-    ${l.e?`<div class="meta">${l.e}</div>`:''}
+  const esc = s => (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+  return `<div class="card ${pr}${done?' done':''}" data-pr="${pr}" data-out="${done?1:0}" data-id="${l.id}" data-s="${esc((l.name+' '+(l.type||'')+' '+(l.city||'')+' '+(l.note||'')+' '+cmt).toLowerCase())}">
+    <div class="top"><h3>${esc(l.name)}</h3><div class="top-right">${done?'<span class="badge done">✓ Sent</span>':''}<span class="badge ${pr}">${pr}</span><button class="del" title="Delete lead">&times;</button></div></div>
+    <div class="type">${esc(l.type)}</div>
+    ${l.city?`<div class="meta">📍 <b>${esc(l.city)}</b>${l.address?` — ${esc(l.address)}`:''}</div>`:''}
+    ${l.phone?`<div class="meta">${esc(l.phone)}</div>`:''}
+    ${l.email?`<div class="meta">${esc(l.email)}</div>`:''}
     <div class="links">${links.join('')}</div>
-    <div class="note">${l.note}</div>
+    ${l.note?`<div class="note">${esc(l.note)}</div>`:''}
     <div class="edit">
       <label class="out-row"><input type="checkbox" class="out-chk"${done?' checked':''}><span>Outreached</span></label>
+      ${done&&l.contacted_by?`<div class="contacted">✓ by ${esc(l.contacted_by)} · ${fmtWhen(l.contacted_at)}</div>`:''}
       <div class="row"><label>Priority</label>
         <select class="pr-sel">${opt('hi','High')}${opt('med','Mid')}${opt('low','Low')}</select>
       </div>
-      <textarea class="cmt" placeholder="Add your comment / notes...">${comment.replace(/</g,'&lt;')}</textarea>
+      <textarea class="cmt" placeholder="Add your comment / notes...">${esc(cmt)}</textarea>
     </div>
   </div>`;
 }
 
-let sortMode = 'default';
 function sortItems(items){
-  if(sortMode==='name') return [...items].sort((a,b)=>a.n.localeCompare(b.n));
-  if(sortMode==='city') return [...items].sort((a,b)=>(a.c||'').localeCompare(b.c||'') || a.n.localeCompare(b.n));
-  if(sortMode==='type') return [...items].sort((a,b)=>(a.t||'').localeCompare(b.t||'') || a.n.localeCompare(b.n));
+  if(sortMode==='name') return [...items].sort((a,b)=>a.name.localeCompare(b.name));
+  if(sortMode==='city') return [...items].sort((a,b)=>(a.city||'').localeCompare(b.city||'') || a.name.localeCompare(b.name));
+  if(sortMode==='type') return [...items].sort((a,b)=>(a.type||'').localeCompare(b.type||'') || a.name.localeCompare(b.name));
   return items;
 }
 
 function render(){
+  if(!configured){ board.innerHTML = ''; return; }
+  const live = state.filter(l=>!l.deleted);
+  if(state.length===0){
+    board.innerHTML = `<div class="banner">The shared list is empty. <a id="seedBtn" style="color:var(--gold);cursor:pointer;text-decoration:underline">Import the 66 starter leads</a> to get going — or just start adding rows in Supabase.</div>`;
+    if($('seedBtn')) $('seedBtn').onclick = seed;
+    updateOutCount(); return;
+  }
   let html='';
   ['hi','med','low'].forEach(pr=>{
-    const items = sortItems(leads.filter(l=>getPr(l)===pr && !deleted.has(l.n)));
+    const items = sortItems(live.filter(l=>l.priority===pr));
     if(!items.length) return;
     html += `<div class="group" data-group="${pr}">
       <div class="group-head"><h2>${labels[pr]}</h2><span class="count">${items.length} leads</span></div>
@@ -246,45 +380,39 @@ function render(){
 }
 
 function bindCardEvents(){
-  // delete
   document.querySelectorAll('.del').forEach(b=>b.addEventListener('click',e=>{
-    const name = e.target.closest('.card').dataset.name.replace(/&quot;/g,'"');
-    deleted.add(name); saveDeleted(); render();
+    const id = e.target.closest('.card').dataset.id;
+    patch(id, { deleted:true });
   }));
-  // change priority — re-render so the card moves to the right group
   document.querySelectorAll('.pr-sel').forEach(s=>s.addEventListener('change',e=>{
-    const name = e.target.closest('.card').dataset.name.replace(/&quot;/g,'"');
-    setOverride(name, 'pr', e.target.value); render();
+    const id = e.target.closest('.card').dataset.id;
+    patch(id, { priority:e.target.value });
   }));
-  // comments — save on input WITHOUT re-rendering (keeps focus)
-  document.querySelectorAll('.cmt').forEach(t=>t.addEventListener('input',e=>{
-    const name = e.target.closest('.card').dataset.name.replace(/&quot;/g,'"');
-    setOverride(name, 'comment', e.target.value);
-    e.target.classList.add('saved');
-  }));
-  // outreached checkbox — toggle "done" state, persist, update count & visuals
+  document.querySelectorAll('.cmt').forEach(t=>{
+    let timer;
+    t.addEventListener('input',e=>{
+      const id = e.target.closest('.card').dataset.id;
+      e.target.classList.add('saved');
+      clearTimeout(timer);
+      timer = setTimeout(()=>patch(id, { comment:e.target.value }), 600);
+    });
+  });
   document.querySelectorAll('.out-chk').forEach(c=>c.addEventListener('change',e=>{
-    const card = e.target.closest('.card');
-    const name = card.dataset.name.replace(/&quot;/g,'"');
-    setOverride(name, 'outreached', e.target.checked);
-    card.classList.toggle('done', e.target.checked);
-    card.dataset.out = e.target.checked ? 1 : 0;
-    let b = card.querySelector('.badge.done');
-    if(e.target.checked && !b){ b=document.createElement('span'); b.className='badge done'; b.textContent='✓ Sent'; card.querySelector('.top-right').prepend(b); }
-    if(!e.target.checked && b){ b.remove(); }
-    updateOutCount(); apply();
+    const id = e.target.closest('.card').dataset.id;
+    if(e.target.checked) patch(id, { outreached:true,  contacted_by:me, contacted_at:new Date().toISOString() });
+    else                 patch(id, { outreached:false, contacted_by:null, contacted_at:null });
   }));
 }
 
 function updateOutCount(){
-  const total = leads.filter(l=>!deleted.has(l.n)).length;
-  const done = leads.filter(l=>!deleted.has(l.n) && getOutreached(l)).length;
-  document.getElementById('outStat').textContent = done+' / '+total+' outreached';
+  const live = state.filter(l=>!l.deleted);
+  const done = live.filter(l=>l.outreached).length;
+  $('outStat').textContent = done+' / '+live.length+' outreached';
+  $('delCount').textContent = state.filter(l=>l.deleted).length;
 }
 
-const search = document.getElementById('search');
-let filter = 'all';
-let hideDone = false;
+/* ---------------- controls ---------------- */
+const search = $('search');
 function apply(){
   const q = search.value.toLowerCase();
   document.querySelectorAll('.card').forEach(c=>{
@@ -304,21 +432,25 @@ document.querySelectorAll('.btn[data-f]').forEach(b=>b.addEventListener('click',
   document.querySelectorAll('.btn[data-f]').forEach(x=>x.classList.remove('active'));
   b.classList.add('active'); filter=b.dataset.f; apply();
 }));
-
-// hide outreached toggle
-document.getElementById('hideDone').addEventListener('click',e=>{
+$('hideDone').addEventListener('click',e=>{
   hideDone=!hideDone; e.target.classList.toggle('active',hideDone);
   e.target.textContent = hideDone?'Show outreached':'Hide outreached';
   apply();
 });
+$('restore').addEventListener('click', async ()=>{
+  const del = state.filter(l=>l.deleted);
+  if(!del.length) return;
+  if(!confirm(`Restore ${del.length} deleted lead(s)?`)) return;
+  await sb.from('leads').update({ deleted:false }).eq('deleted', true);
+  await load();
+});
+$('sort').addEventListener('change',e=>{ sortMode=e.target.value; render(); });
 
-// restore deleted + sorting
-document.getElementById('restore').addEventListener('click',()=>{ deleted.clear(); saveDeleted(); render(); });
-document.getElementById('sort').addEventListener('change',e=>{ sortMode=e.target.value; render(); });
+// login gate handlers
+$('gBtn').addEventListener('click', signIn);
+$('gPass').addEventListener('keydown', e=>{ if(e.key==='Enter') signIn(); });
 
-// initial paint (after apply/search/filter are defined)
-saveDeleted();
-render();
+initAuth();
 </script>
 </body>
 </html>
