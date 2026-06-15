@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Rast Studio — DM mērķi (nav lapas / sena lapa)</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+<style>
+  :root {
+    --bg:        #0b0d11;
+    --bg-2:      #0e1116;
+    --panel:     #12151c;
+    --panel-2:   #161a22;
+    --hair:      rgba(244,239,233,0.085);
+    --hair-soft: rgba(244,239,233,0.05);
+
+    --ink:       #f3eee7;
+    --ink-mid:   #a9a39a;
+    --ink-faint: #8a857c;
+
+    --l1:        #fb5a3c;   /* ember — hot, no site */
+    --l1-soft:   rgba(251,90,60,0.14);
+    --l1-line:   rgba(251,90,60,0.42);
+    --l2:        #e7b24a;   /* amber — redesign */
+    --l2-soft:   rgba(231,178,74,0.13);
+    --l2-line:   rgba(231,178,74,0.40);
+
+    --shadow:    0 18px 50px -22px rgba(0,0,0,0.85);
+    --ease:      cubic-bezier(0.22, 1, 0.36, 1);
+    --dur-fast:  0.2s;
+    --dur:       0.25s;
+    --dur-slow:  0.5s;
+    --rail:      clamp(340px, 32vw, 452px);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    font-family: "Hanken Grotesk", system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow: hidden;
+  }
+
+  /* ---------- atmosphere ---------- */
+  .grain {
+    position: fixed; inset: 0; z-index: 9000; pointer-events: none;
+    opacity: 0.035; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- shell ---------- */
+  .app { display: flex; height: 100dvh; width: 100%; }
+
+  /* ---------- rail ---------- */
+  .rail {
+    width: var(--rail); flex: 0 0 var(--rail);
+    height: 100%;
+    display: flex; flex-direction: column;
+    background:
+      radial-gradient(120% 60% at 10% -10%, rgba(251,90,60,0.12), transparent 60%),
+      linear-gradient(180deg, var(--panel) 0%, var(--bg-2) 100%);
+    border-left: 1px solid var(--hair);
+    position: relative; z-index: 500;
+    box-shadow: -18px 0 60px -40px rgba(0,0,0,0.9);
+  }
+
+  .rail__head {
+    padding: 26px 26px 18px;
+    border-bottom: 1px solid var(--hair);
+    flex: 0 0 auto;
+  }
+
+  .brand {
+    display: flex; align-items: center; gap: 9px;
+    font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--ink-mid); font-weight: 600;
+  }
+  .brand .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--l1); box-shadow: 0 0 12px 1px var(--l1);
+  }
+  .brand .div { width: 1px; height: 11px; background: var(--hair); }
+  .brand .sub { color: var(--ink-faint); letter-spacing: 0.22em; }
+
+  .title {
+    font-family: "Fraunces", serif;
+    font-weight: 500;
+    font-size: clamp(30px, 3.3vw, 40px);
+    line-height: 0.98; letter-spacing: -0.012em;
+    margin: 18px 0 4px;
+  }
+  .title em {
+    font-style: italic; font-weight: 400;
+    color: var(--ink-mid);
+  }
+  .subtitle {
+    font-size: 13.5px; color: var(--ink-mid);
+    margin: 0; max-width: 34ch; line-height: 1.45;
+  }
+
+  .stats {
+    display: flex; gap: 0; margin-top: 20px;
+    border: 1px solid var(--hair); border-radius: 12px;
+    overflow: hidden; background: rgba(0,0,0,0.18);
+  }
+  .stat {
+    flex: 1; padding: 11px 14px; position: relative;
+  }
+  .stat + .stat { border-left: 1px solid var(--hair); }
+  .stat .n {
+    font-family: "Fraunces", serif; font-size: 25px; font-weight: 600;
+    line-height: 1;
+  }
+  .stat .k { font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin-top: 6px; }
+  .stat.l1 .n { color: var(--l1); }
+  .stat.l2 .n { color: var(--l2); }
+
+  /* ---------- controls ---------- */
+  .controls { padding: 16px 26px 12px; flex: 0 0 auto; }
+  .search {
+    width: 100%; position: relative; margin-bottom: 12px;
+  }
+  .search input {
+    width: 100%; padding: 10px 12px 10px 34px;
+    background: rgba(0,0,0,0.22); border: 1px solid var(--hair);
+    border-radius: 10px; color: var(--ink); font: inherit; font-size: 13.5px;
+    outline: none; transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+  }
+  .search input::placeholder { color: var(--ink-faint); }
+  .search input:focus { border-color: var(--l1-line); background: rgba(0,0,0,0.32); }
+  .search svg { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--ink-faint); }
+
+  .chips { display: flex; gap: 8px; }
+  .chip {
+    flex: 1; cursor: pointer; user-select: none;
+    padding: 8px 6px; border-radius: 9px; text-align: center;
+    background: rgba(255,255,255,0.015); border: 1px solid var(--hair);
+    color: var(--ink-mid); font-size: 12px; font-weight: 600;
+    letter-spacing: 0.01em; transition: all var(--dur-fast) var(--ease);
+    display: flex; flex-direction: column; gap: 2px; align-items: center;
+  }
+
+  /* keyboard focus — WCAG 2.4.7 */
+  .card:focus-visible,
+  .chip:focus-visible,
+  .tag:focus-visible,
+  .fit-btn:focus-visible,
+  .search input:focus-visible {
+    outline: 2px solid var(--l1);
+    outline-offset: 2px;
+  }
+  .card:focus-visible { outline-offset: 3px; }
+  .chip .c { font-family: "JetBrains Mono", monospace; font-size: 10px; opacity: 0.7; }
+  .chip:hover { color: var(--ink); border-color: var(--hair); background: rgba(255,255,255,0.04); }
+  .chip[aria-pressed="true"] { color: var(--ink); background: rgba(255,255,255,0.06); border-color: rgba(244,239,233,0.22); }
+  .chip[data-f="l1"][aria-pressed="true"] { color: var(--l1); border-color: var(--l1-line); background: var(--l1-soft); }
+  .chip[data-f="l2"][aria-pressed="true"] { color: var(--l2); border-color: var(--l2-line); background: var(--l2-soft); }
+
+  /* ---------- list ---------- */
+  .list {
+    flex: 1 1 auto; overflow-y: auto; padding: 8px 18px 28px;
+    scrollbar-width: thin; scrollbar-color: rgba(244,239,233,0.16) transparent;
+  }
+  .list::-webkit-scrollbar { width: 8px; }
+  .list::-webkit-scrollbar-thumb { background: rgba(244,239,233,0.14); border-radius: 8px; }
+  .list::-webkit-scrollbar-thumb:hover { background: rgba(244,239,233,0.26); }
+
+  .group__label {
+    display: flex; align-items: center; gap: 10px;
+    padding: 18px 8px 10px; position: sticky; top: 0; z-index: 2;
+    background: linear-gradient(180deg, var(--panel) 62%, transparent);
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-mid); font-weight: 600;
+  }
+  .group__label .tick { width: 18px; height: 2px; border-radius: 2px; }
+  .group--l1 .tick { background: var(--l1); box-shadow: 0 0 10px var(--l1); }
+  .group--l2 .tick { background: var(--l2); box-shadow: 0 0 10px var(--l2); }
+  .group__label .ct { margin-left: auto; font-family: "JetBrains Mono", monospace; color: var(--ink-faint); letter-spacing: 0; }
+
+  .card {
+    position: relative; cursor: pointer;
+    display: grid; grid-template-columns: 34px 1fr; gap: 13px;
+    padding: 15px 14px; margin: 7px 2px;
+    border: 1px solid var(--hair); border-radius: 14px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.018), rgba(255,255,255,0));
+    transition: border-color 0.25s var(--ease), transform 0.25s var(--ease), background 0.25s var(--ease);
+  }
+  .card::before {
+    content: ""; position: absolute; left: 0; top: 14px; bottom: 14px; width: 2px;
+    border-radius: 2px; opacity: 0; transition: opacity 0.25s var(--ease);
+  }
+  .card--l1::before { background: var(--l1); box-shadow: 0 0 12px var(--l1); }
+  .card--l2::before { background: var(--l2); box-shadow: 0 0 12px var(--l2); }
+  .card:hover { transform: translateX(3px); border-color: rgba(244,239,233,0.2); background: rgba(255,255,255,0.035); }
+  .card:hover::before { opacity: 1; }
+  .card.is-active { border-color: rgba(244,239,233,0.26); background: rgba(255,255,255,0.05); }
+  .card.is-active::before { opacity: 1; }
+  .card--l1.is-active { box-shadow: inset 0 0 0 1px var(--l1-line), 0 14px 36px -26px var(--l1); }
+  .card--l2.is-active { box-shadow: inset 0 0 0 1px var(--l2-line), 0 14px 36px -26px var(--l2); }
+
+  .badge {
+    width: 34px; height: 34px; border-radius: 10px;
+    display: grid; place-items: center;
+    font-family: "Fraunces", serif; font-weight: 600; font-size: 16px;
+    color: var(--bg); flex: 0 0 auto;
+  }
+  .card--l1 .badge { background: var(--l1); box-shadow: 0 6px 18px -6px var(--l1); }
+  .card--l2 .badge { background: var(--l2); box-shadow: 0 6px 18px -6px var(--l2); }
+
+  .card__body { min-width: 0; }
+  .card__top { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .card__name {
+    font-family: "Fraunces", serif; font-size: 18px; font-weight: 500;
+    letter-spacing: -0.01em; line-height: 1.12; color: var(--ink);
+  }
+  .card__cat {
+    font-size: 11px; color: var(--ink-faint); letter-spacing: 0.02em;
+    text-transform: uppercase; font-weight: 600;
+  }
+  .hook {
+    margin: 9px 0 0; font-size: 13px; line-height: 1.5; color: var(--ink-mid);
+  }
+  .hook b { color: var(--ink); font-weight: 600; }
+  .meta { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 11px; }
+  .tag {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 11.5px; font-weight: 500; padding: 4px 9px; border-radius: 7px;
+    border: 1px solid var(--hair); color: var(--ink-mid);
+    background: rgba(0,0,0,0.18); font-family: "JetBrains Mono", monospace;
+    text-decoration: none; transition: all 0.2s var(--ease);
+  }
+  .tag svg { opacity: 0.7; }
+  a.tag:hover { color: var(--ink); border-color: rgba(244,239,233,0.24); background: rgba(0,0,0,0.3); }
+  .tag.tag--phone { color: var(--ink); border-color: var(--hair); }
+  .card--l1 .tag.tag--phone:hover { color: var(--l1); border-color: var(--l1-line); }
+  .card--l2 .tag.tag--phone:hover { color: var(--l2); border-color: var(--l2-line); }
+  .tag--copy { cursor: pointer; padding: 4px 7px; }
+  .tag--copy.copied { color: #7fd39b; border-color: rgba(127,211,155,0.4); }
+  .tag--approx { color: var(--ink-faint); border-style: dashed; }
+
+  .card.is-dim { opacity: 0.32; filter: saturate(0.5); }
+
+  /* ---------- map ---------- */
+  .map-wrap { flex: 1 1 auto; position: relative; min-width: 0; }
+  #map { position: absolute; inset: 0; background: var(--bg); }
+  .leaflet-container { font-family: "Hanken Grotesk", sans-serif; background: #0b0d11; }
+  .leaflet-tile-pane { filter: saturate(0.78) brightness(0.92) contrast(1.03); }
+
+  /* map overlay header (mobile shows context) */
+  .map-tag {
+    position: absolute; z-index: 480; top: 16px; right: 16px;
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 13px; border-radius: 100px;
+    background: rgba(13,15,20,0.74); backdrop-filter: blur(10px);
+    border: 1px solid var(--hair); font-size: 12px; color: var(--ink-mid);
+    box-shadow: var(--shadow); font-weight: 500;
+  }
+  .map-tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--l1); box-shadow: 0 0 8px var(--l1); }
+
+  .fit-btn {
+    position: absolute; z-index: 480; bottom: 22px; right: 16px;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 15px; border-radius: 11px; cursor: pointer;
+    background: rgba(13,15,20,0.82); backdrop-filter: blur(10px);
+    border: 1px solid var(--hair); color: var(--ink); font: inherit;
+    font-size: 13px; font-weight: 600; box-shadow: var(--shadow);
+    transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+  }
+  .fit-btn:hover { border-color: rgba(244,239,233,0.28); transform: translateY(-1px); }
+  .fit-btn svg { color: var(--ink-mid); }
+
+  .legend {
+    position: absolute; z-index: 480; bottom: 22px; left: 16px;
+    display: flex; flex-direction: column; gap: 8px;
+    padding: 12px 14px; border-radius: 12px;
+    background: rgba(13,15,20,0.74); backdrop-filter: blur(10px);
+    border: 1px solid var(--hair); box-shadow: var(--shadow);
+  }
+  .legend .row { display: flex; align-items: center; gap: 9px; font-size: 12px; color: var(--ink-mid); }
+  .legend .sw { width: 11px; height: 11px; border-radius: 50%; flex: 0 0 auto; }
+  .legend .sw.l1 { background: var(--l1); box-shadow: 0 0 9px var(--l1); }
+  .legend .sw.l2 { background: var(--l2); box-shadow: 0 0 9px var(--l2); }
+
+  /* ---------- pins ---------- */
+  .pin { position: relative; width: 36px; height: 46px; cursor: pointer; transition: transform 0.25s var(--ease); transform-origin: 50% 100%; }
+  .pin svg { display: block; filter: drop-shadow(0 8px 10px rgba(0,0,0,0.55)); }
+  .pin__num {
+    position: absolute; top: 8px; left: 0; width: 36px; text-align: center;
+    font-family: "Fraunces", serif; font-weight: 600; font-size: 15px;
+    color: #0b0d11; pointer-events: none;
+  }
+  .pin__ring {
+    position: absolute; left: 50%; top: 17px; width: 30px; height: 30px;
+    margin: -15px 0 0 -15px; border-radius: 50%; pointer-events: none;
+  }
+  /* pulse only the active pin — an always-on pulse doesn't scale to 36 hot leads */
+  .pin--l1.is-active .pin__ring { animation: pulse 2.6s var(--ease) infinite; }
+  /* approximate location: dashed, slightly faded teardrop */
+  .pin--approx svg path { stroke-dasharray: 3 3; stroke-width: 1.3; }
+  .pin--approx svg { opacity: 0.85; }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(251,90,60,0.55); }
+    70%  { box-shadow: 0 0 0 16px rgba(251,90,60,0); }
+    100% { box-shadow: 0 0 0 0 rgba(251,90,60,0); }
+  }
+  .pin:hover, .pin.is-active { transform: scale(1.18) translateY(-2px); z-index: 1000; }
+  .pin.is-active svg { filter: drop-shadow(0 10px 16px rgba(0,0,0,0.7)); }
+
+  /* ---------- leaflet popup ---------- */
+  .leaflet-popup-content-wrapper {
+    background: linear-gradient(180deg, var(--panel-2), var(--bg-2));
+    color: var(--ink); border-radius: 14px; border: 1px solid var(--hair);
+    box-shadow: var(--shadow); padding: 0;
+  }
+  .leaflet-popup-content { margin: 0; width: 260px !important; }
+  .leaflet-popup-tip { background: var(--bg-2); border: 1px solid var(--hair); }
+  .leaflet-popup-close-button { color: var(--ink-faint) !important; padding: 10px 10px 0 0 !important; }
+  .leaflet-popup-close-button:hover { color: var(--ink) !important; }
+  .pop { padding: 16px 16px 15px; }
+  .pop__lvl {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 10.5px;
+    text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700;
+    padding: 4px 9px; border-radius: 100px; margin-bottom: 11px;
+  }
+  .pop__lvl.l1 { color: var(--l1); background: var(--l1-soft); border: 1px solid var(--l1-line); }
+  .pop__lvl.l2 { color: var(--l2); background: var(--l2-soft); border: 1px solid var(--l2-line); }
+  .pop__name { font-family: "Fraunces", serif; font-size: 20px; font-weight: 600; line-height: 1.1; margin: 0 0 3px; }
+  .pop__cat { font-size: 11px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; }
+  .pop__hook { font-size: 13px; line-height: 1.5; color: var(--ink-mid); margin: 11px 0 13px; }
+  .pop__hook b { color: var(--ink); }
+  .pop__phone {
+    display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+    font-family: "JetBrains Mono", monospace; font-size: 13.5px; font-weight: 500;
+    color: var(--ink); padding: 9px 13px; border-radius: 9px; width: 100%;
+    border: 1px solid var(--hair); background: rgba(0,0,0,0.22);
+    transition: all 0.2s var(--ease);
+  }
+  .pop__phone:hover { border-color: rgba(244,239,233,0.26); background: rgba(0,0,0,0.34); }
+  .pop__approx { margin-top: 10px; font-size: 11.5px; color: var(--ink-faint); }
+
+  /* ---------- mobile toggle (hidden on desktop) ---------- */
+  .mobile-toggle { display: none; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 900px) {
+    body { overflow: auto; }
+    .app { flex-direction: column; height: auto; min-height: 100dvh; }
+    .map-wrap { order: -1; height: 52vh; min-height: 340px; flex: 0 0 auto; position: relative; }
+    #map { position: absolute; inset: 0; }
+    .rail { width: 100%; flex: 1 1 auto; border-left: none; border-top: 1px solid var(--hair); box-shadow: none; }
+    .rail__head { padding: 22px 20px 16px; }
+    .controls { padding: 14px 20px 10px; }
+    .list { overflow-y: visible; max-height: none; padding: 8px 14px 40px; }
+    .group__label { top: 0; background: var(--panel); padding-top: 14px; padding-bottom: 8px; }
+    .legend { bottom: 14px; left: 12px; padding: 9px 11px; }
+    .legend .row { font-size: 11px; }
+    .fit-btn { bottom: 14px; right: 12px; padding: 9px 12px; }
+    .title { font-size: clamp(28px, 8vw, 36px); }
+  }
+  @media (max-width: 420px) {
+    .stats { flex-direction: row; }
+    .stat { padding: 9px 10px; }
+    .stat .n { font-size: 21px; }
+    .map-tag { display: none; }
+  }
+
+  /* touch devices — enlarge tap targets to >=40px */
+  @media (pointer: coarse) {
+    .tag { min-height: 40px; padding: 9px 12px; }
+    .tag--copy { min-width: 40px; padding: 9px; justify-content: center; }
+  }
+
+  /* copy failed state */
+  .tag--copy.copy-fail { color: #e0654f; border-color: rgba(224,101,79,0.45); }
+
+  /* list empty state */
+  .list-empty {
+    padding: 26px 16px; text-align: center; color: var(--ink-mid); font-size: 14px;
+    display: none;
+  }
+  .list-empty.show { display: block; }
+  .list-empty button {
+    background: none; border: none; color: var(--ink); text-decoration: underline;
+    cursor: pointer; font: inherit; padding: 0; margin-left: 4px;
+  }
+
+  /* reduce motion */
+  @media (prefers-reduced-motion: reduce) {
+    .pin--l1 .pin__ring { animation: none; }
+    * { transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="app">
+  <!-- MAP -->
+  <div class="map-wrap">
+    <div id="map" role="application" aria-label="Karte ar DM mērķa līdiem Rīgā"></div>
+    <div class="map-tag"><span class="dot"></span> <span id="tagCount">11</span> DM mērķi</div>
+    <div class="legend" aria-hidden="true">
+      <div class="row"><span class="sw l1"></span> Nav īstas lapas</div>
+      <div class="row"><span class="sw l2"></span> Vāja / sena lapa</div>
+    </div>
+    <button class="fit-btn" id="fitBtn" type="button" title="Rādīt visus">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m13-5v3a2 2 0 0 1-2 2h-3"/></svg>
+      Visi
+    </button>
+  </div>
+
+  <!-- RAIL -->
+  <aside class="rail">
+    <div class="rail__head">
+      <div class="brand">
+        <span class="dot"></span> Rast Studio
+        <span class="div"></span>
+        <span class="sub">Sales Ops</span>
+      </div>
+      <h1 class="title">DM mērķi <em>— skaistumkopšana</em></h1>
+      <p class="subtitle">Saloni bez īstas mājaslapas vai ar novecojušu lapu. Katrs pārbaudīts tīmeklī.</p>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="n" id="statAll">11</div>
+          <div class="k">Kopā</div>
+        </div>
+        <div class="stat l1">
+          <div class="n" id="statL1">8</div>
+          <div class="k">Nav lapas</div>
+        </div>
+        <div class="stat l2">
+          <div class="n" id="statL2">3</div>
+          <div class="k">Sena lapa</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="searchInput" type="search" placeholder="Meklēt līdu…" aria-label="Meklēt līdu" />
+      </div>
+      <div class="chips" role="group" aria-label="Filtrēt pēc līmeņa">
+        <button class="chip" data-f="all" aria-pressed="true">Visi <span class="c" id="cAll">11</span></button>
+        <button class="chip" data-f="l1" aria-pressed="false">Nav lapas <span class="c" id="cL1">8</span></button>
+        <button class="chip" data-f="l2" aria-pressed="false">Sena lapa <span class="c" id="cL2">3</span></button>
+      </div>
+    </div>
+
+    <div class="list" id="list"></div>
+  </aside>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+/* ------------------------------------------------------------------ *
+ * LĪDU DATI — place_id, koordinātes un piezīmes precīzi no oriģināla  *
+ * ------------------------------------------------------------------ */
+const LEADS = [
+  // ===== 1. LĪMENIS — NAV ĪSTAS LAPAS =====
+  { n: 1,  lvl: 1, name: "Céleste Beauty", cat: "Estētiskais salons · Pļavnieki",
+    pid: "ChIJ7fkfLI3N7kYRGHRx86-fU5E", lat: 56.934685, lng: 24.2035428,
+    hook: "Viss iet caur IG, Google neatrod → tīra lapa ar pierakstu.",
+    note: "Nav lapas, tikai IG. Jauns estētisks salons, vērtējums 4.9.",
+    phone: "+371 24 559 321", links: [{t:"IG @celeste.beauty.riga", u:"https://instagram.com/celeste.beauty.riga", k:"ig"}] },
+
+  { n: 2,  lvl: 1, name: "SPA speciālists Olga", cat: "SPA / masāža · solo",
+    pid: "ChIJRW_P-5jP7kYRxmKm6jn2M7s", lat: 56.947036, lng: 24.1951906,
+    hook: "Lapa ar pakalpojumiem un online pierakstu.",
+    note: "Nav lapas, tikai IG. Solo SPA/masāža, vērtējums 5.0.",
+    phone: "+371 26 740 603", links: [{t:"IG @spa.specialist.olga", u:"https://instagram.com/spa.specialist.olga", k:"ig"}] },
+
+  { n: 3,  lvl: 1, name: "kukas_riga", cat: "Tortes pēc pasūtījuma",
+    pid: "ChIJt0JXrcXP7kYR0Wf3d7Xb9TE", lat: 56.9453398, lng: 24.1709775,
+    hook: "Portfolio + pasūtījumu lapa.",
+    note: "Nav lapas, tikai IG.",
+    phone: "+371 29 526 419", links: [{t:"IG @kukas_riga", u:"https://instagram.com/kukas_riga", k:"ig"}] },
+
+  { n: 4,  lvl: 1, name: "Charme nail room", cat: "Manikīrs · Purvciems",
+    pid: "ChIJAfNVESvP7kYR38R9-Sj6ZHI", lat: 56.9616056, lng: 24.1762227,
+    hook: "Vispār nav web klātbūtnes → pilna pamata lapa.",
+    note: "48 atsauksmes. IG handle meklē pēc nosaukuma.",
+    phone: "+371 27 005 432", links: [] },
+
+  { n: 5,  lvl: 1, name: "Patisserie Tortes namiņš", cat: "Konditoreja · pasūtījumi",
+    pid: "ChIJ5ZiWQuzb7kYR_aMf-ar-EvY", lat: 56.9480486, lng: 24.0031057,
+    hook: "Atsauksmēs pasūtījumu juceklis → order lapa ar auto-apstiprinājumu.",
+    note: "Tikai FB.",
+    phone: "+371 25 777 995", links: [{t:"FB tortesnamins2018", u:"https://facebook.com/tortesnamins2018", k:"fb"}] },
+
+  { n: 6,  lvl: 1, name: "DoGroom", cat: "Suņu / kaķu frizētava",
+    pid: "ChIJBe6NNhTO7kYRs0awDKda8nQ", lat: 56.9497572, lng: 24.1723782,
+    hook: "Tikai FB → pierakstu lapa ar pakalpojumu cenrādi.",
+    note: "Tikai FB lapa, 24 atsauksmes.",
+    phone: "+371 29 515 025", links: [{t:"FB dogrooom.lv", u:"https://facebook.com/dogrooom.lv", k:"fb"}] },
+
+  { n: 7,  lvl: 1, name: "Salons NOA", cat: "Skaistumkopšanas salons",
+    pid: "ChIJ9fGI_WnO7kYRwsUBKjV2tRo", lat: 56.960124, lng: 24.1765254,
+    hook: "“Lapa” ir tikai zl.lv auto-profils → īsta lapa ar pierakstu.",
+    note: "67 atsauksmes, nav īstas lapas.",
+    phone: "+371 67 591 777", links: [] },
+
+  { n: 8,  lvl: 1, name: "Dzīvnieku frizētava", cat: "Suņu frizētava · Vācieša iela",
+    pid: "ChIJKYlSUMXN7kYREdCu_QrU4as", lat: 56.9327509, lng: 24.2043316,
+    hook: "Tikai veca FB lapa → svaiga lapa ar pierakstu.",
+    note: "Solo suņu frizētava (Rouber Groom).",
+    phone: "+371 29 130 181", links: [] },
+
+  // ===== 2. LĪMENIS — VĀJA / SENA LAPA → REDIZAINS =====
+  { n: 9,  lvl: 2, name: "Skaistuma salons DANI", cat: "Skaistumkopšanas salons",
+    pid: "ChIJq1mFdHLO7kYRys6lNFE8yQo", lat: 56.9545102, lng: 24.1927197,
+    hook: "Bezmaksas Wix apakšdomēns, nepabeigts → redizains uz sava domēna.",
+    note: "danisalons.wixsite.com",
+    phone: "+371 29 533 187", links: [{t:"danisalons.wixsite.com", u:"https://danisalons.wixsite.com", k:"web"}] },
+
+  { n: 10, lvl: 2, name: "Cepu tortas", cat: "Konditoreja",
+    pid: "ChIJ6bfhAFDP7kYRbyOQK8iOHEY", lat: 56.9443195, lng: 24.1679053,
+    hook: "Pašu domēns uz vecā http → maintenance / redizains.",
+    note: "ceputortes.lv",
+    phone: "+371 28 645 776", links: [{t:"ceputortes.lv", u:"http://ceputortes.lv", k:"web"}] },
+
+  { n: 11, lvl: 2, name: "Franču Maize", cat: "Konditoreja Rīgā / maiznīca",
+    pid: "ChIJMRU7hjPO7kYRFKsbgYG_qCU", lat: 56.9551623, lng: 24.1369512,
+    hook: "Pašu domēns uz vecā http → maintenance / redizains.",
+    note: "francumaize.lv",
+    phone: "+371 67 293 252", links: [{t:"francumaize.lv", u:"http://francumaize.lv", k:"web"}] },
+
+  // ===== 1. LĪMENIS (papildināts no repo CSV, pārbaudīts tīmeklī) =====
+  { n: 14, lvl: 1, name: "nailed.it.riga", cat: "Nagu studija · Centrs", lat: 56.9607499, lng: 24.1101119,
+    hook: "Tikai IG + Fresha → sava lapa ar online pierakstu un galeriju.",
+    note: "Nav lapas. Strēlnieku iela 13.", phone: "",
+    links: [{t:"IG @nailed.it.riga", u:"https://www.instagram.com/nailed.it.riga/", k:"ig"}, {t:"Fresha", u:"https://www.fresha.com/a/nailed-it-riga-riga-strelnieku-iela-13-zwui20id", k:"web"}] },
+  { n: 15, lvl: 1, name: "Glamour Nails Santa", cat: "Nagu studija · Teika", lat: 56.972034, lng: 24.163509,
+    hook: "Tikai Fresha → Google neatrod; vajag savu lapu ar galeriju un pierakstu.",
+    note: "Nav lapas, tikai Fresha. Brīvības gatve 224.", phone: "",
+    links: [{t:"Fresha", u:"https://www.fresha.com/a/glamour-nails-santa-riga-brivibas-gatve-224-b79vmkpc", k:"web"}] },
+  { n: 16, lvl: 1, name: "Nails & Pearls", cat: "Nagu studija · Centrs", lat: 56.9510717, lng: 24.1260293,
+    hook: "Tikai Fresha + FB → sava lapa, ko Google atrod.",
+    note: "Nav lapas. Marijas iela 23.", phone: "",
+    links: [{t:"FB", u:"https://www.facebook.com/nailsandpearls/", k:"fb"}, {t:"Fresha", u:"https://www.fresha.com/a/nails-pearls-manikira-studija-riga-centra-rajons-marijas-iela-23-ny0u7k9i", k:"web"}] },
+  { n: 17, lvl: 1, name: "kinyanails", cat: "Nagu studija · Vecrīga", lat: 56.9475481, lng: 24.1141842,
+    hook: "5.0 reitings, bet tikai Fresha → eleganta sava lapa ar tiešo pierakstu.",
+    note: "Nav lapas (meistare Kintija). Aspazijas bulvāris 32.", phone: "",
+    links: [{t:"Fresha", u:"https://www.fresha.com/a/kinyanails-riga-central-district-riga-aspazijas-bulvaris-32-lvhtc2cl", k:"web"}] },
+  { n: 18, lvl: 1, name: "Diamond Nails Riga", cat: "Nagu studija · Purvciems", lat: 56.9618005, lng: 24.1665506,
+    hook: "Tikai Fresha → moderna lapa ar galeriju un pierakstu.",
+    note: "Nav lapas, tikai Fresha. Braslas iela 29.", phone: "",
+    links: [{t:"Fresha", u:"https://www.fresha.com/a/diamond-nails-riga-riga-vidzemskoe-predmeste-riga-braslas-iela-29-mgh3zwnl", k:"web"}] },
+  { n: 19, lvl: 1, name: "YOULI", cat: "Nagu studija · Centrs", lat: 56.9675279, lng: 24.1014388,
+    hook: "Tikai Fresha + IG → sava lapa, lai nav atkarīgi no platformas.",
+    note: "Nav lapas. Katrīnas iela 16A.", phone: "",
+    links: [{t:"IG @youli_studio", u:"https://www.instagram.com/youli_studio/", k:"ig"}, {t:"Fresha", u:"https://www.fresha.com/a/youli-riga-katrinas-iela-16a-o4uwsska", k:"web"}] },
+  { n: 21, lvl: 1, name: "Reussi Studio", cat: "Nagu studija · Vecrīga", lat: 56.9475481, lng: 24.1141842,
+    hook: "5.0 (70+ ats.), bet tikai Fresha/IG → sava lapa ar Google redzamību.",
+    note: "Nav lapas. Aspazijas bulvāris 32.", phone: "",
+    links: [{t:"IG @reussi.studio", u:"https://www.instagram.com/reussi.studio/", k:"ig"}, {t:"Fresha", u:"https://www.fresha.com/a/reussi-studio-riga-central-district-riga-aspazijas-bulvaris-32-qc6yiiqp", k:"web"}] },
+  { n: 22, lvl: 1, name: "Miami Nails", cat: "Nagu studija · Centrs", lat: 56.9585252, lng: 24.1112885,
+    hook: "5.0, 1400+ ats., bet bez lapas → premium vietne ar tiešo pierakstu.",
+    note: "Nav lapas. Alberta iela 1.", phone: "",
+    links: [{t:"IG @miami.beauty.salon", u:"https://www.instagram.com/miami.beauty.salon/", k:"ig"}, {t:"Fresha", u:"https://www.fresha.com/a/miami-riga-centralnyy-rayon-riga-alberta-iela-1-m72skyt9", k:"web"}] },
+  { n: 23, lvl: 1, name: "Podologs Agate Seržante", cat: "Podoloģija · Centrs", lat: 56.9511551, lng: 24.1254672,
+    hook: "Tikai Fresha (Google profils miris) → uzticama lapa ar pierakstu.",
+    note: "Nav lapas, tikai Fresha. Pērses iela 16.", phone: "",
+    links: [{t:"Fresha", u:"https://www.fresha.com/a/podologs-agate-serzante-riga-centra-rajons-perses-iela-16-oq2ktiqk", k:"web"}] },
+  { n: 25, lvl: 1, name: "MyNails Riga", cat: "Nagu studija · Centrs", lat: 56.9589749, lng: 24.1178252,
+    hook: "3300+ IG sekotāju, bet bez lapas → one-page ar online pierakstu.",
+    note: "Nav lapas. K. Valdemāra iela 45.", phone: "",
+    links: [{t:"IG @mynails_riga", u:"https://www.instagram.com/mynails_riga/", k:"ig"}, {t:"FB", u:"https://www.facebook.com/mynailsriga/", k:"fb"}] },
+  { n: 26, lvl: 1, name: "Lemonail Riga", cat: "Nagu studija · Centrs", lat: 56.9556156, lng: 24.135419,
+    hook: "Pieraksts tikai IG DM → lapa ar pieraksta pogu un cenrādi.",
+    note: "Nav lapas. A. Čaka iela 70.", phone: "",
+    links: [{t:"IG @lemonail.riga", u:"https://www.instagram.com/lemonail.riga/", k:"ig"}, {t:"FB", u:"https://www.facebook.com/lemonail.riga/", k:"fb"}] },
+  { n: 27, lvl: 1, name: "Manikirs Akvarele", cat: "Nagu studija · Rīga", lat: 56.9493977, lng: 24.1051846, approx: true,
+    hook: "7000+ sekotāju, pieraksts pa SMS → moderna lapa ar online pierakstu.",
+    note: "Nav lapas. Pieraksts SMS.", phone: "+371 24878688",
+    links: [{t:"IG @manikirs.akvarele", u:"https://www.instagram.com/manikirs.akvarele/", k:"ig"}, {t:"FB", u:"https://www.facebook.com/akvarele.manikira.studija/", k:"fb"}] },
+  { n: 28, lvl: 1, name: "Noir Studio", cat: "Nagu studija · Centrs", lat: 56.9535163, lng: 24.1347389,
+    hook: "Skaists IG, bet bez lapas → tīra vietne ar pieraksta pogu.",
+    note: "Nav lapas. Stabu iela 59.", phone: "+371 28 446 774",
+    links: [{t:"IG @noir.nailstudio", u:"https://www.instagram.com/noir.nailstudio/", k:"ig"}, {t:"FB", u:"https://www.facebook.com/noir.studio.manikirs/", k:"fb"}] },
+  { n: 29, lvl: 1, name: "Family Hair", cat: "Frizētava · Centrs", lat: 56.9614104, lng: 24.1394422,
+    hook: "Vecā lapa familyhair.lv mirusi → moderna lapa ar tiešo pierakstu.",
+    note: "Lapa nedarbojas; tikai Fresha. Tallinas iela 38.", phone: "+371 20 000 441",
+    links: [{t:"Fresha", u:"https://www.fresha.com/a/family-hair-riga-centra-rajons-tallinas-iela-38-nz91nu4h", k:"web"}] },
+  { n: 31, lvl: 1, name: "Dzirnavu 56 Salon", cat: "Frizētava · Centrs", lat: 56.9545612, lng: 24.1186954,
+    hook: "5.0 (170+ ats.), tikai Fresha → sava lapa ar Google redzamību.",
+    note: "Nav lapas, tikai Fresha. Brīvības iela 40.", phone: "",
+    links: [{t:"Fresha", u:"https://www.fresha.com/a/dzirnavu-iela-56-riga-central-district-riga-brivibas-iela-40-qt51yt3w", k:"web"}] },
+  { n: 32, lvl: 1, name: "Riga Frizetava", cat: "Frizētava · Grīziņkalns", lat: 56.9655, lng: 24.1543,
+    hook: "Domēns familyhair.lv miris → jauna lapa ar tiešo pierakstu.",
+    note: "Nav lapas. FB + Fresha. Zemitāna iela 6.", phone: "+371 20000441",
+    links: [{t:"FB", u:"https://www.facebook.com/Familyhair", k:"fb"}, {t:"Fresha", u:"https://www.fresha.com/a/riga-riga-zemitana-iela-6-2wzekpzh", k:"web"}] },
+  { n: 36, lvl: 1, name: "Madam Lashes", cat: "Skropstu studija · Rīga", lat: 56.9494, lng: 24.1052, approx: true,
+    hook: "Tikai IG → lapa ar cenrādi un pierakstu.",
+    note: "Nav lapas, tikai IG.", phone: "",
+    links: [{t:"IG @madamlashes_", u:"https://www.instagram.com/madamlashes_/", k:"ig"}] },
+  { n: 37, lvl: 1, name: "Evija Lashes", cat: "Skropstu/uzacu studija · Ziepniekkalns", lat: 56.9030683, lng: 24.1034916, approx: true,
+    hook: "18 g. pieredze, tikai IG → lapa ar pierakstu un atsauksmēm.",
+    note: "Nav lapas, tikai IG.", phone: "+371 29950044",
+    links: [{t:"IG @evija_lashes_riga", u:"https://www.instagram.com/evija_lashes_riga/", k:"ig"}] },
+  { n: 38, lvl: 1, name: "Acis.ka", cat: "Skropstu studija · Rīga", lat: 56.9493977, lng: 24.1051846, approx: true,
+    hook: "Pieraksts IG DM → lapa ar online pierakstu un cenrādi.",
+    note: "Nav lapas, tikai IG.", phone: "",
+    links: [{t:"IG @acis.ka", u:"https://www.instagram.com/acis.ka/", k:"ig"}] },
+  { n: 40, lvl: 1, name: "Hanifa PMU", cat: "Permanentais grims · Rīga", lat: 56.9493977, lng: 24.1051846, approx: true,
+    hook: "5400+ sekotāju, tikai IG → one-page ar galeriju un pieraksta pogu.",
+    note: "Nav lapas, tikai IG.", phone: "",
+    links: [{t:"IG @hanifa_pmu", u:"https://www.instagram.com/hanifa_pmu/", k:"ig"}] },
+  { n: 43, lvl: 1, name: "Kosmetologs Jūrmala", cat: "Kosmetoloģija · Jūrmala", lat: 56.9727164, lng: 23.7886979, approx: true,
+    hook: "Tikai IG → moderna lapa ar online pierakstu.",
+    note: "Nav lapas. IG + FB.", phone: "",
+    links: [{t:"IG @kosmetologs.jurmala", u:"https://www.instagram.com/kosmetologs.jurmala/", k:"ig"}, {t:"FB", u:"https://www.facebook.com/p/Kosmetologsjurmala-61553143319118/", k:"fb"}] },
+  { n: 44, lvl: 1, name: "Ilze Rimma Privātprakse", cat: "Kosmetoloģija · Liepāja", lat: 56.5047, lng: 21.0108, approx: true,
+    hook: "20 g. pieredze, tikai IG → profesionāla lapa ar pierakstu.",
+    note: "Nav lapas, tikai IG.", phone: "",
+    links: [{t:"IG @ilzes.rimmas.privatprakse", u:"https://www.instagram.com/ilzes.rimmas.privatprakse/", k:"ig"}] },
+  { n: 46, lvl: 1, name: "Asia Spa Thai Massage", cat: "Taizemes masāža / SPA · Centrs", lat: 56.95629, lng: 24.1179303,
+    hook: "Tikai Fresha + IG → profesionāla lapa ar tiešo pierakstu.",
+    note: "Nav lapas. Dzirnavu iela 55.", phone: "+371 23279009",
+    links: [{t:"IG @asia_spa_riga", u:"https://www.instagram.com/asia_spa_riga/", k:"ig"}, {t:"Fresha", u:"https://www.fresha.com/a/asia-spa-thai-massage-riga-central-district-riga-dzirnavu-iela-55-jxbi3rzz", k:"web"}] },
+  { n: 47, lvl: 1, name: "Harmonia Studio", cat: "Spa / Wellness · Centrs", lat: 56.952026, lng: 24.1277026,
+    hook: "Tikai Fresha → one-page ar pakalpojumiem un rezervāciju.",
+    note: "Nav lapas, tikai Fresha. A. Čaka iela 33.", phone: "29161193",
+    links: [{t:"Fresha", u:"https://www.fresha.com/a/harmonia-studio-hidrokolonoterapija-riga-central-district-riga-aleksandra-caka-iela-33-br7plh6n", k:"web"}] },
+  { n: 48, lvl: 1, name: "SYRINGA Facial Studio", cat: "Skaistumkopšana · Centrs", lat: 56.9537819, lng: 24.1243444,
+    hook: "Tikai Fresha → moderna lapa ar procedūrām un pierakstu.",
+    note: "Nav lapas, tikai Fresha. Blaumaņa iela 11/13.", phone: "",
+    links: [{t:"Fresha", u:"https://www.fresha.com/a/syringa-facial-studio-riga-central-district-riga-blaumana-iela-11-13-fm18kbh7", k:"web"}] },
+  { n: 50, lvl: 1, name: "Love My Life Beauty Salon", cat: "Skaistumkopšana · Pārdaugava", lat: 56.9388562, lng: 24.0909042,
+    hook: "Tikai FB/IG → sava lapa ar online pierakstu un cenrādi.",
+    note: "Nav lapas. Uzvaras bulvāris 10 (Pepsi centrs).", phone: "+371 20008393",
+    links: [{t:"IG @lovemylifebeautysalon", u:"https://www.instagram.com/lovemylifebeautysalon/", k:"ig"}, {t:"FB", u:"https://www.facebook.com/lovemylifebeautysalon/", k:"fb"}] },
+  { n: 51, lvl: 1, name: "Nails by Ieva", cat: "Nagu studija · Jelgava", lat: 56.6522063, lng: 23.7291999, approx: true,
+    hook: "Pieraksts IG DM → lapa ar online pierakstu un cenrādi.",
+    note: "Nav lapas, tikai IG.", phone: "",
+    links: [{t:"IG @nails.by_ieva", u:"https://www.instagram.com/nails.by_ieva/", k:"ig"}] },
+  { n: 53, lvl: 1, name: "SKY BEAUTY", cat: "Skaistumkopšanas salons · Jelgava", lat: 56.6492775, lng: 23.7223692,
+    hook: "Pilns serviss, tikai FB → lapa ar cenrādi un tiešo pierakstu.",
+    note: "Nav lapas, tikai FB. Svētes iela 7.", phone: "+371 20177678",
+    links: [{t:"FB", u:"https://www.facebook.com/skybeautyjelgava/", k:"fb"}] },
+
+  // ===== 2. LĪMENIS (papildināts no repo CSV, pārbaudīts tīmeklī) =====
+  { n: 13, lvl: 2, name: "Nail ID Riga", cat: "Nagu studija · Āgenskalns", lat: 56.9460717, lng: 24.0777436,
+    hook: "Domēns nailidriga.com, bet jāatjauno → redizains ar Fresha pierakstu.",
+    note: "Sava lapa nailidriga.com (jāpārbauda). Kalnciema iela 9A.", phone: "+371 22 334 758",
+    links: [{t:"nailidriga.com", u:"https://www.nailidriga.com/", k:"web"}, {t:"IG @nailidriga", u:"https://www.instagram.com/nailidriga/", k:"ig"}] },
+  { n: 20, lvl: 2, name: "LE STUDIO", cat: "Skaistumkopšanas salons · Centrs", lat: 56.9576574, lng: 24.1213469,
+    hook: "le-studio.lv uz vecā Joomla (~2015) → moderns redizains ar Fresha pierakstu.",
+    note: "Novecojusi lapa le-studio.lv. Baznīcas iela 20/22.", phone: "+371 67282323",
+    links: [{t:"le-studio.lv", u:"https://le-studio.lv", k:"web"}, {t:"IG @salons_le_studio", u:"https://www.instagram.com/salons_le_studio", k:"ig"}, {t:"FB", u:"https://www.facebook.com/SalonsLeStudio", k:"fb"}] },
+  { n: 33, lvl: 2, name: "Skaistumkopšanas Salons Riga", cat: "Frizētava · Centrs", lat: 56.9563842, lng: 24.128696,
+    hook: "rigatophair.lv (2020 WooCommerce) novecojis → moderns redizains.",
+    note: "Novecojusi lapa rigatophair.lv. Stabu iela 29.", phone: "+371 67213123",
+    links: [{t:"rigatophair.lv", u:"https://www.rigatophair.lv/", k:"web"}, {t:"IG @rigatophair", u:"https://www.instagram.com/rigatophair/", k:"ig"}, {t:"FB", u:"https://www.facebook.com/rigatophairlatvia/", k:"fb"}] },
+  { n: 34, lvl: 2, name: "REGI Salons", cat: "Skaistumkopšanas salons · Teika", lat: 56.9652837, lng: 24.1511346,
+    hook: "regisalons.lv novecojusi, bez online pieraksta → redizains ar rezervāciju.",
+    note: "Novecojusi lapa regisalons.lv. Dārzaugļu iela 1.", phone: "+371 20040425",
+    links: [{t:"regisalons.lv", u:"https://www.regisalons.lv/", k:"web"}, {t:"IG @regi.salons", u:"https://www.instagram.com/regi.salons/", k:"ig"}, {t:"FB", u:"https://www.facebook.com/Regi.salons.riga/", k:"fb"}] },
+  { n: 35, lvl: 2, name: "Skropstu Studija", cat: "Skropstu studija · Teika", lat: 56.9668628, lng: 24.182073,
+    hook: "skropstustudija.lv uz Mozello, novecojusi → redizains ar tiešo rezervāciju.",
+    note: "Novecojusi lapa skropstustudija.lv. Burtnieku iela 36a.", phone: "25414376",
+    links: [{t:"skropstustudija.lv", u:"https://www.skropstustudija.lv/", k:"web"}, {t:"IG @skropstu_studija", u:"https://www.instagram.com/skropstu_studija/", k:"ig"}] },
+  { n: 39, lvl: 2, name: "Skropstu Pieaudzēšana", cat: "Skropstu studija · Centrs", lat: 56.9585165, lng: 24.1215687,
+    hook: "skropstupieaudzesana.lv uz Weebly, vāja → mobilais redizains ar Timma pierakstu.",
+    note: "Novecojusi lapa skropstupieaudzesana.lv. Ģertrūdes iela 9.", phone: "+371 25550745",
+    links: [{t:"skropstupieaudzesana.lv", u:"http://www.skropstupieaudzesana.lv/", k:"web"}, {t:"Timma", u:"https://rezervesana.timma.lv/skropstupieaudzesanalv", k:"web"}] },
+  { n: 49, lvl: 2, name: "LAIMALUX Beauty Salon", cat: "Skaistumkopšanas salons · Centrs", lat: 56.956238, lng: 24.1206754,
+    hook: "laimalux.lv apturēta/nedarbojas → moderna ātra lapa ar online pierakstu.",
+    note: "Lapa laimalux.lv apturēta. Brīvības iela 43. (Laimas Vaikules salons)", phone: "+371 29395087",
+    links: [{t:"laimalux.lv", u:"https://laimalux.lv/", k:"web"}, {t:"IG @laimaluxofficial", u:"https://www.instagram.com/laimaluxofficial/", k:"ig"}, {t:"FB", u:"https://www.facebook.com/LaimaLuxOfficial/", k:"fb"}] },
+  { n: 54, lvl: 2, name: "Strogonovs", cat: "Skaistumkopšanas salons · Centrs", lat: 56.9496576, lng: 24.1234699,
+    hook: "strogonovs.lv statiskas .html lapas, atsevišķa mobilā → moderns redizains.",
+    note: "Novecojusi lapa strogonovs.lv. Marijas iela 8.", phone: "+371 67283122",
+    links: [{t:"strogonovs.lv", u:"http://www.strogonovs.lv", k:"web"}, {t:"FB", u:"https://www.facebook.com/salonsstrogonovs/", k:"fb"}] },
+  { n: 55, lvl: 2, name: "Salons Vecrīga", cat: "Skaistumkopšanas salons · Vecrīga", lat: 56.9481258, lng: 24.111463,
+    hook: "salonsvecriga.lv novecojusi, SSL beidzies, nav mobilās → moderns redizains.",
+    note: "Novecojusi lapa salonsvecriga.lv. Teātra iela 2.", phone: "+371 28239502",
+    links: [{t:"salonsvecriga.lv", u:"http://www.salonsvecriga.lv", k:"web"}, {t:"FB", u:"https://www.facebook.com/salonsvecriga/", k:"fb"}] },
+];
+
+/* ---------- ikonas ---------- */
+const ICON = {
+  ig:  '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>',
+  fb:  '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3l.5-3H14V4.5c0-.8.3-1.5 1.5-1.5H17V.3C16.6.2 15.5 0 14.3 0 11.8 0 10 1.5 10 4.2V6H7v3h3v9h4z"/></svg>',
+  web: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>',
+  phone:'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>',
+};
+
+/* ---------- karte ---------- */
+const map = L.map('map', { zoomControl: false, attributionControl: true, scrollWheelZoom: true });
+L.control.zoom({ position: 'topleft' }).addTo(map);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; OpenStreetMap &copy; CARTO',
+  subdomains: 'abcd', maxZoom: 20,
+}).addTo(map);
+
+function pinHtml(d) {
+  const col = d.lvl === 1 ? 'var(--l1)' : 'var(--l2)';
+  return `<div class="pin pin--l${d.lvl}${d.approx ? ' pin--approx' : ''}" data-id="${d.n}">
+    <span class="pin__ring"></span>
+    <svg width="36" height="46" viewBox="0 0 36 46">
+      <path d="M18 1C9 1 1.6 8.3 1.6 17.3c0 11 12.4 24.4 15.3 27.4a1.6 1.6 0 0 0 2.3 0c2.9-3 15.2-16.4 15.2-27.4C34.4 8.3 27 1 18 1Z"
+        fill="${col}" stroke="rgba(11,13,17,0.55)" stroke-width="1"/>
+    </svg>
+    <span class="pin__num">${d.n}</span>
+  </div>`;
+}
+
+const markers = {};
+LEADS.forEach(d => {
+  const icon = L.divIcon({ className: 'pin-wrap', html: pinHtml(d), iconSize: [36,46], iconAnchor: [18,46], popupAnchor: [0,-44] });
+  const m = L.marker([d.lat, d.lng], { icon, riseOnHover: true, title: d.name }).addTo(map);
+  const links = d.links.map(l => `<a class="tag" href="${l.u}" target="_blank" rel="noopener">${ICON[l.k]||''} ${l.t}</a>`).join('');
+  m.bindPopup(`<div class="pop">
+      <span class="pop__lvl l${d.lvl}">${d.lvl===1?'Nav lapas':'Sena lapa'}</span>
+      <h3 class="pop__name">${d.name}</h3>
+      <div class="pop__cat">${d.cat}</div>
+      <p class="pop__hook"><b>Āķis:</b> ${d.hook}</p>
+      ${d.phone ? `<a class="pop__phone" href="tel:${d.phone.replace(/\s/g,'')}">${ICON.phone} ${d.phone}</a>` : ''}
+      ${links ? `<div class="meta" style="margin-top:10px">${links}</div>` : ''}
+      ${d.approx ? '<div class="pop__approx">≈ aptuvena atrašanās vieta</div>' : ''}
+    </div>`, { closeButton: true, autoPanPadding: [40,40] });
+  m.on('popupopen', () => setActive(d.n, false));
+  m.on('popupclose', () => setActive(null, false));
+  m.on('click', () => { const el = document.querySelector(`.card[data-id="${d.n}"]`); if (el) el.scrollIntoView({ behavior:'smooth', block:'center' }); });
+  markers[d.n] = m;
+});
+
+const group = L.featureGroup(Object.values(markers));
+function fitAll() { map.fitBounds(group.getBounds(), { padding: [70,70], maxZoom: 14 }); }
+// default to the Rīga cluster (a few leads sit in Jelgava/Jūrmala/Liepāja); "Visi" fits everything
+map.setView([56.9512, 24.122], 12);
+document.getElementById('fitBtn').addEventListener('click', fitAll);
+
+/* ---------- saraksts ---------- */
+function cardHtml(d) {
+  const links = d.links.map(l => `<a class="tag" href="${l.u}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${ICON[l.k]||''} ${l.t}</a>`).join('');
+  const phoneTag = d.phone ? `<a class="tag tag--phone" href="tel:${d.phone.replace(/\s/g,'')}" onclick="event.stopPropagation()">${ICON.phone} ${d.phone}</a>
+        <button class="tag tag--copy" type="button" data-phone="${d.phone}" title="Kopēt tālruni" onclick="event.stopPropagation()" aria-label="Kopēt tālruni">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+        </button>` : '';
+  const approxTag = d.approx ? `<span class="tag tag--approx">≈ aptuvena vieta</span>` : '';
+  return `<article class="card card--l${d.lvl}" data-id="${d.n}" data-lvl="${d.lvl}" data-name="${d.name.toLowerCase()}" tabindex="0" role="button" aria-label="Skatīt ${d.name} kartē">
+    <div class="badge">${d.n}</div>
+    <div class="card__body">
+      <div class="card__top">
+        <span class="card__name">${d.name}</span>
+      </div>
+      <div class="card__cat">${d.cat}</div>
+      <p class="hook"><b>Āķis:</b> ${d.hook}</p>
+      <div class="meta">
+        ${phoneTag}${links}${approxTag}
+      </div>
+    </div>
+  </article>`;
+}
+
+const listEl = document.getElementById('list');
+const L1 = LEADS.filter(d => d.lvl === 1);
+const L2 = LEADS.filter(d => d.lvl === 2);
+listEl.innerHTML = `
+  <div class="group group--l1" data-group="1">
+    <div class="group__label"><span class="tick"></span> 1. līmenis — nav īstas lapas <span class="ct">${L1.length}</span></div>
+    ${L1.map(cardHtml).join('')}
+  </div>
+  <div class="group group--l2" data-group="2">
+    <div class="group__label"><span class="tick"></span> 2. līmenis — vāja / sena lapa <span class="ct">${L2.length}</span></div>
+    ${L2.map(cardHtml).join('')}
+  </div>`;
+
+// empty-state node + per-level totals derived from data (cannot desync)
+const emptyEl = document.createElement('div');
+emptyEl.className = 'list-empty';
+emptyEl.innerHTML = 'Nav rezultātu <button type="button" id="listClear">notīrīt</button>';
+listEl.appendChild(emptyEl);
+emptyEl.querySelector('#listClear').addEventListener('click', () => {
+  document.getElementById('searchInput').value = '';
+  filter = 'all';
+  document.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.f === 'all' ? 'true' : 'false'));
+  applyFilter();
+});
+document.getElementById('statL1').textContent = L1.length;
+document.getElementById('statL2').textContent = L2.length;
+document.getElementById('cL1').textContent = L1.length;
+document.getElementById('cL2').textContent = L2.length;
+
+/* ---------- aktīvais stāvoklis ---------- */
+let activeId = null;
+function setActive(id, openPopup = true) {
+  activeId = id;
+  document.querySelectorAll('.card').forEach(c => c.classList.toggle('is-active', +c.dataset.id === id));
+  document.querySelectorAll('.pin').forEach(p => p.classList.toggle('is-active', +p.dataset.id === id));
+}
+
+function focusLead(d) {
+  if (!map.hasLayer(markers[d.n])) return; // ignore leads filtered off the map
+  setActive(d.n, true);
+  map.flyTo([d.lat, d.lng], Math.max(map.getZoom(), 15), { duration: 0.7 });
+  markers[d.n].openPopup();
+}
+
+/* ---------- saraksta notikumi ---------- */
+listEl.addEventListener('click', e => {
+  const copyBtn = e.target.closest('.tag--copy');
+  if (copyBtn) {
+    const ph = copyBtn.dataset.phone;
+    const copySvg = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>';
+    const okSvg = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+    const reset = () => { copyBtn.classList.remove('copied', 'copy-fail'); copyBtn.innerHTML = copySvg; };
+    const ok = () => { copyBtn.classList.add('copied'); copyBtn.innerHTML = okSvg; setTimeout(reset, 1400); };
+    const fail = () => { copyBtn.classList.add('copy-fail'); setTimeout(reset, 1400); };
+    const legacy = () => {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = ph; ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        const done = document.execCommand('copy');
+        document.body.removeChild(ta);
+        done ? ok() : fail();
+      } catch (_) { fail(); }
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(ph).then(ok).catch(legacy);
+    } else { legacy(); }
+    return;
+  }
+  const card = e.target.closest('.card');
+  if (card) { const d = LEADS.find(x => x.n === +card.dataset.id); if (d) focusLead(d); }
+});
+listEl.addEventListener('keydown', e => {
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('card')) {
+    e.preventDefault();
+    const d = LEADS.find(x => x.n === +e.target.dataset.id); if (d) focusLead(d);
+  }
+});
+listEl.addEventListener('mouseover', e => {
+  const card = e.target.closest('.card'); if (!card) return;
+  const p = document.querySelector(`.pin[data-id="${card.dataset.id}"]`); if (p) p.classList.add('is-active');
+});
+listEl.addEventListener('mouseout', e => {
+  const card = e.target.closest('.card'); if (!card) return;
+  if (+card.dataset.id === activeId) return;
+  const p = document.querySelector(`.pin[data-id="${card.dataset.id}"]`); if (p) p.classList.remove('is-active');
+});
+
+/* ---------- filtri ---------- */
+let filter = 'all';
+function applyFilter() {
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  let visible = 0;
+  LEADS.forEach(d => {
+    const okLvl = filter === 'all' || (filter === 'l1' && d.lvl === 1) || (filter === 'l2' && d.lvl === 2);
+    const okText = !q || d.name.toLowerCase().includes(q) || d.cat.toLowerCase().includes(q);
+    const show = okLvl && okText;
+    if (show) visible++;
+    const card = document.querySelector(`.card[data-id="${d.n}"]`);
+    if (card) {
+      card.classList.toggle('is-dim', !show);
+      card.tabIndex = show ? 0 : -1;
+      card.toggleAttribute('inert', !show); // also drops nested tel/copy/social from tab order
+    }
+    if (show) { if (!map.hasLayer(markers[d.n])) markers[d.n].addTo(map); }
+    else { if (map.hasLayer(markers[d.n])) map.removeLayer(markers[d.n]); }
+  });
+  // hide empty groups
+  document.querySelectorAll('.group').forEach(g => {
+    const any = [...g.querySelectorAll('.card')].some(c => !c.classList.contains('is-dim'));
+    g.style.display = any ? '' : 'none';
+  });
+  // live counts (honest during search/filter) + empty state
+  document.getElementById('cAll').textContent = visible;
+  document.getElementById('statAll').textContent = visible;
+  document.getElementById('tagCount').textContent = visible;
+  emptyEl.classList.toggle('show', visible === 0);
+}
+
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    filter = chip.dataset.f;
+    document.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'));
+    applyFilter();
+  });
+});
+document.getElementById('searchInput').addEventListener('input', applyFilter);
+applyFilter(); // derive initial counts from data
+
+/* ---------- ielādes animācija ---------- */
+requestAnimationFrame(() => {
+  document.querySelectorAll('.card').forEach((c, i) => {
+    c.style.opacity = '0'; c.style.transform = 'translateY(8px)';
+    c.style.transition = 'opacity .5s var(--ease), transform .5s var(--ease)';
+    setTimeout(() => { c.style.opacity = ''; c.style.transform = ''; }, 90 + i * 45);
+  });
+});
+</script>
+</body>
+</html>
