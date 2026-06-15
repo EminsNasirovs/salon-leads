@@ -22,6 +22,10 @@
   .btn:hover{border-color:var(--gold)}
   .btn.active{background:var(--gold);color:#1a160f;border-color:var(--gold);font-weight:600}
   .btn.primary{background:var(--gold);color:#1a160f;border-color:var(--gold);font-weight:600}
+  .map-btn{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:11px;background:var(--gold);color:#1a160f;border:1px solid var(--gold);cursor:pointer;text-decoration:none;flex:none;animation:mapPulse 2s ease-out infinite}
+  .map-btn:hover{filter:brightness(1.08)}
+  @keyframes mapPulse{0%{box-shadow:0 0 0 0 rgba(201,169,106,.55)}70%{box-shadow:0 0 0 13px rgba(201,169,106,0)}100%{box-shadow:0 0 0 0 rgba(201,169,106,0)}}
+  @media (prefers-reduced-motion: reduce){.map-btn{animation:none}}
   select.sort,select.status-sel{background:var(--card);border:1px solid var(--line);color:var(--txt);padding:9px 12px;border-radius:9px;font-size:13px;cursor:pointer}
   .group{margin-bottom:34px}
   .group-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
@@ -87,7 +91,9 @@
   <div class="apphead">
     <h1><span>Outreach</span> Leads</h1>
     <div style="display:flex;gap:8px;align-items:center">
-      <a class="btn primary" href="dm-karte.html" style="text-decoration:none">🗺️ Karte (269)</a>
+      <a class="map-btn" href="dm-karte.html" title="Prospektu karte" aria-label="Prospektu karte">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+      </a>
       <button id="signout" class="btn">Sign out</button>
     </div>
   </div>

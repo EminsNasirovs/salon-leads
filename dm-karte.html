@@ -356,19 +356,20 @@
   /* ---------- responsive ---------- */
   @media (max-width: 900px) {
     body { overflow: hidden; }
-    /* map fixed on top, list scrolls beneath — map always visible */
     .app { flex-direction: column; height: 100dvh; }
-    .map-wrap { order: -1; height: 40vh; min-height: 240px; flex: 0 0 auto; position: relative; }
+    /* map pinned to the top, always visible */
+    .map-wrap { order: -1; height: 40vh; min-height: 220px; flex: 0 0 auto; position: relative; }
     #map { position: absolute; inset: 0; }
-    .rail { width: 100%; flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column;
+    /* the WHOLE rail (title → stats → filters → list) scrolls as one unit */
+    .rail { width: 100%; flex: 1 1 auto; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch;
             border-left: none; border-top: 1px solid var(--hair); box-shadow: none; }
-    .rail__head { flex: 0 0 auto; padding: 14px 18px 8px; }
+    .rail__head { padding: 16px 18px 8px; }
     .subtitle { display: none; }
     .title { font-size: clamp(22px, 6vw, 30px); margin: 10px 0 2px; }
     .stats { margin-top: 12px; }
-    .controls { flex: 0 0 auto; padding: 10px 18px 8px; }
+    .controls { padding: 10px 18px 8px; }
     .cat-filter { margin-top: 8px; }
-    .list { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 6px 14px 24px; }
+    .list { overflow: visible; padding: 6px 14px 30px; }
     .group__label { top: 0; background: var(--panel); padding-top: 12px; padding-bottom: 8px; }
     .legend { bottom: 12px; left: 12px; padding: 8px 10px; }
     .legend .row { font-size: 11px; }
@@ -383,9 +384,7 @@
   /* short viewports (landscape phones, on-screen toolbars): shrink map + let the
      whole rail scroll so the filters and lead list are always reachable */
   @media (max-width: 900px) and (max-height: 640px) {
-    .map-wrap { height: 32vh; min-height: 160px; }
-    .rail { overflow-y: auto; }
-    .list { flex: 0 0 auto; overflow: visible; }
+    .map-wrap { height: 32vh; min-height: 150px; }
   }
 
   /* touch devices — enlarge tap targets to >=40px */
