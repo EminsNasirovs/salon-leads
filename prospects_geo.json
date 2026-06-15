@@ -19,10 +19,10 @@
   "email": "info@atlasmotors.lv",
   "address": "Vagonu iela 38, Rīga, Latvija, LV-1009",
   "lvl": 2,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9522432,
+  "lng": 24.1582148,
+  "geo": "exact",
+  "geo_display": "38, Vagonu iela, Avoti, Centra apkaime, Rīga, LV-1009, Latvija"
  },
  {
   "regcode": "41202013976",
@@ -44,10 +44,10 @@
   "email": "info@dumbrajaautoserviss.lv",
   "address": "Bēķi, Bēķciems, Lībagu pagasts, Talsu novads, Latvija, LV-3258",
   "lvl": 2,
-  "lat": 57.2447,
-  "lng": 22.5897,
-  "geo": "approx_city",
-  "geo_display": "Talsu"
+  "lat": 57.2102879,
+  "lng": 22.5680695,
+  "geo": "exact",
+  "geo_display": "Bēķi, Bēķciems, Lībagu pagasts, Talsu novads, LV-3258, Latvija"
  },
  {
   "regcode": "40103337131",
@@ -69,10 +69,10 @@
   "email": "reaktors@reaktors.lv",
   "address": "Toma iela 4, Rīga, Latvija, LV-1003",
   "lvl": 2,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9368412,
+  "lng": 24.1464159,
+  "geo": "exact",
+  "geo_display": "4, Toma iela, Latgales apkaime, Rīga, LV-1003, Latvija"
  },
  {
   "regcode": "40103599330",
@@ -96,10 +96,10 @@
   "email": "info@abintelligenceservices.com",
   "address": "Latgales iela 162 - 7, Rīga, Latvija, LV-1003",
   "lvl": 2,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9361695,
+  "lng": 24.154519,
+  "geo": "exact",
+  "geo_display": "162, Latgales iela, Latgales apkaime, Rīga, LV-1003, Latvija"
  },
  {
   "regcode": "40003478755",
@@ -123,10 +123,10 @@
   "email": "verbo@verbo.lv",
   "address": "Raiņa bulvāris 15 15 (centrā pie Vācijas vēstniecības), Rīga, Latvija",
   "lvl": 2,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9513215,
+  "lng": 24.1149668,
+  "geo": "exact",
+  "geo_display": "15, Raiņa bulvāris, Centrs, Centra apkaime, Rīga, LV-1050, Latvija"
  },
  {
   "regcode": "40003320444",
@@ -151,10 +151,10 @@
   "email": "info@arvus.lv",
   "address": "Zemītes iela 6, Tukums, Tukuma novads, Latvija, LV-3101",
   "lvl": 2,
-  "lat": 56.9675,
-  "lng": 23.153,
-  "geo": "approx_city",
-  "geo_display": "Tukums"
+  "lat": 56.9554396,
+  "lng": 23.1179396,
+  "geo": "exact",
+  "geo_display": "6, Zemītes iela, Lauktehnika, Tukums, Tukuma novads, LV-3104, Latvija"
  },
  {
   "regcode": "43603015643",
@@ -176,10 +176,10 @@
   "email": "info@armandoauto.lv",
   "address": "Uzvaras iela 8A, Jelgava, Latvija, LV-3001",
   "lvl": 2,
-  "lat": 56.65,
-  "lng": 23.7128,
-  "geo": "approx_city",
-  "geo_display": "Jelgava"
+  "lat": 56.654393,
+  "lng": 23.7247991,
+  "geo": "exact",
+  "geo_display": "8A, Uzvaras iela, Salas, Jelgava, LV-3001, Latvija"
  },
  {
   "regcode": "54103005771",
@@ -229,10 +229,10 @@
   "email": "serviss@auto-fit.lv",
   "address": "Jūrmalas gatve 35 (Centrs - Imanta, iebraukšana lejā blakus gaisa t, Rīga, Latvija, LV-1067",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9524076,
+  "lng": 24.0405704,
+  "geo": "exact",
+  "geo_display": "Autofit, 35, Jūrmalas gatve, Imanta, Imantas apkaime, Rīga, LV-1067, Latvija"
  },
  {
   "regcode": "40103727476",
@@ -254,10 +254,10 @@
   "email": "info@ramusauto.lv",
   "address": "Ojāra Vācieša iela 61, Rīga, Latvija, LV-1004",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.922416,
+  "lng": 24.073239,
+  "geo": "exact",
+  "geo_display": "61, Ojāra Vācieša iela, Bieriņi, Āgenskalna apkaime, Rīga, LV-1004, Latvija"
  },
  {
   "regcode": "48703002481",
@@ -279,10 +279,10 @@
   "email": "signalsem@signalsem.lv",
   "address": "Lazdonas iela 21, Madona, Madonas novads, Latvija, LV-4801",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.8473923,
+  "lng": 26.2249789,
+  "geo": "exact",
+  "geo_display": "21, Lazdonas iela, Madona, Madonas novads, LV-4801, Latvija"
  },
  {
   "regcode": "40003337332",
@@ -304,10 +304,10 @@
   "email": "info@valdzers.lv",
   "address": "Draudzības iela 70, Talsi, Talsu novads, Latvija, LV-3201",
   "lvl": 1,
-  "lat": 57.2447,
-  "lng": 22.5897,
-  "geo": "approx_city",
-  "geo_display": "Talsu"
+  "lat": 57.2564405,
+  "lng": 22.5825271,
+  "geo": "exact",
+  "geo_display": "Valdzers un Ko, 70, Draudzības iela, Vilkmuiža, Talsi, Talsu novads, LV-3201, Latvija"
  },
  {
   "regcode": "40103013982",
@@ -329,10 +329,10 @@
   "email": "komene@elidars.lv",
   "address": "Hospitāļu iela 15, Rīga, Latvija, LV-1013",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9706746,
+  "lng": 24.1361714,
+  "geo": "exact",
+  "geo_display": "15, Hospitāļu iela, Brasa, Centra apkaime, Rīga, LV-1013, Latvija"
  },
  {
   "regcode": "40003919402",
@@ -354,10 +354,10 @@
   "email": "info@nikomoda.lv",
   "address": "Kazāru iela 4 - 80, Saurieši, Stopiņu pagasts, Ropažu novads, Latvija, LV-2118",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.9183805,
+  "lng": 24.3633168,
+  "geo": "exact",
+  "geo_display": "4, Kazāru iela, Saurieši, Stopiņu pagasts, Ropažu novads, LV-2118, Latvija"
  },
  {
   "regcode": "42103051709",
@@ -379,10 +379,10 @@
   "email": "info@averdo.lv",
   "address": "Peldu iela 37 - 6/7, Liepāja, Latvija, LV-3401",
   "lvl": 1,
-  "lat": 56.5089,
-  "lng": 21.0114,
-  "geo": "approx_city",
-  "geo_display": "Liepāja"
+  "lat": 56.5058906,
+  "lng": 21.0015034,
+  "geo": "exact",
+  "geo_display": "37, Peldu iela, Vecliepāja, Liepāja, LV-3401, Latvija"
  },
  {
   "regcode": "40103394115",
@@ -454,10 +454,10 @@
   "email": "legal@femida.lv",
   "address": "Rīga, Latvija",
   "lvl": 1,
-  "lat": 56.9493977,
-  "lng": 24.1051846,
+  "lat": 56.9544256,
+  "lng": 24.1273504,
   "geo": "exact",
-  "geo_display": "Rīga, Latvija"
+  "geo_display": "Rīga, 37, Krišjāņa Barona iela, Centrs, Centra apkaime, Rīga, LV-1011, Latvija"
  },
  {
   "regcode": "40103661687",
@@ -479,10 +479,10 @@
   "email": "info@gpjums.lv",
   "address": "Hipokrāta iela 2d, Rīga, Latvija, LV-1079",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9685907,
+  "lng": 24.2414953,
+  "geo": "exact",
+  "geo_display": "Hipokrāta iela, Mežciems, Teikas apkaime, Rīga, LV-1079, Latvija"
  },
  {
   "regcode": "40203202991",
@@ -504,10 +504,10 @@
   "email": "info@kklaw.lv",
   "address": "Krišjāņa Barona iela 94, Rīga, Latvija, LV-1001",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9588686,
+  "lng": 24.1370145,
+  "geo": "exact",
+  "geo_display": "94, Krišjāņa Barona iela, Centrs, Centra apkaime, Rīga, LV-1001, Latvija"
  },
  {
   "regcode": "40103393656",
@@ -529,10 +529,10 @@
   "email": "aivars@lexaurum.lv",
   "address": "Akadēmiķa Mstislava Keldiša iela 22b - 9, Rīga, Latvija, LV-1021",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9384617,
+  "lng": 24.2109943,
+  "geo": "exact",
+  "geo_display": "Brāļu Kaudzīšu iela, Pļavnieki, Latgales apkaime, Rīga, LV-1021, Latvija"
  },
  {
   "regcode": "40003303995",
@@ -554,10 +554,10 @@
   "email": "visaverte@visaverte.lv",
   "address": "Ģertrūdes iela 19/21 - 18a, Rīga, Latvija, LV-10011",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9565956,
+  "lng": 24.1245532,
+  "geo": "exact",
+  "geo_display": "19/21, Ģertrūdes iela, Centrs, Centra apkaime, Rīga, LV-1011, Latvija"
  },
  {
   "regcode": "40203082622",
@@ -579,10 +579,10 @@
   "email": "paviljons@ziedondarzs.lv",
   "address": "Aleksandra Čaka iela 100, Rīga, Latvija, LV-1011",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9571826,
+  "lng": 24.1400614,
+  "geo": "exact",
+  "geo_display": "100, Aleksandra Čaka iela, Centrs, Centra apkaime, Rīga, LV-1011, Latvija"
  },
  {
   "regcode": "40002051020",
@@ -604,10 +604,10 @@
   "email": "info@eosabeauty.com",
   "address": "Stabu iela 14, Rīga, Latvija, LV-1011",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9501659,
+  "lng": 24.1410891,
+  "geo": "exact",
+  "geo_display": "Stabu iela, Avoti, Centra apkaime, Rīga, LV-1009, Latvija"
  },
  {
   "regcode": "42102001490",
@@ -654,10 +654,10 @@
   "email": "info@vajagzobarstu.lv",
   "address": "Anniņmuižas bulvāris 32, Rīga, Latvija, LV 1035",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9608787,
+  "lng": 24.0189563,
+  "geo": "exact",
+  "geo_display": "32, Anniņmuižas bulvāris, Imanta-2, Imanta, Imantas apkaime, Rīga, LV-1067, Latvija"
  },
  {
   "regcode": "40003253660",
@@ -710,10 +710,10 @@
   "email": "salons@elizeja.lv",
   "address": "Lielā iela 6, Jelgava, Latvija, LV-3001",
   "lvl": 2,
-  "lat": 56.65,
-  "lng": 23.7128,
-  "geo": "approx_city",
-  "geo_display": "Jelgava"
+  "lat": 56.6536722,
+  "lng": 23.7287242,
+  "geo": "exact",
+  "geo_display": "6, Lielā iela, Salas, Jelgava, LV-3001, Latvija"
  },
  {
   "regcode": "42103067199",
@@ -738,10 +738,10 @@
   "email": "info@rttax.lv",
   "address": "Ieriķu iela 15 k-3, Rīga, Latvija, LV-1084",
   "lvl": 2,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9659114,
+  "lng": 24.1710812,
+  "geo": "exact",
+  "geo_display": "15 k-1, Ieriķu iela, Teika, Teikas apkaime, Rīga, LV-1084, Latvija"
  },
  {
   "regcode": "40003467342",
@@ -766,10 +766,10 @@
   "email": "glazura@glazura.lv",
   "address": "Zolitūdes iela 73b, Rīga, Latvija, LV-1029",
   "lvl": 2,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9322181,
+  "lng": 24.0144184,
+  "geo": "exact",
+  "geo_display": "Zolitūdes iela, Pleskodāle, Imantas apkaime, Rīga, LV-1046, Latvija"
  },
  {
   "regcode": "40003636486",
@@ -794,10 +794,10 @@
   "email": "anita@ataudits.lv",
   "address": "Latgales iela 450b, Rīga, Latvija, LV-1063",
   "lvl": 2,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.8842997,
+  "lng": 24.2395739,
+  "geo": "exact",
+  "geo_display": "450B, Latgales iela, Rumbula, Latgales apkaime, Rīga, LV-1063, Latvija"
  },
  {
   "regcode": "50003203411",
@@ -821,10 +821,10 @@
   "email": "office@varans.lv",
   "address": "Mūkusalas iela 72b/d, Rīga, Latvija, LV-1004",
   "lvl": 2,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9244563,
+  "lng": 24.1030344,
+  "geo": "exact",
+  "geo_display": "72B, Mūkusalas iela, Bieķensala, Torņakalns, Āgenskalna apkaime, Rīga, LV-1004, Latvija"
  },
  {
   "regcode": "40103284987",
@@ -848,10 +848,10 @@
   "email": "info@amtig.lv",
   "address": "Biķernieku iela 162a - 2 box, Rīga, Latvija, LV-1079",
   "lvl": 2,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9570395,
+  "lng": 24.2567134,
+  "geo": "exact",
+  "geo_display": "162A, Biķernieku iela, Dreiliņi, Teikas apkaime, Rīga, LV-2130, Latvija"
  },
  {
   "regcode": "40103970004",
@@ -875,10 +875,10 @@
   "email": "info@aokolekcija.lv",
   "address": "Krišjāņa Barona iela 52, Rīga, Latvija, LV-1011",
   "lvl": 2,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9543555,
+  "lng": 24.1285176,
+  "geo": "exact",
+  "geo_display": "52, Krišjāņa Barona iela, Centrs, Centra apkaime, Rīga, LV-1011, Latvija"
  },
  {
   "regcode": "45403017048",
@@ -929,10 +929,10 @@
   "email": "andrei@arnautov.lv",
   "address": "Krišjāņa Valdemāra iela 149, Rīga, Latvija, LV-1013",
   "lvl": 2,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9737124,
+  "lng": 24.1344845,
+  "geo": "exact",
+  "geo_display": "149, Krišjāņa Valdemāra iela, Brasa, Centra apkaime, Rīga, LV-1013, Latvija"
  },
  {
   "regcode": "40103919714",
@@ -956,10 +956,10 @@
   "email": "nikaserviss@nikaserviss.lv",
   "address": "Pulkveža Brieža iela 31, Rīga, Latvija, LV-1045",
   "lvl": 2,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9643658,
+  "lng": 24.1050302,
+  "geo": "exact",
+  "geo_display": "Pet City, 31, Pulkveža Brieža iela, Skanste, Centra apkaime, Rīga, LV-1045, Latvija"
  },
  {
   "regcode": "40103209993",
@@ -983,10 +983,10 @@
   "email": "info@belisa.lv",
   "address": "Katlakalna iela 11/1 - 315, Rīga, Latvija, LV-1073",
   "lvl": 2,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9295013,
+  "lng": 24.1982728,
+  "geo": "exact",
+  "geo_display": "11 k-1, Katlakalna iela, Šķirotava, Latgales apkaime, Rīga, LV-1073, Latvija"
  },
  {
   "regcode": "40103424123",
@@ -1009,10 +1009,10 @@
   "email": "riepulis@riepulis.lv",
   "address": "Lubānas iela 22, Rīga, Latvija, LV-1019",
   "lvl": 2,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.932661,
+  "lng": 24.1644304,
+  "geo": "exact",
+  "geo_display": "22, Lubānas iela, Latgales apkaime, Rīga, LV-1019, Latvija"
  },
  {
   "regcode": "40003686167",
@@ -1036,10 +1036,10 @@
   "email": "smartech@smartech.lv",
   "address": "Kaudzīšu iela 22, Rumbula, Stopiņu novads, Latvija, LV-2121",
   "lvl": 2,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.8940336,
+  "lng": 24.237456,
+  "geo": "exact",
+  "geo_display": "22, Kaudzīšu iela, Rumbula, Stopiņu pagasts, Ropažu novads, LV-2121, Latvija"
  },
  {
   "regcode": "40203151197",
@@ -1063,10 +1063,10 @@
   "email": "info@bowling.lv",
   "address": "Vaidavas iela 4, Rīga, Latvija, LV-1084",
   "lvl": 2,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.963804,
+  "lng": 24.1755024,
+  "geo": "exact",
+  "geo_display": "Mēness boulinga centrs, 4, Vaidavas iela, Purvciems, Teikas apkaime, Rīga, LV-1084, Latvija"
  },
  {
   "regcode": "44103007963",
@@ -1088,10 +1088,10 @@
   "email": "veikals@sinhro.apollo.lv",
   "address": "Vilku iela 1, Cēsis, Cēsu novads, Latvija, LV-4101",
   "lvl": 1,
-  "lat": 57.3119,
-  "lng": 25.2749,
-  "geo": "approx_city",
-  "geo_display": "Cēsis"
+  "lat": 57.3083158,
+  "lng": 25.2848666,
+  "geo": "exact",
+  "geo_display": "1, Vilku iela, Vilkukalns, Cēsis, Cēsu novads, LV-4101, Latvija"
  },
  {
   "regcode": "40103164532",
@@ -1113,10 +1113,10 @@
   "email": "sia2gprojekti@outlook.com",
   "address": "Birzmaļi, Siguldas pagasts, Siguldas novads, Latvija, LV-2150",
   "lvl": 1,
-  "lat": 57.1539,
-  "lng": 24.8598,
-  "geo": "approx_city",
-  "geo_display": "Sigulda"
+  "lat": 57.1524304,
+  "lng": 24.899892,
+  "geo": "exact",
+  "geo_display": "Birzmaļi, Vējupītes iela, Peltes, Sigulda, Siguldas novads, LV-2150, Latvija"
  },
  {
   "regcode": "42103039299",
@@ -1138,10 +1138,10 @@
   "email": "r.r.auto@inbox.lv",
   "address": "Ezermalas iela 3, Liepāja, Latvija, LV-3401",
   "lvl": 1,
-  "lat": 56.5089,
-  "lng": 21.0114,
-  "geo": "approx_city",
-  "geo_display": "Liepāja"
+  "lat": 56.5172811,
+  "lng": 21.0286251,
+  "geo": "exact",
+  "geo_display": "3, Ezermalas iela, Vecliepāja, Liepāja, LV-3401, Latvija"
  },
  {
   "regcode": "44103073403",
@@ -1163,10 +1163,10 @@
   "email": "acmotors@inbox.lv",
   "address": "Mehanizācijas iela 4b (blakus CSDD), Limbaži, Limbažu novads, Latvija, LV-4001",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 57.5128225,
+  "lng": 24.7304538,
+  "geo": "exact",
+  "geo_display": "Mehanizācijas iela, Dzegužkakts, Limbaži, Limbažu novads, LV-4001, Latvija"
  },
  {
   "regcode": "40003853030",
@@ -1188,10 +1188,10 @@
   "email": "rempaks@inbox.lv",
   "address": "Pīlādžu iela 7 (Iebraukšana no Ozolu ielas)0, Jaunmārupe, Mārupes pagasts, Mārupes novads, Latvija, LV-2166",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.8757499,
+  "lng": 23.9313712,
+  "geo": "exact",
+  "geo_display": "7, Pīlādžu iela, Jaunmārupe, Mārupes pagasts, Mārupes novads, LV-2166, Latvija"
  },
  {
   "regcode": "40103206338",
@@ -1213,10 +1213,10 @@
   "email": "abmauto@apollo.lv",
   "address": "Dārza iela 5, Ogre, Ogres novads, Latvija, LV-5001",
   "lvl": 1,
-  "lat": 56.8167,
-  "lng": 24.6056,
-  "geo": "approx_city",
-  "geo_display": "Ogre"
+  "lat": 56.8101686,
+  "lng": 24.6034379,
+  "geo": "exact",
+  "geo_display": "5, Dārza iela, Pārogre, Ogre, Ogres novads, LV-5001, Latvija"
  },
  {
   "regcode": "40003259485",
@@ -1238,10 +1238,10 @@
   "email": "agm@apollo.lv",
   "address": "Miera iela 79, Rīga, Latvija, LV-1013",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9717475,
+  "lng": 24.139516,
+  "geo": "exact",
+  "geo_display": "79, Miera iela, Brasa, Centra apkaime, Rīga, LV-1013, Latvija"
  },
  {
   "regcode": "40203447902",
@@ -1263,10 +1263,10 @@
   "email": "amsstende@gmail.com",
   "address": "Brīvības iela 49, Stende, Talsu novads, Latvija, LV-3257",
   "lvl": 1,
-  "lat": 57.2447,
-  "lng": 22.5897,
-  "geo": "approx_city",
-  "geo_display": "Talsu"
+  "lat": 57.130974,
+  "lng": 22.5358647,
+  "geo": "exact",
+  "geo_display": "49, Brīvības iela, Meliorācija, Stende, Talsu novads, LV-3257, Latvija"
  },
  {
   "regcode": "44103084303",
@@ -1288,10 +1288,10 @@
   "email": "sorento68@inbox.lv",
   "address": "Mūrmuižas iela 20, Valmiera, Valmieras novads, Latvija, LV-4201",
   "lvl": 1,
-  "lat": 57.5383,
-  "lng": 25.4267,
-  "geo": "approx_city",
-  "geo_display": "Valmiera"
+  "lat": 57.5164761,
+  "lng": 25.4400744,
+  "geo": "exact",
+  "geo_display": "20, Mūrmuižas iela, Gaides, Valmiera, Valmieras novads, LV-4201, Latvija"
  },
  {
   "regcode": "45403024016",
@@ -1313,10 +1313,10 @@
   "email": "autodarbnica@inbox.lv",
   "address": "Druvas, Ratnicēni, Kokneses pagasts, Aizkraukles novads, Latvija, LV-5113",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.6798928,
+  "lng": 25.452015,
+  "geo": "exact",
+  "geo_display": "Druvas, Bormaņi, Kokneses pagasts, Aizkraukles novads, LV-5113, Latvija"
  },
  {
   "regcode": "40103157691",
@@ -1338,10 +1338,10 @@
   "email": "veismanis.av@inbox.lv",
   "address": "Latgales iela 330, Rīga, Latvija, LV-1063",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.8997432,
+  "lng": 24.2015122,
+  "geo": "exact",
+  "geo_display": "330, Latgales iela, Rumbula, Latgales apkaime, Rīga, LV-1063, Latvija"
  },
  {
   "regcode": "40103063714",
@@ -1363,10 +1363,10 @@
   "email": "agens66@inbox.lv",
   "address": "Krāsotāju iela 6 (ieeja no sētas), Rīga, Latvija, LV-1009",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9539112,
+  "lng": 24.1431539,
+  "geo": "exact",
+  "geo_display": "6, Krāsotāju iela, Avoti, Centra apkaime, Rīga, LV-1009, Latvija"
  },
  {
   "regcode": "45401013840",
@@ -1388,10 +1388,10 @@
   "email": "aizezere@apollo.lv",
   "address": "Saules iela 56a, Madona, Madonas novads, Latvija, LV-4801",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.8643411,
+  "lng": 26.237613,
+  "geo": "exact",
+  "geo_display": "56A, Saules iela, Vēveri, Madona, Madonas novads, LV-4801, Latvija"
  },
  {
   "regcode": "40103967004",
@@ -1413,10 +1413,10 @@
   "email": "alatauto@inbox.lv",
   "address": "Lubānas iela 82, Rīga, Latvija, LV-1073",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9319053,
+  "lng": 24.2179326,
+  "geo": "exact",
+  "geo_display": "82D, Lubānas iela, Šķirotava, Latgales apkaime, Rīga, LV-1073, Latvija"
  },
  {
   "regcode": "40203256693",
@@ -1438,10 +1438,10 @@
   "email": "altair.serviss@gmail.com",
   "address": "Lubānas iela 82, Rīga, Latvija, LV-1073",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9319053,
+  "lng": 24.2179326,
+  "geo": "exact",
+  "geo_display": "82D, Lubānas iela, Šķirotava, Latgales apkaime, Rīga, LV-1073, Latvija"
  },
  {
   "regcode": "50003312491",
@@ -1463,10 +1463,10 @@
   "email": "sia_ameira@inbox.lv",
   "address": "Atlantijas iela 69a, Rīga, Latvija, LV-1015",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 57.0417533,
+  "lng": 24.089281,
+  "geo": "exact",
+  "geo_display": "Atlantijas iela, Rīnūži, Vecmīlgrāvis, Vecmīlgrāvja apkaime, Rīga, LV-1015, Latvija"
  },
  {
   "regcode": "40102019649",
@@ -1488,10 +1488,10 @@
   "email": "apse.cesis@gmail.com",
   "address": "Rīgas iela 88, Cēsis, Cēsu novads, Latvija, LV-4101",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 57.0386494,
+  "lng": 24.094048,
+  "geo": "exact",
+  "geo_display": "Rīnūžu vidusskola, 88, Augusta Dombrovska iela, Rīnūži, Vecmīlgrāvis, Vecmīlgrāvja apkaime, Rīga, LV-1015, Latvija"
  },
  {
   "regcode": "40003498554",
@@ -1513,10 +1513,10 @@
   "email": "arautoserviss@gmail.com",
   "address": "Daugavpils iela 3a, Ciemupe, Ogresgala pagasts, Ogres novads, Latvija, LV-5041",
   "lvl": 1,
-  "lat": 55.8747,
-  "lng": 26.5364,
-  "geo": "approx_city",
-  "geo_display": "Daugavpils"
+  "lat": 55.8355932,
+  "lng": 26.4889209,
+  "geo": "exact",
+  "geo_display": "3A, Ķieģeļu iela, Kalkūni, Daugavpils, LV-5449, Latvija"
  },
  {
   "regcode": "40103322507",
@@ -1538,10 +1538,10 @@
   "email": "archiauto@inbox.lv",
   "address": "Vagonu iela 35 - 3, Rīga, Latvija, LV-1009",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9517396,
+  "lng": 24.1557555,
+  "geo": "exact",
+  "geo_display": "35, Vagonu iela, Avoti, Centra apkaime, Rīga, LV-1009, Latvija"
  },
  {
   "regcode": "48503010058",
@@ -1563,10 +1563,10 @@
   "email": "linis77@inbox.lv",
   "address": "Draudzība, Novadnieku pagasts, Saldus novads, Latvija, LV-3801",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.635174,
+  "lng": 22.4698526,
+  "geo": "exact",
+  "geo_display": "Draudzība, Novadnieku pagasts, Saldus novads, Latvija"
  },
  {
   "regcode": "40003302580",
@@ -1588,10 +1588,10 @@
   "email": "arfila@latnet.lv",
   "address": "Zilupes iela 7, Rīga, Latvija, LV-1019",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9302307,
+  "lng": 24.1661915,
+  "geo": "exact",
+  "geo_display": "7, Zilupes iela, Krasta masīvs, Latgales apkaime, Rīga, LV-1019, Latvija"
  },
  {
   "regcode": "40003296848",
@@ -1613,10 +1613,10 @@
   "email": "autobrasla@apollo.lv",
   "address": "Braslas iela 15, Rīga, Latvija, LV-1084",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9647894,
+  "lng": 24.1658262,
+  "geo": "exact",
+  "geo_display": "Rallija krogs L-4!, 15, Braslas iela, Purvciems, Teikas apkaime, Rīga, LV-1084, Latvija"
  },
  {
   "regcode": "44103052505",
@@ -1638,10 +1638,10 @@
   "email": "automuris@gmail.com",
   "address": "Linarda Laicena iela 5, Valmiera, Valmieras novads, Latvija, LV-4201",
   "lvl": 1,
-  "lat": 57.5383,
-  "lng": 25.4267,
-  "geo": "approx_city",
-  "geo_display": "Valmiera"
+  "lat": 57.5323796,
+  "lng": 25.4222362,
+  "geo": "exact",
+  "geo_display": "5, Linarda Laicena iela, Banāni, Valmiera, Valmieras novads, LV-4201, Latvija"
  },
  {
   "regcode": "40103783399",
@@ -1663,10 +1663,10 @@
   "email": "autoprofs21@gmail.com",
   "address": "Kandavas iela 17, Tukums, Tukuma novads, Latvija, LV-3101",
   "lvl": 1,
-  "lat": 56.9675,
-  "lng": 23.153,
-  "geo": "approx_city",
-  "geo_display": "Tukums"
+  "lat": 56.9625376,
+  "lng": 23.1231085,
+  "geo": "exact",
+  "geo_display": "17, Kandavas iela, Veļķi, Tukums, Tukuma novads, LV-3101, Latvija"
  },
  {
   "regcode": "44103036144",
@@ -1688,10 +1688,10 @@
   "email": "autopuma2@inbox.lv",
   "address": "Saulrītu iela 13, Cēsis, Cēsu novads, Latvija, LV-4101",
   "lvl": 1,
-  "lat": 57.3119,
-  "lng": 25.2749,
-  "geo": "approx_city",
-  "geo_display": "Cēsis"
+  "lat": 57.3009851,
+  "lng": 25.3002665,
+  "geo": "exact",
+  "geo_display": "13, Saulrītu iela, Saulrīti, Cēsis, Cēsu novads, LV-4101, Latvija"
  },
  {
   "regcode": "54103081281",
@@ -1713,10 +1713,10 @@
   "email": "autososklubs1@inbox.lv",
   "address": "Cēsu prospekts 23a, Priekuļi, Priekuļu pagasts, Cēsu novads, Latvija, LV-4126",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 57.3135424,
+  "lng": 25.3582603,
+  "geo": "exact",
+  "geo_display": "Cēsu prospekts, Priekuļi, Priekuļu pagasts, Cēsu novads, LV-4126, Latvija"
  },
  {
   "regcode": "40103936432",
@@ -1738,10 +1738,10 @@
   "email": "autoavenija@gmail.com",
   "address": "Ganību dambis 24c, Rīga, Latvija, LV-1005",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9795066,
+  "lng": 24.115724,
+  "geo": "exact",
+  "geo_display": "Ganību dambis, Sarkandaugava, Centra apkaime, Rīga, LV-1045, Latvija"
  },
  {
   "regcode": "42403012876",
@@ -1763,10 +1763,10 @@
   "email": "autokruizs.balvi@inbox.lv",
   "address": "Brīvības iela 7, Balvi, Balvu novads, Latvija, LV-4501",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 57.1268441,
+  "lng": 27.2411577,
+  "geo": "exact",
+  "geo_display": "7, Brīvības iela, Balvi, Balvu novads, LV-4501, Latvija"
  },
  {
   "regcode": "45403031037",
@@ -1788,10 +1788,10 @@
   "email": "janiskli@inbox.lv ",
   "address": "Tvaika iela 2b, Jēkabpils, Latvija, LV-5201",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.4925125,
+  "lng": 25.8963579,
+  "geo": "exact",
+  "geo_display": "2B, Tvaika iela, Ošukalns, Bebri, Jēkabpils, Jēkabpils novads, LV-5201, Latvija"
  },
  {
   "regcode": "40003481098",
@@ -1813,10 +1813,10 @@
   "email": "autoritms@inbox.lv",
   "address": "Jelgavas iela 66, Rīga, Latvija, LV-1004",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9279561,
+  "lng": 24.0946376,
+  "geo": "exact",
+  "geo_display": "66, Jelgavas iela, Bieķensala, Torņakalns, Āgenskalna apkaime, Rīga, LV-1004, Latvija"
  },
  {
   "regcode": "50103673921",
@@ -1838,10 +1838,10 @@
   "email": "akarzjuks@inbox.lv",
   "address": "Rūpniecības iela 9, Cēsis, Cēsu novads, Latvija, LV-4101",
   "lvl": 1,
-  "lat": 57.3119,
-  "lng": 25.2749,
-  "geo": "approx_city",
-  "geo_display": "Cēsis"
+  "lat": 57.3206717,
+  "lng": 25.2992983,
+  "geo": "exact",
+  "geo_display": "9, Rūpniecības iela, Lauciņi, Cēsis, Cēsu novads, LV-4101, Latvija"
  },
  {
   "regcode": "43602027151",
@@ -1863,10 +1863,10 @@
   "email": "autospar2004@inbox.lv",
   "address": "Raiņa iela 20 - 209, 2. stāvs, Jelgava, Latvija, LV-3008",
   "lvl": 1,
-  "lat": 56.65,
-  "lng": 23.7128,
-  "geo": "approx_city",
-  "geo_display": "Jelgava"
+  "lat": 56.6481483,
+  "lng": 23.7203477,
+  "geo": "exact",
+  "geo_display": "20, Raiņa iela, Jelgavas Vidus, Jelgava, LV-3001, Latvija"
  },
  {
   "regcode": "41203033024",
@@ -1888,10 +1888,10 @@
   "email": "autodeko@inbox.lv",
   "address": "Celtnieku iela 20, Talsi, Talsu novads, Latvija, LV-3201",
   "lvl": 1,
-  "lat": 57.2447,
-  "lng": 22.5897,
-  "geo": "approx_city",
-  "geo_display": "Talsu"
+  "lat": 57.2306944,
+  "lng": 22.5662153,
+  "geo": "exact",
+  "geo_display": "20, Celtnieku iela, Lauktehnika, Talsi, Talsu novads, LV-3201, Latvija"
  },
  {
   "regcode": "41203001866",
@@ -1913,10 +1913,10 @@
   "email": "ugaleserviss@gmail.com",
   "address": "Austrumi, Ugāle, Ugāles pagasts, Ventspils novads, Latvija, LV-3615",
   "lvl": 1,
-  "lat": 57.3937,
-  "lng": 21.5647,
-  "geo": "approx_city",
-  "geo_display": "Ventspils"
+  "lat": 57.2653114,
+  "lng": 22.0493466,
+  "geo": "exact",
+  "geo_display": "Austrumi, Ugāle — Cirkale — Zlēkas, Ugāle, Ugāles pagasts, Ventspils novads, LV-3615, Latvija"
  },
  {
   "regcode": "40003714390",
@@ -1938,10 +1938,10 @@
   "email": "autoincom@inbox.lv",
   "address": "Ludzas iela 89b, Rīga, Latvija, LV-1003",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9412187,
+  "lng": 24.1538671,
+  "geo": "exact",
+  "geo_display": "89B, Ludzas iela, Latgales apkaime, Rīga, LV-1003, Latvija"
  },
  {
   "regcode": "40003318172",
@@ -1963,10 +1963,10 @@
   "email": "autoline@apollo.lv",
   "address": "Gramzdas iela 2, Rīga, Latvija, LV-1029",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9437734,
+  "lng": 24.0083841,
+  "geo": "exact",
+  "geo_display": "19 k-2, Gramzdas iela, Zolitūde-1, Zolitūde, Imantas apkaime, Rīga, LV-1029, Latvija"
  },
  {
   "regcode": "40203023830",
@@ -1988,10 +1988,10 @@
   "email": "autosaimnieks@gmail.com",
   "address": "Vestienas iela 12, Rīga, Latvija, LV-1035",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9444371,
+  "lng": 24.1640421,
+  "geo": "exact",
+  "geo_display": "12, Vestienas iela, Dārzciems, Latgales apkaime, Rīga, LV-1035, Latvija"
  },
  {
   "regcode": "40103814646",
@@ -2013,10 +2013,10 @@
   "email": "autospils@inbox.lv",
   "address": "Lauku iela 9, Salaspils, Salaspils novads, Latvija, LV-2121",
   "lvl": 1,
-  "lat": 56.8606,
-  "lng": 24.3597,
-  "geo": "approx_city",
-  "geo_display": "Salaspils"
+  "lat": 56.8591702,
+  "lng": 24.3455666,
+  "geo": "exact",
+  "geo_display": "9, Lauku iela, Vecā Salaspils, Salaspils, Salaspils novads, LV-2121, Latvija"
  },
  {
   "regcode": "40003199858",
@@ -2038,10 +2038,10 @@
   "email": "sia.aviators@mail.ru",
   "address": "Lidosta Rīga, Mārupes pagasts, Mārupes novads, Latvija, LV-1053",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9222608,
+  "lng": 23.9795191,
+  "geo": "exact",
+  "geo_display": "airBaltic, L2, Lidosta \"Rīga\", Skulte, Mārupes pagasts, Mārupes novads, LV-1053, Latvija"
  },
  {
   "regcode": "40103004335",
@@ -2063,10 +2063,10 @@
   "email": "baltserviss@inbox.lv",
   "address": "Lielvārdes iela 136, Rīga, Latvija, LV-1082",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9512237,
+  "lng": 24.210924,
+  "geo": "exact",
+  "geo_display": "136, Lielvārdes iela, Dreiliņi, Teikas apkaime, Rīga, LV-1082, Latvija"
  },
  {
   "regcode": "42103046977",
@@ -2088,10 +2088,10 @@
   "email": "bernoauto@apollo.lv",
   "address": "Rudbāržu iela 1, Liepāja, Latvija, LV-3401",
   "lvl": 1,
-  "lat": 56.5089,
-  "lng": 21.0114,
-  "geo": "approx_city",
-  "geo_display": "Liepāja"
+  "lat": 56.5079322,
+  "lng": 21.031227,
+  "geo": "exact",
+  "geo_display": "1, Rudbāržu iela, Vecliepāja, Liepāja, LV-3401, Latvija"
  },
  {
   "regcode": "42103048959",
@@ -2113,10 +2113,10 @@
   "email": "madars21@jahoo.com",
   "address": "Meldru iela 1 (Iebraukšana no Dūņu ielas), Liepāja, Latvija, LV-3402",
   "lvl": 1,
-  "lat": 56.5089,
-  "lng": 21.0114,
-  "geo": "approx_city",
-  "geo_display": "Liepāja"
+  "lat": 56.5301997,
+  "lng": 21.0513492,
+  "geo": "exact",
+  "geo_display": "1, Meldru iela, Jaunā pasaule, Liepāja, LV-3401, Latvija"
  },
  {
   "regcode": "41203062625",
@@ -2138,10 +2138,10 @@
   "email": "car.race@inbox.lv",
   "address": "Straumes iela 6, Tukums, Tukuma novads, Latvija, LV-3104",
   "lvl": 1,
-  "lat": 56.9675,
-  "lng": 23.153,
-  "geo": "approx_city",
-  "geo_display": "Tukums"
+  "lat": 56.9551226,
+  "lng": 23.1069605,
+  "geo": "exact",
+  "geo_display": "6, Straumes iela, Lauktehnika, Tukums, Tukuma novads, LV-3104, Latvija"
  },
  {
   "regcode": "58702000381",
@@ -2188,10 +2188,10 @@
   "email": "d52autoservis@inbox.lv",
   "address": "Dammes iela 52a, Rīga, Latvija, LV-1069",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9670455,
+  "lng": 24.009285,
+  "geo": "exact",
+  "geo_display": "52A, Dammes iela, Imanta-4, Imanta, Imantas apkaime, Rīga, LV-1069, Latvija"
  },
  {
   "regcode": "40203328741",
@@ -2213,10 +2213,10 @@
   "email": "didiautocentrs@gmail.com",
   "address": "Dārzciema iela 60A, Rīga, Latvija, LV-1073",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9391299,
+  "lng": 24.1809436,
+  "geo": "exact",
+  "geo_display": "Autoserviss, 60A, Dārzciema iela, Dārzciems, Latgales apkaime, Rīga, LV-1073, Latvija"
  },
  {
   "regcode": "43603033850",
@@ -2238,10 +2238,10 @@
   "email": "dzautomeistars@inbox.lv",
   "address": "Lietuvas šoseja 5, Jelgava, Latvija, LV-3001",
   "lvl": 1,
-  "lat": 56.65,
-  "lng": 23.7128,
-  "geo": "approx_city",
-  "geo_display": "Jelgava"
+  "lat": 56.635599,
+  "lng": 23.7287468,
+  "geo": "exact",
+  "geo_display": "DZ Automeistars, 5, Lietuvas šoseja, Aveņu ciems, Romas krogs, Jelgava, LV-3001, Latvija"
  },
  {
   "regcode": "40103112583",
@@ -2288,10 +2288,10 @@
   "email": "dambisserviss@inbox.lv",
   "address": "Ganību dambis 24, Rīga, Latvija, LV-1005",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9801725,
+  "lng": 24.1170016,
+  "geo": "exact",
+  "geo_display": "24 k-1, Ganību dambis, Sarkandaugava, Centra apkaime, Rīga, LV-1005, Latvija"
  },
  {
   "regcode": "40003633210",
@@ -2313,10 +2313,10 @@
   "email": "daniviserviss@inbox.lv",
   "address": "Āres, Ķekava, Ķekavas pagasts, Ķekavas novads, Latvija, LV-2123",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.8253,
+  "lng": 24.2333,
+  "geo": "approx_city",
+  "geo_display": "Ķekava"
  },
  {
   "regcode": "48703001630",
@@ -2338,10 +2338,10 @@
   "email": "darbnicak@inbox.lv",
   "address": "Rūpniecības iela 11, Aizkraukle, Aizkraukles novads, Latvija, LV-5101",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.6008772,
+  "lng": 25.2403965,
+  "geo": "exact",
+  "geo_display": "11, Rūpniecības iela, Aizkraukle, Aizkraukles novads, LV-5101, Latvija"
  },
  {
   "regcode": "40203188876",
@@ -2363,10 +2363,10 @@
   "email": "dieseltest@inbox.lv",
   "address": "Institūta iela 2, Salaspils, Salaspils novads, Latvija, LV-2169",
   "lvl": 1,
-  "lat": 56.8606,
-  "lng": 24.3597,
-  "geo": "approx_city",
-  "geo_display": "Salaspils"
+  "lat": 56.8728108,
+  "lng": 24.3500906,
+  "geo": "exact",
+  "geo_display": "2, Institūta iela, Silava, Salaspils, Salaspils novads, LV-2169, Latvija"
  },
  {
   "regcode": "40203128684",
@@ -2388,10 +2388,10 @@
   "email": "nozzleservice@gmail.com",
   "address": "Latgales iela 444a, Rīga, Latvija, LV-1063",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.8919456,
+  "lng": 24.2214144,
+  "geo": "exact",
+  "geo_display": "444A, Latgales iela, Rumbula, Latgales apkaime, Rīga, LV-1063, Latvija"
  },
  {
   "regcode": "54103047811",
@@ -2413,10 +2413,10 @@
   "email": "dzinca01@inbox.lv",
   "address": "Dārza iela 11a, Priekuļi, Priekuļu pagasts, Cēsu novads, Latvija, LV-4126",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 57.3071624,
+  "lng": 25.3633281,
+  "geo": "exact",
+  "geo_display": "SIA Dzinča, 11A, Dārza iela, Priekuļi, Priekuļu pagasts, Cēsu novads, LV-4126, Latvija"
  },
  {
   "regcode": "41503026197",
@@ -2438,10 +2438,10 @@
   "email": "emauto@inbox.lv",
   "address": "Baznīcas iela 20, Līvāni, Līvānu novads, Latvija, LV-5316",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.3673878,
+  "lng": 26.1650432,
+  "geo": "exact",
+  "geo_display": "20, Baznīcas iela, Līvāni, Līvānu novads, LV-5316, Latvija"
  },
  {
   "regcode": "40103985654",
@@ -2463,10 +2463,10 @@
   "email": "evertauto@inbox.lv",
   "address": "Spartaka iela 1, Tukums, Tukuma novads, Latvija, LV-3101",
   "lvl": 1,
-  "lat": 56.9675,
-  "lng": 23.153,
-  "geo": "approx_city",
-  "geo_display": "Tukums"
+  "lat": 56.9723446,
+  "lng": 23.1596347,
+  "geo": "exact",
+  "geo_display": "1, Spartaka iela, Dārzniecība, Tukums, Tukuma novads, LV-3101, Latvija"
  },
  {
   "regcode": "40003751132",
@@ -2488,10 +2488,10 @@
   "email": "francijasauto@dot.lv",
   "address": "Romāni, Ķekava, Ķekavas pagasts, Ķekavas novads, Latvija, LV-2123",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.8361205,
+  "lng": 24.2113667,
+  "geo": "exact",
+  "geo_display": "Romāni, Varavīksnes iela, Loreķi, Ķekava, Ķekavas novads, LV-2123, Latvija"
  },
  {
   "regcode": "40203269274",
@@ -2513,10 +2513,10 @@
   "email": "girtsperevalovs@gmail.com",
   "address": "Grandiņi 1, Praulienas pagasts, Madonas novads, Latvija, LV-4824",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.8380532,
+  "lng": 26.2418459,
+  "geo": "exact",
+  "geo_display": "Grandiņi 1, Madona — Varakļāni, Praulienas pagasts, Madonas novads, LV-4824, Latvija"
  },
  {
   "regcode": "40003525142",
@@ -2538,10 +2538,10 @@
   "email": "garantauto@inbox.lv",
   "address": "Biķernieku iela 121, Rīga, Latvija, LV-1021",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9562267,
+  "lng": 24.2346772,
+  "geo": "exact",
+  "geo_display": "121, Biķernieku iela, Dreiliņi, Teikas apkaime, Rīga, LV-1021, Latvija"
  },
  {
   "regcode": "40003984366",
@@ -2563,10 +2563,10 @@
   "email": "gasparsracingteam@gmail.com",
   "address": "Gaujas iela 9, Rīga, Latvija, LV-1024",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9804237,
+  "lng": 24.1492332,
+  "geo": "exact",
+  "geo_display": "9, Gaujas iela, Čiekurkalns, Teikas apkaime, Rīga, LV-1026, Latvija"
  },
  {
   "regcode": "43603051894",
@@ -2588,10 +2588,10 @@
   "email": "goldengaz@inbox.lv",
   "address": "Dobeles šoseja 2, Jelgava, Latvija, LV-3007",
   "lvl": 1,
-  "lat": 56.65,
-  "lng": 23.7128,
-  "geo": "approx_city",
-  "geo_display": "Jelgava"
+  "lat": 56.6524037,
+  "lng": 23.7079313,
+  "geo": "exact",
+  "geo_display": "2, Dobeles šoseja, Vecais gals, Jelgava, LV-3007, Latvija"
  },
  {
   "regcode": "40003310963",
@@ -2663,10 +2663,10 @@
   "email": "hardeks-aac@inbox.lv",
   "address": "Lāčplēši, Stāmerienas pagasts, Gulbenes novads, Latvija, LV-4406",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 57.2030358,
+  "lng": 26.9051943,
+  "geo": "exact",
+  "geo_display": "Lāčplēši, Stāmerienas pagasts, Gulbenes novads, LV-4406, Latvija"
  },
  {
   "regcode": "40003876211",
@@ -2688,10 +2688,10 @@
   "email": "iuniserviss@inbox.lv",
   "address": "Brīvības iela 197b, Rīga, Latvija, LV-1039",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.958891,
+  "lng": 24.1260168,
+  "geo": "exact",
+  "geo_display": "Brīvības iela, Centrs, Centra apkaime, Rīga, LV-1011, Latvija"
  },
  {
   "regcode": "40002126448",
@@ -2713,10 +2713,10 @@
   "email": "shadow.line@inbox.lv",
   "address": "Ādažu iela 26, Bukulti, Garkalnes pagasts, Ropažu novads, Latvija, LV-1024",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 57.0198682,
+  "lng": 24.2593585,
+  "geo": "exact",
+  "geo_display": "26, Ādažu iela, Bukulti, Garkalnes pagasts, Ropažu novads, LV-1024, Latvija"
  },
  {
   "regcode": "41203010303",
@@ -2738,10 +2738,10 @@
   "email": "ima@apollo.lv",
   "address": "Virkas iela 24, Kuldīga, Kuldīgas novads, Latvija, LV-3301",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.9794254,
+  "lng": 21.9584924,
+  "geo": "exact",
+  "geo_display": "24, Virkas iela, Virka, Kuldīga, Kuldīgas novads, LV-3301, Latvija"
  },
  {
   "regcode": "40003362749",
@@ -2763,10 +2763,10 @@
   "email": "izdarigs2@inbox.lv",
   "address": "Baldones iela 1, Rīga, Latvija, LV-1007",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9496499,
+  "lng": 24.0655392,
+  "geo": "exact",
+  "geo_display": "1, Baldones iela, Āgenskalna priedes, Āgenskalns, Āgenskalna apkaime, Rīga, LV-1007, Latvija"
  },
  {
   "regcode": "44101016336",
@@ -2788,10 +2788,10 @@
   "email": "diura@inbox.lv",
   "address": "Priežu iela 21, Limbaži, Limbažu novads, Latvija, LV-4001",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 57.5029856,
+  "lng": 24.7241592,
+  "geo": "exact",
+  "geo_display": "21, Priežu iela, Kaupiņciems, Limbaži, Limbažu novads, LV-4001, Latvija"
  },
  {
   "regcode": "41202020412",
@@ -2813,10 +2813,10 @@
   "email": "rudakovs@inbox.lv",
   "address": "Ganību iela 21a, Kuldīga, Kuldīgas novads, Latvija, LV-3301",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.9575545,
+  "lng": 21.9824921,
+  "geo": "exact",
+  "geo_display": "21A, Ganību iela, Kurzemīte, Kuldīga, Kuldīgas novads, LV-3301, Latvija"
  },
  {
   "regcode": "42103010857",
@@ -2838,10 +2838,10 @@
   "email": "jureckisserviss@gmail.com",
   "address": "Kapsētas iela 9/15, Liepāja, Latvija, LV-3401",
   "lvl": 1,
-  "lat": 56.5089,
-  "lng": 21.0114,
-  "geo": "approx_city",
-  "geo_display": "Liepāja"
+  "lat": 56.5193099,
+  "lng": 21.005158,
+  "geo": "exact",
+  "geo_display": "9/15, Kapsētas iela, Jaunliepāja, Liepāja, LV-3401, Latvija"
  },
  {
   "regcode": "40003717700",
@@ -2863,10 +2863,10 @@
   "email": "apexden@inbox.lv",
   "address": "Latgales iela 449, Rīga, Latvija, LV-1063",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.8892851,
+  "lng": 24.2300994,
+  "geo": "exact",
+  "geo_display": "Riepu montāža, 449, Latgales iela, Rumbula, Latgales apkaime, Rīga, LV-1063, Latvija"
  },
  {
   "regcode": "40103278726",
@@ -2888,10 +2888,10 @@
   "email": "kn-serviss@inbox.lv",
   "address": "Ķengaraga iela 6 (autostāvvietas teritorijā kreisajā pusē), Rīga, Latvija, LV-1063",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9173242,
+  "lng": 24.1695215,
+  "geo": "exact",
+  "geo_display": "6, Ķengaraga iela, Ķengarags, Latgales apkaime, Rīga, LV-1063, Latvija"
  },
  {
   "regcode": "40103272121",
@@ -2913,10 +2913,10 @@
   "email": "krmotors@inbox.lv",
   "address": "Raiņa iela 7/25, Tukums, Tukuma novads, Latvija, LV-3101",
   "lvl": 1,
-  "lat": 56.9675,
-  "lng": 23.153,
-  "geo": "approx_city",
-  "geo_display": "Tukums"
+  "lat": 56.968495,
+  "lng": 23.1506116,
+  "geo": "exact",
+  "geo_display": "7, J. Raiņa iela, Centrs, Tukums, Tukuma novads, LV-3101, Latvija"
  },
  {
   "regcode": "40103214710",
@@ -3013,10 +3013,10 @@
   "email": "kurlandauto@inbox.lv",
   "address": "Rietumi, Zvirgzdi, Laidzes pagasts, Talsu novads, Latvija, LV-3201",
   "lvl": 1,
-  "lat": 57.2447,
-  "lng": 22.5897,
-  "geo": "approx_city",
-  "geo_display": "Talsu"
+  "lat": 57.2513526,
+  "lng": 22.6015055,
+  "geo": "exact",
+  "geo_display": "Rietumi, Talsi — Upesgrīva, Sukturi, Laidzes pagasts, Talsu novads, LV-3201, Latvija"
  },
  {
   "regcode": "40103261240",
@@ -3038,10 +3038,10 @@
   "email": "sialunv@inbox.lv",
   "address": "Kurzemes prospekts 7(iebraukšana gar Mc Donalds caur vārtiem teritorij, Rīga, Latvija, LV-1067",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9547658,
+  "lng": 23.9975274,
+  "geo": "exact",
+  "geo_display": "Kurzemes prospekts, Imanta-5, Imanta, Imantas apkaime, Rīga, LV-1069, Latvija"
  },
  {
   "regcode": "44103012536",
@@ -3063,10 +3063,10 @@
   "email": "lsaa@tvnet.lv",
   "address": "Piebalgas iela 1, Cēsis, Cēsu novads, Latvija, LV-4101",
   "lvl": 1,
-  "lat": 57.3119,
-  "lng": 25.2749,
-  "geo": "approx_city",
-  "geo_display": "Cēsis"
+  "lat": 57.3114397,
+  "lng": 25.2742663,
+  "geo": "exact",
+  "geo_display": "1, Piebalgas iela, Dubinska, Cēsis, Cēsu novads, LV-4101, Latvija"
  },
  {
   "regcode": "48503014435",
@@ -3088,10 +3088,10 @@
   "email": "mcsserviss@inbox.lv",
   "address": "Kuldīgas iela 90, Saldus, Saldus novads, Latvija, LV-3801",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.6850518,
+  "lng": 22.461637,
+  "geo": "exact",
+  "geo_display": "90, Kuldīgas iela, Saldus, Saldus novads, LV-3801, Latvija"
  },
  {
   "regcode": "40003024710",
@@ -3113,10 +3113,10 @@
   "email": "mian06@inbox.lv",
   "address": "Ganību dambis 29a, Rīga, Latvija, LV-1005",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9875989,
+  "lng": 24.1210233,
+  "geo": "exact",
+  "geo_display": "29A, Ganību dambis, Vējzaķsala, Sarkandaugava, Centra apkaime, Rīga, LV-1005, Latvija"
  },
  {
   "regcode": "40203607920",
@@ -3138,10 +3138,10 @@
   "email": "oskars.petersons@inbox.lv",
   "address": "Krišjāņa Valdemāra iela 73, Talsi, Talsu novads, Latvija, LV-3201",
   "lvl": 1,
-  "lat": 57.2447,
-  "lng": 22.5897,
-  "geo": "approx_city",
-  "geo_display": "Talsu"
+  "lat": 57.2575259,
+  "lng": 22.5829006,
+  "geo": "exact",
+  "geo_display": "73, Krišjāņa Valdemāra iela, Krievrags, Talsi, Talsu novads, LV-3201, Latvija"
  },
  {
   "regcode": "44103051711",
@@ -3163,10 +3163,10 @@
   "email": "maksis27@inbox.lv",
   "address": "Meža iela 3, Limbaži, Limbažu novads, Latvija, LV-4001",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 57.5217987,
+  "lng": 24.7390298,
+  "geo": "exact",
+  "geo_display": "3, Meža iela, Dzegužkakts, Limbaži, Limbažu novads, LV-4001, Latvija"
  },
  {
   "regcode": "40003236514",
@@ -3188,10 +3188,10 @@
   "email": "medeo@e-apollo.lv",
   "address": "Druvas iela 8, Ogre, Ogres novads, Latvija, LV-5001",
   "lvl": 1,
-  "lat": 56.8167,
-  "lng": 24.6056,
-  "geo": "approx_city",
-  "geo_display": "Ogre"
+  "lat": 56.7954276,
+  "lng": 24.6248982,
+  "geo": "exact",
+  "geo_display": "8, Druvas iela, Ogre, Ogres novads, LV-5001, Latvija"
  },
  {
   "regcode": "40002082158",
@@ -3213,10 +3213,10 @@
   "email": "nil@balticom.lv",
   "address": "Spaļu iela 6, Rīga, Latvija, LV-1057",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9064544,
+  "lng": 24.1917165,
+  "geo": "exact",
+  "geo_display": "6, Spaļu iela, Ķengarags, Latgales apkaime, Rīga, LV-1057, Latvija"
  },
  {
   "regcode": "47102000683",
@@ -3238,10 +3238,10 @@
   "email": "nikoauto@inbox.lv",
   "address": "Rīgas iela 224, Jēkabpils, Latvija, LV-5202",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9528788,
+  "lng": 24.0534041,
+  "geo": "exact",
+  "geo_display": "Dārza iela/Rīgas Stradiņa universitāte, Dzirciema iela, Dzirciems, Imantas apkaime, Rīga, LV-1083, Latvija"
  },
  {
   "regcode": "43603020201",
@@ -3263,10 +3263,10 @@
   "email": "neringsauto@gmail.com",
   "address": "Silmaču iela 64, Baldone, Ķekavas novads, Latvija, LV-2125",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.8253,
+  "lng": 24.2333,
+  "geo": "approx_city",
+  "geo_display": "Ķekava"
  },
  {
   "regcode": "41503042238",
@@ -3288,10 +3288,10 @@
   "email": "pitstop@apollo.lv",
   "address": "Lielā iela 87, Saldus, Saldus novads, Latvija, LV-3801",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.6533468,
+  "lng": 22.4743765,
+  "geo": "exact",
+  "geo_display": "87, Lielā iela, Saldus, Saldus novads, LV-3801, Latvija"
  },
  {
   "regcode": "43603060948",
@@ -3313,10 +3313,10 @@
   "email": "edk.auto@inbox.lv",
   "address": "Baraviku iela 1, Jelgava, Latvija, LV-3008",
   "lvl": 1,
-  "lat": 56.65,
-  "lng": 23.7128,
-  "geo": "approx_city",
-  "geo_display": "Jelgava"
+  "lat": 56.6335424,
+  "lng": 23.6812546,
+  "geo": "exact",
+  "geo_display": "1, Baraviku iela, Būriņu dārzi, Jelgava, LV-3008, Latvija"
  },
  {
   "regcode": "40103522354",
@@ -3338,10 +3338,10 @@
   "email": "partineji@tvnet.lv",
   "address": "Pamales, Alejas, Ķekavas pagasts, Ķekavas novads, Latvija, LV-2111",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.8253,
+  "lng": 24.2333,
+  "geo": "approx_city",
+  "geo_display": "Ķekava"
  },
  {
   "regcode": "40203331421",
@@ -3363,10 +3363,10 @@
   "email": "sia.rpservis@gmail.com",
   "address": "Tvaika iela 2b, Jēkabpils, Latvija, LV-5201",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.4925125,
+  "lng": 25.8963579,
+  "geo": "exact",
+  "geo_display": "2B, Tvaika iela, Ošukalns, Bebri, Jēkabpils, Jēkabpils novads, LV-5201, Latvija"
  },
  {
   "regcode": "55902000071",
@@ -3388,10 +3388,10 @@
   "email": "ac-ritms@apollo.lv",
   "address": "Rēzeknes iela 49, Krāslava, Krāslavas novads, Latvija, LV-5601",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.51,
+  "lng": 27.3318,
+  "geo": "approx_city",
+  "geo_display": "Rēzekne"
  },
  {
   "regcode": "43203002022",
@@ -3413,10 +3413,10 @@
   "email": "rubins42@inbox.lv",
   "address": "Brīvības iela 44, Gulbene, Gulbenes novads, Latvija, LV-4401",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 57.1683681,
+  "lng": 26.7530677,
+  "geo": "exact",
+  "geo_display": "44, Brīvības iela, Ievugrava, Gulbene, Gulbenes novads, LV-4401, Latvija"
  },
  {
   "regcode": "48503002436",
@@ -3438,10 +3438,10 @@
   "email": "svaauto@inbox.lv",
   "address": "Dzirnavu iela 8, Saldus, Saldus novads, Latvija, LV-3801",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.6593485,
+  "lng": 22.475818,
+  "geo": "exact",
+  "geo_display": "8, Dzirnavu iela, Ciecere, Saldus, Saldus novads, LV-3801, Latvija"
  },
  {
   "regcode": "40003453056",
@@ -3463,10 +3463,10 @@
   "email": "sailer@one.lv",
   "address": "Valmieras iela 37, Rīga, Latvija, LV-1012",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9507722,
+  "lng": 24.1483458,
+  "geo": "exact",
+  "geo_display": "37, Valmieras iela, Avoti, Centra apkaime, Rīga, LV-1009, Latvija"
  },
  {
   "regcode": "44103008456",
@@ -3488,10 +3488,10 @@
   "email": "ksergis@one.lv",
   "address": "Mēness iela 10, Cēsis, Cēsu novads, Latvija, LV-4101",
   "lvl": 1,
-  "lat": 57.3119,
-  "lng": 25.2749,
-  "geo": "approx_city",
-  "geo_display": "Cēsis"
+  "lat": 57.3064151,
+  "lng": 25.2977124,
+  "geo": "exact",
+  "geo_display": "Serģis un dēli, 10, Mēness iela, Zeltkalns, Cēsis, Cēsu novads, LV-4101, Latvija"
  },
  {
   "regcode": "40103517353",
@@ -3563,10 +3563,10 @@
   "email": "ssc@inbox.lv",
   "address": "Institūta iela 2, Salaspils, Salaspils novads, Latvija, LV-2169",
   "lvl": 1,
-  "lat": 56.8606,
-  "lng": 24.3597,
-  "geo": "approx_city",
-  "geo_display": "Salaspils"
+  "lat": 56.8728108,
+  "lng": 24.3500906,
+  "geo": "exact",
+  "geo_display": "2, Institūta iela, Silava, Salaspils, Salaspils novads, LV-2169, Latvija"
  },
  {
   "regcode": "52402005671",
@@ -3588,10 +3588,10 @@
   "email": "ainars.spidola@apollo.lv",
   "address": "Stigu iela 18, Rīga, Latvija, LV-1021",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9594391,
+  "lng": 24.2274852,
+  "geo": "exact",
+  "geo_display": "18, Stigu iela, Dreiliņi, Teikas apkaime, Rīga, LV-1021, Latvija"
  },
  {
   "regcode": "40103401027",
@@ -3613,10 +3613,10 @@
   "email": "stiklumeistars@inbox.lv",
   "address": "Pētersalas iela 6, Rīga, Latvija, LV-1045",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9680954,
+  "lng": 24.1045494,
+  "geo": "exact",
+  "geo_display": "6, Pētersalas iela, Pētersala, Pētersala-Andrejsala, Centra apkaime, Rīga, LV-1045, Latvija"
  },
  {
   "regcode": "40203535529",
@@ -3638,10 +3638,10 @@
   "email": "sia.techdrive@gmail.com",
   "address": "Kleistu iela 27A, Rīga, Latvija, LV-1067",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9704852,
+  "lng": 24.0295121,
+  "geo": "exact",
+  "geo_display": "27A, Kleistu iela, Kleisti, Bolderājas apkaime, Rīga, LV-1067, Latvija"
  },
  {
   "regcode": "41202014685",
@@ -3663,10 +3663,10 @@
   "email": "tikauto@inbox.lv",
   "address": "Darbnīcas, Rumbas pagasts, Kuldīgas novads, Latvija, LV-3301",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.7115622,
+  "lng": 21.5595345,
+  "geo": "exact",
+  "geo_display": "Darbnīcas, Kuldīga — Aizpute — Līči, Rokasbirze, Aizputes pagasts, Dienvidkurzemes novads, LV-3456, Latvija"
  },
  {
   "regcode": "44103019534",
@@ -3688,10 +3688,10 @@
   "email": "tindac@apollo.lv",
   "address": "Daugavas iela 10a, Smiltene, Smiltenes novads, Latvija, LV-4729",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 57.4268346,
+  "lng": 25.9006403,
+  "geo": "exact",
+  "geo_display": "Tinda C, 10A, Daugavas iela, Smiltene, Smiltenes novads, LV-4729, Latvija"
  },
  {
   "regcode": "40003326767",
@@ -3713,10 +3713,10 @@
   "email": " topersautocentrs@inbox.lv",
   "address": "Bukultu iela 7a, Rīga, Latvija, LV-1005",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9791782,
+  "lng": 24.1217623,
+  "geo": "exact",
+  "geo_display": "7A, Bukultu iela, Sarkandaugava, Centra apkaime, Rīga, LV-1005, Latvija"
  },
  {
   "regcode": "40103678325",
@@ -3738,10 +3738,10 @@
   "email": "transartserviss@inbox.lv",
   "address": "Katlakalna iela 9a, Rīga, Latvija, LV-1073",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9274857,
+  "lng": 24.1928658,
+  "geo": "exact",
+  "geo_display": "9A, Katlakalna iela, Šķirotava, Latgales apkaime, Rīga, LV-1073, Latvija"
  },
  {
   "regcode": "40103326123",
@@ -3763,10 +3763,10 @@
   "email": "riepas.com@inbox.lv",
   "address": "Tilta iela 30, Rīga, Latvija, LV-1005",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.995143,
+  "lng": 24.1294914,
+  "geo": "exact",
+  "geo_display": "Kebab City Sarkandugava, 30, Tilta iela, Sarkandaugava, Centra apkaime, Rīga, LV-1005, Latvija"
  },
  {
   "regcode": "40003210680",
@@ -3788,10 +3788,10 @@
   "email": "v4motors@latnet.lv",
   "address": "Ādmiņu iela 5/7, Rīga, Latvija, LV-1009",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9492863,
+  "lng": 24.1394938,
+  "geo": "exact",
+  "geo_display": "5, Ādmiņu iela, Avoti, Centra apkaime, Rīga, LV-1009, Latvija"
  },
  {
   "regcode": "44103031221",
@@ -3813,10 +3813,10 @@
   "email": "viesulisplus@inbox.lv",
   "address": "Ganību iela 6, Limbaži, Limbažu novads, Latvija, LV-4001",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 57.5154875,
+  "lng": 24.7092756,
+  "geo": "exact",
+  "geo_display": "6, Ganību iela, Vecpilsēta, Limbaži, Limbažu novads, LV-4001, Latvija"
  },
  {
   "regcode": "40103254643",
@@ -3838,10 +3838,10 @@
   "email": "vitoserviss1@inbox.lv",
   "address": "Zāļu iela 6, Rīga, Latvija, LV-1004",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9098947,
+  "lng": 24.1332313,
+  "geo": "exact",
+  "geo_display": "6, Zāļu iela, Bišumuiža, Āgenskalna apkaime, Rīga, LV-1004, Latvija"
  },
  {
   "regcode": "52102027881",
@@ -3863,10 +3863,10 @@
   "email": "siaversitis@inbox.lv",
   "address": "Ganību gatve 11, Kazdanga, Kazdangas pagasts, Dienvidkurzemes novads, Latvija, LV-3457",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.7309889,
+  "lng": 21.7262134,
+  "geo": "exact",
+  "geo_display": "11, Ganību gatve, Kazdanga, Kazdangas pagasts, Dienvidkurzemes novads, LV-3457, Latvija"
  },
  {
   "regcode": "48503021649",
@@ -3888,10 +3888,10 @@
   "email": "werkstatt.autoserviss@gmail.com",
   "address": "Emburga, Vēzīši, Cieceres pagasts, Saldus novads, Latvija, LV-3851",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.6761649,
+  "lng": 22.5267963,
+  "geo": "exact",
+  "geo_display": "Emburga, Cieceres pagasts, Saldus novads, Latvija"
  },
  {
   "regcode": "40203327892",
@@ -3913,10 +3913,10 @@
   "email": "zevscustomgarage@gmail.com",
   "address": "Gaurata iela 3, Dobele, Dobeles novads, Latvija, LV-3701",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.6325671,
+  "lng": 23.2824534,
+  "geo": "exact",
+  "geo_display": "3, Gaurata iela, Dobele, Dobeles novads, LV-3701, Latvija"
  },
  {
   "regcode": "40008162442",
@@ -3938,10 +3938,10 @@
   "email": "edijs7@apollo.lv",
   "address": "Pļavu iela 9, Liepāja, Latvija, LV-3411",
   "lvl": 1,
-  "lat": 56.5089,
-  "lng": 21.0114,
-  "geo": "approx_city",
-  "geo_display": "Liepāja"
+  "lat": 56.5015995,
+  "lng": 21.0123061,
+  "geo": "exact",
+  "geo_display": "9, Pļavu iela, Vecliepāja, Liepāja, LV-3411, Latvija"
  },
  {
   "regcode": "50002115291",
@@ -3963,10 +3963,10 @@
   "email": "tjermakova@inbox.lv",
   "address": "Krišjāņa Valdemāra iela 106/108, Rīga, Latvija, LV-1013",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9722704,
+  "lng": 24.135175,
+  "geo": "exact",
+  "geo_display": "106, Krišjāņa Valdemāra iela, Brasa, Centra apkaime, Rīga, LV-1013, Latvija"
  },
  {
   "regcode": "42401005920",
@@ -3988,10 +3988,10 @@
   "email": "ingasfrizetava@inbox.lv",
   "address": "Rīgas iela 11, Sigulda, Siguldas novads, Latvija, LV-2150",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9557524,
+  "lng": 24.0256362,
+  "geo": "exact",
+  "geo_display": "Rīgas 69. pamatskola, 11A, Imantas iela, Imanta-1, Imanta, Imantas apkaime, Rīga, LV-1067, Latvija"
  },
  {
   "regcode": "44102002653",
@@ -4013,10 +4013,10 @@
   "email": "basko_salons@inbox.lv",
   "address": "Cēsu iela 2, Valmiera, Valmieras novads, Latvija, LV-4201",
   "lvl": 1,
-  "lat": 57.5383,
-  "lng": 25.4267,
-  "geo": "approx_city",
-  "geo_display": "Valmiera"
+  "lat": 57.5372849,
+  "lng": 25.4227387,
+  "geo": "exact",
+  "geo_display": "2, Cēsu iela, Centrs, Valmiera, Valmieras novads, LV-4201, Latvija"
  },
  {
   "regcode": "40203152239",
@@ -4038,10 +4038,10 @@
   "email": "cbs.riga@gmail.com",
   "address": "Elizabetes iela 41/43, Rīga, Latvija, LV-1010",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9573433,
+  "lng": 24.1124153,
+  "geo": "exact",
+  "geo_display": "41/43, Elizabetes iela, Centra rajons, Centrs, Centra apkaime, Rīga, LV-1010, Latvija"
  },
  {
   "regcode": "50203148841",
@@ -4063,10 +4063,10 @@
   "email": "medamltd@gmail.com",
   "address": "Ropažu iela 60a, Rīga, Latvija, LV-1006",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9807149,
+  "lng": 24.181001,
+  "geo": "exact",
+  "geo_display": "60A, Ropažu iela, Teika, Teikas apkaime, Rīga, LV-1006, Latvija"
  },
  {
   "regcode": "40203546753",
@@ -4088,10 +4088,10 @@
   "email": "hotel.demians@gmail.com",
   "address": "Rīgas iela 10a, Saldus, Saldus novads, Latvija, LV-3801",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9718682,
+  "lng": 24.0625807,
+  "geo": "exact",
+  "geo_display": "Rīgas 139. pirmsskolas izglītības iestāde, 10A, Lidoņu iela, Iļģuciems, Imantas apkaime, Rīga, LV-1055, Latvija"
  },
  {
   "regcode": "42402003077",
@@ -4113,10 +4113,10 @@
   "email": "aprioli@inbox.lv",
   "address": "Matīsa iela 109, Rīga, Latvija, LV-1009",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9501235,
+  "lng": 24.1484648,
+  "geo": "exact",
+  "geo_display": "109, Matīsa iela, Avoti, Centra apkaime, Rīga, LV-1009, Latvija"
  },
  {
   "regcode": "42102014207",
@@ -4138,10 +4138,10 @@
   "email": "helga70@inbox.lv",
   "address": "Brīvības gatve 237, Rīga, Latvija, LV-1006",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9769123,
+  "lng": 24.1778627,
+  "geo": "exact",
+  "geo_display": "237, Brīvības gatve, Teika, Teikas apkaime, Rīga, LV-1006, Latvija"
  },
  {
   "regcode": "40203009324",
@@ -4163,10 +4163,10 @@
   "email": "infohouse4hair@gmail.com",
   "address": "Vienības gatve 87D, Rīga, Latvija, LV-1004",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9136334,
+  "lng": 24.0843754,
+  "geo": "exact",
+  "geo_display": "87D, Vienības gatve, Ziepniekkalns, Āgenskalna apkaime, Rīga, LV-1004, Latvija"
  },
  {
   "regcode": "48503010594",
@@ -4188,10 +4188,10 @@
   "email": "ogonkova@inbox.lv",
   "address": "Tūristu iela 4, Saldus, Saldus novads, Latvija, LV-3801",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.6660266,
+  "lng": 22.4969871,
+  "geo": "exact",
+  "geo_display": "4, Tūristu iela, Saldus, Saldus novads, LV-3801, Latvija"
  },
  {
   "regcode": "40003535314",
@@ -4213,10 +4213,10 @@
   "email": "idealsm@inbox.lv",
   "address": "Brīvības gatve 422, 2. stāvs, Rīga, Latvija, LV-1024",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9882441,
+  "lng": 24.2345063,
+  "geo": "exact",
+  "geo_display": "422, Brīvības gatve, Jugla, Teikas apkaime, Rīga, LV-1024, Latvija"
  },
  {
   "regcode": "40103541196",
@@ -4238,10 +4238,10 @@
   "email": "Marina.nik.morozova@gmail.com",
   "address": "Ernesta Birznieka-Upīša iela 6, Rīga, Latvija, LV-1050",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9485828,
+  "lng": 24.1244862,
+  "geo": "exact",
+  "geo_display": "6, Ernesta Birznieka-Upīša iela, Centrs, Centra apkaime, Rīga, LV-1050, Latvija"
  },
  {
   "regcode": "40103068660",
@@ -4263,10 +4263,10 @@
   "email": "i.d.juglal@inbox.lv",
   "address": "Brīvības gatve 430, Rīga, Latvija, LV-1024",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9889409,
+  "lng": 24.2401211,
+  "geo": "exact",
+  "geo_display": "Mobilo telefonu serviss, 430, Brīvības gatve, Jugla, Teikas apkaime, Rīga, LV-1024, Latvija"
  },
  {
   "regcode": "43603025336",
@@ -4313,10 +4313,10 @@
   "email": "frizetavaloreta@gmail.com",
   "address": "Brīvības iela 161, Jēkabpils, Latvija, LV-5201",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.4980156,
+  "lng": 25.8666226,
+  "geo": "exact",
+  "geo_display": "161, Brīvības iela, Akmeņu ielas radošais kvartāls, Vecpilsēta, Jēkabpils, Jēkabpils novads, LV-5201, Latvija"
  },
  {
   "regcode": "40003419408",
@@ -4338,10 +4338,10 @@
   "email": "lorta@inbox.lv",
   "address": "Madonas iela 27, Rīga, Latvija, LV-1084",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9599382,
+  "lng": 24.173766,
+  "geo": "exact",
+  "geo_display": "27, Madonas iela, Purvciems, Teikas apkaime, Rīga, LV-1084, Latvija"
  },
  {
   "regcode": "50003448841",
@@ -4363,10 +4363,10 @@
   "email": "lize-t@inbox.lv",
   "address": "Mārupes iela 6, Rīga, Latvija, LV-1002",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9344741,
+  "lng": 24.0714151,
+  "geo": "exact",
+  "geo_display": "6, Mārupes iela, Āgenskalns, Āgenskalna apkaime, Rīga, LV-1002, Latvija"
  },
  {
   "regcode": "40102006678",
@@ -4388,10 +4388,10 @@
   "email": "vinde2@inbox.lv",
   "address": "Skolas iela 4 - 1, Iecava, Bauskas novads, Latvija, LV-3913",
   "lvl": 1,
-  "lat": 56.409,
-  "lng": 24.1933,
-  "geo": "approx_city",
-  "geo_display": "Bauska"
+  "lat": 56.4053382,
+  "lng": 24.1809766,
+  "geo": "exact",
+  "geo_display": "4, Skolas iela, Elektriķi, Bauska, Bauskas novads, LV-3901, Latvija"
  },
  {
   "regcode": "40203359309",
@@ -4413,10 +4413,10 @@
   "email": "mancave.ventspils@gmail.com",
   "address": "Annas iela 2, Ventspils, Latvija, LV-3601",
   "lvl": 1,
-  "lat": 57.3937,
-  "lng": 21.5647,
-  "geo": "approx_city",
-  "geo_display": "Ventspils"
+  "lat": 57.394931,
+  "lng": 21.5670691,
+  "geo": "exact",
+  "geo_display": "2, Annas iela, Vecpilsēta, Ventspils, LV-3601, Latvija"
  },
  {
   "regcode": "40103188704",
@@ -4438,10 +4438,10 @@
   "email": "marite224@inbox.lv",
   "address": "Rīgas iela 2a(Sellera māja, blakus starptautiskajai skolai), Piņķi, Babītes pagasts, Babītes novads, Latvija, LV-2107",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9519855,
+  "lng": 24.0698159,
+  "geo": "exact",
+  "geo_display": "Jaņa Rozentāla Rīgas mākslas vidusskola, 2A, Hāmaņa iela, Āgenskalns, Āgenskalna apkaime, Rīga, LV-1007, Latvija"
  },
  {
   "regcode": "50003228881",
@@ -4463,10 +4463,10 @@
   "email": "friz.merlin@inbox.lv",
   "address": "Andreja Upīša iela 3, Valmiera, Valmieras novads, Latvija, LV-4201",
   "lvl": 1,
-  "lat": 57.5383,
-  "lng": 25.4267,
-  "geo": "approx_city",
-  "geo_display": "Valmiera"
+  "lat": 57.5391725,
+  "lng": 25.4152515,
+  "geo": "exact",
+  "geo_display": "3, Ziemeļu iela, Centrs, Valmiera, Valmieras novads, LV-4201, Latvija"
  },
  {
   "regcode": "40003078893",
@@ -4488,10 +4488,10 @@
   "email": "irena79@inbox.lv",
   "address": "Dzirnavu iela 110a, Rīga, Latvija, LV-1050",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9477385,
+  "lng": 24.1249847,
+  "geo": "exact",
+  "geo_display": "110A, Dzirnavu iela, Centrs, Centra apkaime, Rīga, LV-1050, Latvija"
  },
  {
   "regcode": "40002125264",
@@ -4513,10 +4513,10 @@
   "email": "borusik3@tvnet.lv",
   "address": "Daugavgrīvas iela 70, Rīga, Latvija, LV-1007",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9571945,
+  "lng": 24.0702212,
+  "geo": "exact",
+  "geo_display": "70, Daugavgrīvas iela, Dzirciems, Imantas apkaime, Rīga, LV-1007, Latvija"
  },
  {
   "regcode": "49202002301",
@@ -4538,10 +4538,10 @@
   "email": "guntrasproge@inbox.lv",
   "address": "Vidus iela 11, Gulbene, Gulbenes novads, Latvija, LV-4401",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 57.177345,
+  "lng": 26.760269,
+  "geo": "exact",
+  "geo_display": "11, Vidus iela, Ievugrava, Gulbene, Gulbenes novads, LV-4401, Latvija"
  },
  {
   "regcode": "40103550574",
@@ -4563,10 +4563,10 @@
   "email": "tresor9@inbox.lv",
   "address": "Krišjāņa Barona iela 93, Rīga, Latvija, LV-1001",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9609674,
+  "lng": 24.1401855,
+  "geo": "exact",
+  "geo_display": "93, Krišjāņa Barona iela, Centrs, Centra apkaime, Rīga, LV-1001, Latvija"
  },
  {
   "regcode": "40103020274",
@@ -4588,10 +4588,10 @@
   "email": "versija@inbox.lv",
   "address": "Skolas iela 28, Rīga, Latvija, LV-1010",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9589658,
+  "lng": 24.1211187,
+  "geo": "exact",
+  "geo_display": "28, Skolas iela, Centra rajons, Centrs, Centra apkaime, Rīga, LV-1010, Latvija"
  },
  {
   "regcode": "40003156702",
@@ -4613,10 +4613,10 @@
   "email": "rin-stars@inbox.lv",
   "address": "Āgenskalna iela 29, Rīga, Latvija, LV-1046",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9446524,
+  "lng": 24.0583877,
+  "geo": "exact",
+  "geo_display": "Mākslinieku nams, 29, Āgenskalna iela, Āgenskalna priedes, Āgenskalns, Āgenskalna apkaime, Rīga, LV-1083, Latvija"
  },
  {
   "regcode": "40103598462",
@@ -4638,10 +4638,10 @@
   "email": "violetaluxsia@gmail.com",
   "address": "Alfrēda Kalniņa iela 2, Rīga, Latvija, LV-1050",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9491147,
+  "lng": 24.1215672,
+  "geo": "exact",
+  "geo_display": "2, Alfrēda Kalniņa iela, Centrs, Centra apkaime, Rīga, LV-1050, Latvija"
  },
  {
   "regcode": "40003559562",
@@ -4663,10 +4663,10 @@
   "email": "zane.namike@gmail.com",
   "address": "Miera iela 76, Rīga, Latvija, LV-1013",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9745424,
+  "lng": 24.1434835,
+  "geo": "exact",
+  "geo_display": "76, Miera iela, Brasa, Centra apkaime, Rīga, LV-1013, Latvija"
  },
  {
   "regcode": "40003754938",
@@ -4688,10 +4688,10 @@
   "email": "abikka@inbox.lv",
   "address": "Ropaži, Ropažu novads, Latvija, LV-2133",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.9713771,
+  "lng": 24.6307233,
+  "geo": "exact",
+  "geo_display": "Ropaži, Ropažu pagasts, Ropažu novads, Latvija"
  },
  {
   "regcode": "40003712046",
@@ -4713,10 +4713,10 @@
   "email": "acconto1@ml.lv",
   "address": "Bērzaunes iela 6a, Rīga, Latvija, LV-1039",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9691072,
+  "lng": 24.1594339,
+  "geo": "exact",
+  "geo_display": "6A, Bērzaunes iela, Teika, Teikas apkaime, Rīga, LV-1039, Latvija"
  },
  {
   "regcode": "40003731352",
@@ -4738,10 +4738,10 @@
   "email": "akvatorija77@inbox.lv",
   "address": "Pērnavas iela 21, Rīga, Latvija, LV-1012",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9625058,
+  "lng": 24.1514396,
+  "geo": "exact",
+  "geo_display": "21, Pērnavas iela, Grīziņkalns, Centra apkaime, Rīga, LV-1012, Latvija"
  },
  {
   "regcode": "40003521174",
@@ -4763,10 +4763,10 @@
   "email": "baltia@latnet.lv",
   "address": "Marijas iela 1 - 10, 3. stāvs, Rīga, Latvija, LV-1050",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9499895,
+  "lng": 24.1233845,
+  "geo": "exact",
+  "geo_display": "13 k-1, Marijas iela, Centrs, Centra apkaime, Rīga, LV-1050, Latvija"
  },
  {
   "regcode": "40103764082",
@@ -4788,10 +4788,10 @@
   "email": "baltic.rise@mail.ru",
   "address": "Lāčplēša iela 125, 2. stāvs, Rīga, Latvija, LV-1003",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9437575,
+  "lng": 24.1324968,
+  "geo": "exact",
+  "geo_display": "125, Lāčplēša iela, Latgales apkaime, Rīga, LV-1003, Latvija"
  },
  {
   "regcode": "50103164661",
@@ -4813,10 +4813,10 @@
   "email": "pupolad@gmail.com",
   "address": "Jeruzalemes iela 5 - 18, Rīga, Latvija, LV-1010",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9578633,
+  "lng": 24.1138731,
+  "geo": "exact",
+  "geo_display": "5, Jeruzalemes iela, Centra rajons, Centrs, Centra apkaime, Rīga, LV-1010, Latvija"
  },
  {
   "regcode": "40003048935",
@@ -4838,10 +4838,10 @@
   "email": "georgcvetkov@inbox.lv",
   "address": "Jūrmalas gatve 35, Rīga, Latvija, LV-1067",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9524076,
+  "lng": 24.0405704,
+  "geo": "exact",
+  "geo_display": "Autofit, 35, Jūrmalas gatve, Imanta, Imantas apkaime, Rīga, LV-1067, Latvija"
  },
  {
   "regcode": "40103778203",
@@ -4888,10 +4888,10 @@
   "email": "ilear@apollo.lv",
   "address": "Kārļa Mīlenbaha iela 2 - 10, Rīga, Latvija, LV-1050",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9403085,
+  "lng": 24.1196417,
+  "geo": "exact",
+  "geo_display": "2, Kārļa Mīlenbaha iela, Lastādija, Latgales apkaime, Rīga, LV-1050, Latvija"
  },
  {
   "regcode": "40003578421",
@@ -4913,10 +4913,10 @@
   "email": "juriskonsults@inbox.lv",
   "address": "Elizabetes iela 31, Rīga, Latvija, LV 1010",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9582618,
+  "lng": 24.1099315,
+  "geo": "exact",
+  "geo_display": "31, Elizabetes iela, Centra rajons, Centrs, Centra apkaime, Rīga, LV-1010, Latvija"
  },
  {
   "regcode": "40103314196",
@@ -4963,10 +4963,10 @@
   "email": "leonsmezeckis@inbox.lv",
   "address": "Brīvības iela 58 - 517, 5. stāvs, Rīga, Latvija, LV-1011",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9563105,
+  "lng": 24.1217954,
+  "geo": "exact",
+  "geo_display": "58, Brīvības iela, Centra rajons, Centrs, Centra apkaime, Rīga, LV-1011, Latvija"
  },
  {
   "regcode": "44103143096",
@@ -5013,10 +5013,10 @@
   "email": "rincha2@inbox.lv",
   "address": "Skolas iela 9, Ogre, Ogres novads, Latvija, LV-5001 29106014 rincha2@inbox.lv Juridiskie pakalpojumi",
   "lvl": 1,
-  "lat": 56.8167,
-  "lng": 24.6056,
-  "geo": "approx_city",
-  "geo_display": "Ogre"
+  "lat": 56.8160196,
+  "lng": 24.5971584,
+  "geo": "exact",
+  "geo_display": "9, Skolas iela, Grīvas rajons, Ogre, Ogres novads, LV-5001, Latvija"
  },
  {
   "regcode": "40003930560",
@@ -5038,10 +5038,10 @@
   "email": "briedis.martins@inbox.lv",
   "address": "Aviācijas iela 13, Rīga, Latvija, LV-1063",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9026315,
+  "lng": 24.2024693,
+  "geo": "exact",
+  "geo_display": "Aviācijas iela, Ķengarags, Latgales apkaime, Rīga, LV-1057, Latvija"
  },
  {
   "regcode": "40003398638",
@@ -5063,10 +5063,10 @@
   "email": "rivengo@inbox.lv",
   "address": "Brīvības iela 96 - 33, Rīga, Latvija, LV-1001",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9605906,
+  "lng": 24.1321667,
+  "geo": "exact",
+  "geo_display": "96, Brīvības iela, Centrs, Centra apkaime, Rīga, LV-1001, Latvija"
  },
  {
   "regcode": "40103529494",
@@ -5088,10 +5088,10 @@
   "email": "info.stelard@gmail.com",
   "address": "Dzelzavas iela 74 - 514, Rīga, Latvija",
   "lvl": 1,
-  "lat": 56.9547924,
-  "lng": 24.204225,
+  "lat": 56.9557256,
+  "lng": 24.192579,
   "geo": "exact",
-  "geo_display": "Dzelzavas iela, Purvciems, Teikas apkaime, Rīga, LV-1082, Latvija"
+  "geo_display": "74, Dzelzavas iela, Purvciems, Teikas apkaime, Rīga, LV-1082, Latvija"
  },
  {
   "regcode": "40203130424",
@@ -5113,10 +5113,10 @@
   "email": "tlc.company@inbox.lv",
   "address": "Mazcenu aleja 10 - 63, Jaunmārupe, Mārupes pagasts, Mārupes novads, Latvija, LV-2166",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.8815565,
+  "lng": 23.9451019,
+  "geo": "exact",
+  "geo_display": "10, Mazcenu aleja, Jaunmārupe, Mārupes pagasts, Mārupes novads, LV-2166, Latvija"
  },
  {
   "regcode": "50008021661",
@@ -5163,10 +5163,10 @@
   "email": "kafedrava@inbox.lv",
   "address": "Rīgas iela 26, Vecumnieki, Vecumnieku pagasts, Bauskas novads, Latvija, LV-3933",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9640809,
+  "lng": 24.0497954,
+  "geo": "exact",
+  "geo_display": "Rīgas 71. vidusskola, bērnu-invalīdu rehabilitācijas centrs, 26, Grīvas iela, Grīvas masīvs, Iļģuciems, Imantas apkaime, Rīga, LV-1055, Latvija"
  },
  {
   "regcode": "52103048151",
@@ -5188,10 +5188,10 @@
   "email": "dzerves.ligzda@apollo.lv",
   "address": "Lielā iela 33, Grobiņa, Dienvidkurzemes novads, Latvija, LV-3430",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.5354583,
+  "lng": 21.1669029,
+  "geo": "exact",
+  "geo_display": "33, Lielā iela, Grobiņa, Dienvidkurzemes novads, LV-3430, Latvija"
  },
  {
   "regcode": "40103810521",
@@ -5213,10 +5213,10 @@
   "email": "grilletava@gmail.com",
   "address": "Nometņu iela 58, Rīga, Latvija, LV-1002",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9374641,
+  "lng": 24.0719902,
+  "geo": "exact",
+  "geo_display": "58, Nometņu iela, Āgenskalns, Āgenskalna apkaime, Rīga, LV-1002, Latvija"
  },
  {
   "regcode": "40008275541",
@@ -5238,10 +5238,10 @@
   "email": "pusdienotava@gmail.com",
   "address": "Dārzciema iela 86, Rīga, Latvija, LV-1073",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9343919,
+  "lng": 24.1797697,
+  "geo": "exact",
+  "geo_display": "86 k-8, Dārzciema iela, Dārzciems, Latgales apkaime, Rīga, LV-1073, Latvija"
  },
  {
   "regcode": "42102009583",
@@ -5263,10 +5263,10 @@
   "email": "kafe.miranda@inbox.lv",
   "address": "Biķernieku iela 14, Rīga, Latvija, LV-1039",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9588778,
+  "lng": 24.2557025,
+  "geo": "exact",
+  "geo_display": "160 k-14, Biķernieku iela, Dreiliņi, Teikas apkaime, Rīga, LV-2130, Latvija"
  },
  {
   "regcode": "40008281196",
@@ -5288,10 +5288,10 @@
   "email": "vanagaligzda@inbox.lv",
   "address": "Tallinas šoseja 69, Baltezers, Ādažu pagasts, Ādažu novads, Latvija, LV-2164",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 57.0421758,
+  "lng": 24.3147297,
+  "geo": "exact",
+  "geo_display": "69, Tallinas šoseja, Baltezers, Ādažu pagasts, Ādažu novads, LV-2164, Latvija"
  },
  {
   "regcode": "44103014819",
@@ -5338,10 +5338,10 @@
   "email": "solmaro@inbox.lv",
   "address": "Vilkābeles, Mežvidi, Novadnieku pagasts, Saldus novads, Latvija, LV-3801",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.6499253,
+  "lng": 22.4660062,
+  "geo": "exact",
+  "geo_display": "Vilkābeles, Saldus — Pampāļi, Sātiņi, Novadnieku pagasts, Saldus novads, LV-3801, Latvija"
  },
  {
   "regcode": "42103008886",
@@ -5363,10 +5363,10 @@
   "email": "akagals.cafe@gmail.com",
   "address": "Dzintaru iela 3, Pāvilosta, Dienvidkurzemes novads, Latvija, LV-3466",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.5397905,
+  "lng": 21.1570873,
+  "geo": "exact",
+  "geo_display": "3, Dzintaru iela, Grobiņa, Dienvidkurzemes novads, LV-3430, Latvija"
  },
  {
   "regcode": "41502006691",
@@ -5388,10 +5388,10 @@
   "email": "rijards@inbox.lv",
   "address": "Tīnūžu iela 1, Ogre, Ogres novads, Latvija, LV-5001",
   "lvl": 1,
-  "lat": 56.8167,
-  "lng": 24.6056,
-  "geo": "approx_city",
-  "geo_display": "Ogre"
+  "lat": 56.8195177,
+  "lng": 24.6064596,
+  "geo": "exact",
+  "geo_display": "1, Tīnūžu iela, Centrs, Ogre, Ogres novads, LV-5001, Latvija"
  },
  {
   "regcode": "40103832355",
@@ -5413,10 +5413,10 @@
   "email": "amisi@inbox.lv",
   "address": "Akadēmiķa Mstislava Keldiša iela 16, Rīga, Latvija, LV-1021",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9390982,
+  "lng": 24.2015475,
+  "geo": "exact",
+  "geo_display": "16, Brāļu Kaudzīšu iela, Pļavnieki, Latgales apkaime, Rīga, LV-1082, Latvija"
  },
  {
   "regcode": "40103272723",
@@ -5438,10 +5438,10 @@
   "email": "bastetbeauty@inbox.lv",
   "address": "Elizabetes iela 6, Rīga, Latvija, LV-1010",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9579061,
+  "lng": 24.108687,
+  "geo": "exact",
+  "geo_display": "6, Elizabetes iela, Centra rajons, Centrs, Centra apkaime, Rīga, LV-1010, Latvija"
  },
  {
   "regcode": "40003079526",
@@ -5463,10 +5463,10 @@
   "email": "danisalons@inbox.lv",
   "address": "Dzelzavas iela 76/4 - 38, Rīga, Latvija",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9551875,
+  "lng": 24.1974714,
+  "geo": "exact",
+  "geo_display": "76, Dzelzavas iela, Purvciems, Teikas apkaime, Rīga, LV-1082, Latvija"
  },
  {
   "regcode": "40103917662",
@@ -5488,10 +5488,10 @@
   "email": "deloni.lv@gmail.com",
   "address": "Vairoga iela 26, Rīga, Latvija, LV-1039",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9692184,
+  "lng": 24.1707267,
+  "geo": "exact",
+  "geo_display": "26, Vairoga iela, Teika, Teikas apkaime, Rīga, LV-1039, Latvija"
  },
  {
   "regcode": "40003061223",
@@ -5513,10 +5513,10 @@
   "email": "anzela.orlova@inbox.lv",
   "address": "Rīgas iela 137 - 1, Jēkabpils, Latvija, LV-5202",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 57.0280466,
+  "lng": 24.101758,
+  "geo": "exact",
+  "geo_display": "Rīgas brīvostas pārvaldes rotaļu laukums Meldru ielā 1A, Meldru iela, Ziemeļblāzma, Vecmīlgrāvis, Vecmīlgrāvja apkaime, Rīga, LV-1015, Latvija"
  },
  {
   "regcode": "40203252032",
@@ -5538,10 +5538,10 @@
   "email": "evitalucag12@gmail.com",
   "address": "Stabu iela 46/48, Rīga, Latvija, LV-1011",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9543406,
+  "lng": 24.1312942,
+  "geo": "exact",
+  "geo_display": "46/48, Stabu iela, Centrs, Centra apkaime, Rīga, LV-1011, Latvija"
  },
  {
   "regcode": "40003864706",
@@ -5563,10 +5563,10 @@
   "email": "inluxspa@gmail.com",
   "address": "Blaumaņa iela 15, Rīga, Latvija, LV-1011",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9534957,
+  "lng": 24.1243296,
+  "geo": "exact",
+  "geo_display": "15, Blaumaņa iela, Centra rajons, Centrs, Centra apkaime, Rīga, LV-1011, Latvija"
  },
  {
   "regcode": "48502000902",
@@ -5588,10 +5588,10 @@
   "email": "irhaz@inbox.lv",
   "address": "Bruņinieku iela 50, Rīga, Latvija, LV-1011",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9539811,
+  "lng": 24.1357497,
+  "geo": "exact",
+  "geo_display": "50, Bruņinieku iela, Avoti, Centra apkaime, Rīga, LV-1011, Latvija"
  },
  {
   "regcode": "41702002086",
@@ -5613,10 +5613,10 @@
   "email": "korlandrein@gmail.com",
   "address": "Valdlauči, Ķekavas pagasts, Ķekavas novads, Latvija, LV-1076",
   "lvl": 1,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.8253,
+  "lng": 24.2333,
+  "geo": "approx_city",
+  "geo_display": "Ķekava"
  },
  {
   "regcode": "40002157908",
@@ -5638,10 +5638,10 @@
   "email": "masterstudija@inbox.lv",
   "address": "Pērnavas iela 60 - 13, Rīga, Latvija, LV-1009",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9565486,
+  "lng": 24.1526626,
+  "geo": "exact",
+  "geo_display": "60, Pērnavas iela, Grīziņkalns, Centra apkaime, Rīga, LV-1009, Latvija"
  },
  {
   "regcode": "40203280252",
@@ -5663,10 +5663,10 @@
   "email": "salonsluxadore@inbox.lv",
   "address": "Tēriņu iela 56, Rīga, Latvija, LV-1058",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9146407,
+  "lng": 24.0697509,
+  "geo": "exact",
+  "geo_display": "56, Tēriņu iela, Bieriņi, Āgenskalna apkaime, Rīga, LV-1058, Latvija"
  },
  {
   "regcode": "43603052743",
@@ -5688,10 +5688,10 @@
   "email": "morebeauty@inbox.lv",
   "address": "Pasta iela 47, 2. stāvs, Jelgava, Latvija",
   "lvl": 1,
-  "lat": 56.65,
-  "lng": 23.7128,
-  "geo": "approx_city",
-  "geo_display": "Jelgava"
+  "lat": 56.648339,
+  "lng": 23.7254888,
+  "geo": "exact",
+  "geo_display": "Biznesa centrs Zemgale, 47, Pasta iela, Jelgavas Vidus, Jelgava, LV-3001, Latvija"
  },
  {
   "regcode": "40103556806",
@@ -5763,10 +5763,10 @@
   "email": "marinateraude876@inbox.lv",
   "address": "Rīgas iela 3, Saldus, Saldus novads, Latvija, LV-3801",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9287166,
+  "lng": 24.0871839,
+  "geo": "exact",
+  "geo_display": "Torņakalna baznīca, 3, Torņakalna iela, Torņakalns, Āgenskalna apkaime, Rīga, LV-1004, Latvija"
  },
  {
   "regcode": "40008159851",
@@ -5788,10 +5788,10 @@
   "email": "uzkalns2@inbox.lv",
   "address": "Raiņa iela 12a, Viļāni, Rēzeknes novads, Latvija",
   "lvl": 1,
-  "lat": 56.5456468,
-  "lng": 26.926529,
+  "lat": 56.5081481,
+  "lng": 27.3379988,
   "geo": "exact",
-  "geo_display": "12A, Raiņa iela, Viļāni, Rēzeknes novads, LV-4650, Latvija"
+  "geo_display": "Raiņa iela, Centrs, Rēzekne, LV-4601, Latvija"
  },
  {
   "regcode": "47402001230",
@@ -5813,10 +5813,10 @@
   "email": "salonsstella@inbox.lv",
   "address": "Stacijas iela 14a, Valmiera, Valmieras novads, Latvija, LV-4201",
   "lvl": 1,
-  "lat": 57.5383,
-  "lng": 25.4267,
-  "geo": "approx_city",
-  "geo_display": "Valmiera"
+  "lat": 57.5297786,
+  "lng": 25.4304853,
+  "geo": "exact",
+  "geo_display": "R.D.A, 14A, Stacijas iela, Pārgauja, Valmiera, Valmieras novads, LV-4201, Latvija"
  },
  {
   "regcode": "42103026877",
@@ -5838,10 +5838,10 @@
   "email": "shantee2@inbox.lv",
   "address": "Lielā iela 22, Talsi, Talsu novads, Latvija, LV-3201",
   "lvl": 1,
-  "lat": 57.2447,
-  "lng": 22.5897,
-  "geo": "approx_city",
-  "geo_display": "Talsu"
+  "lat": 57.2446075,
+  "lng": 22.5917989,
+  "geo": "exact",
+  "geo_display": "22, Lielā iela, Talsu radošā sēta, Talsi, Talsu novads, LV-3201, Latvija"
  },
  {
   "regcode": "40003570593",
@@ -5863,10 +5863,10 @@
   "email": "ansis.kiesneris@inbox.lv",
   "address": "Rīgas iela 53, Salaspils, Salaspils novads, Latvija, LV-2121",
   "lvl": 1,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9567823,
+  "lng": 24.1215979,
+  "geo": "exact",
+  "geo_display": "Rīgas namu pārvaldnieks, 49/53, Brīvības iela, Centra rajons, Centrs, Centra apkaime, Rīga, LV-1010, Latvija"
  },
  {
   "regcode": "40003880912",
@@ -5890,10 +5890,10 @@
   "email": "info@reliant.lv",
   "address": "Ģertrūdes iela 20 - 14, Rīga, Latvija, LV-1011",
   "lvl": 2,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9562664,
+  "lng": 24.1241851,
+  "geo": "exact",
+  "geo_display": "20, Ģertrūdes iela, Centrs, Centra apkaime, Rīga, LV-1011, Latvija"
  },
  {
   "regcode": "40008029305",
@@ -5917,10 +5917,10 @@
   "email": "ldba@scgroup.lv",
   "address": "Firsa Sadovņikova iela 21, Rīga, Latvija, LV-1003",
   "lvl": 2,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9419081,
+  "lng": 24.1331982,
+  "geo": "exact",
+  "geo_display": "21, Firsa Sadovņikova iela, Latgales apkaime, Rīga, LV-1003, Latvija"
  },
  {
   "regcode": "40203351771",
@@ -5943,10 +5943,10 @@
   "email": "info@livanuautocentrs.lv",
   "address": "Fabrikas iela 2a, Līvāni, Līvānu novads, Latvija, LV-5316",
   "lvl": 2,
-  "lat": null,
-  "lng": null,
-  "geo": "failed",
-  "geo_display": ""
+  "lat": 56.3575761,
+  "lng": 26.1802741,
+  "geo": "exact",
+  "geo_display": "2A, Fabrikas iela, Līvāni, Līvānu novads, LV-5316, Latvija"
  },
  {
   "regcode": "40003713342",
@@ -5995,10 +5995,10 @@
   "email": "zane@markvarte.lv",
   "address": "Pulkveža Brieža iela 19 k-1 - 15, Rīga, Latvija, LV-1010",
   "lvl": 2,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9613794,
+  "lng": 24.1049698,
+  "geo": "exact",
+  "geo_display": "19 k-1, Pulkveža Brieža iela, Centrs, Centra apkaime, Rīga, LV-1010, Latvija"
  },
  {
   "regcode": "40203053036",
@@ -6022,10 +6022,10 @@
   "email": "fortis@fortis.lv",
   "address": "Ventspils iela 50, Rīga, Latvija, LV-1002",
   "lvl": 2,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9320098,
+  "lng": 24.0479842,
+  "geo": "exact",
+  "geo_display": "SIA Alfards, 50, Ventspils iela, Pleskodāle, Imantas apkaime, Rīga, LV-1002, Latvija"
  },
  {
   "regcode": "40003525922",
@@ -6048,10 +6048,10 @@
   "email": "info@plintuss.lv",
   "address": "Zolitūdes iela 71a, Rīga, Latvija, LV-1029",
   "lvl": 2,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.943833,
+  "lng": 24.0026878,
+  "geo": "exact",
+  "geo_display": "71A, Zolitūdes iela, Zolitūde-1, Zolitūde, Imantas apkaime, Rīga, LV-1029, Latvija"
  },
  {
   "regcode": "40103305371",
@@ -6074,10 +6074,10 @@
   "email": "info@jurtec.lv",
   "address": "Valērijas Seiles iela 9 - 46.kab., Rīga, Latvija, LV-1019",
   "lvl": 2,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.936063,
+  "lng": 24.1597725,
+  "geo": "exact",
+  "geo_display": "9, Valērijas Seiles iela, Latgales apkaime, Rīga, LV-1019, Latvija"
  },
  {
   "regcode": "40008082842",
@@ -6100,10 +6100,10 @@
   "email": "tiesa@fstiesa.lv",
   "address": "Krišjāņa Valdemāra iela 35, Rīga, Latvija, LV-1010",
   "lvl": 2,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 56.9583208,
+  "lng": 24.1165548,
+  "geo": "exact",
+  "geo_display": "35, Krišjāņa Valdemāra iela, Centra rajons, Centrs, Centra apkaime, Rīga, LV-1010, Latvija"
  },
  {
   "regcode": "40003197151",
@@ -6126,9 +6126,9 @@
   "email": "keizarmezs@keizarmezs.lv",
   "address": "Ezermalas iela 30, Rīga, Latvija, LV-1014",
   "lvl": 2,
-  "lat": 56.9496,
-  "lng": 24.1052,
-  "geo": "approx_city",
-  "geo_display": "Rīga"
+  "lat": 57.0025417,
+  "lng": 24.1716536,
+  "geo": "exact",
+  "geo_display": "Ķeizarmežs, 30, Ezermalas iela, Mežaparks, Centra apkaime, Rīga, LV-1014, Latvija"
  }
 ]

@@ -10,6 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
 
 <style>
   :root {
@@ -248,7 +250,7 @@
   .tag--copy.copied { color: #7fd39b; border-color: rgba(127,211,155,0.4); }
   .tag--approx { color: var(--ink-faint); border-style: dashed; }
 
-  .card.is-dim { opacity: 0.32; filter: saturate(0.5); }
+  .card.is-dim { display: none; }
 
   /* ---------- map ---------- */
   .map-wrap { flex: 1 1 auto; position: relative; min-width: 0; }
@@ -394,6 +396,30 @@
     cursor: pointer; font: inherit; padding: 0; margin-left: 4px;
   }
 
+  /* industry filter */
+  .cat-filter {
+    width: 100%; margin-top: 10px; padding: 9px 12px;
+    background: rgba(0,0,0,0.22); border: 1px solid var(--hair); border-radius: 10px;
+    color: var(--ink); font: inherit; font-size: 13px; cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%238a857c' stroke-width='2'%3E%3Cpath d='M3 5l3 3 3-3'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 12px center;
+  }
+  .cat-filter:focus { outline: none; border-color: var(--l1-line); }
+  .cat-filter option { background: var(--panel); color: var(--ink); }
+
+  /* cluster bubbles */
+  .cl-wrap { background: none !important; }
+  .cl {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: "JetBrains Mono", monospace; font-weight: 600; font-size: 13px;
+    color: var(--ink);
+    background: radial-gradient(circle at 32% 28%, rgba(251,90,60,0.34), rgba(13,15,20,0.94));
+    border: 1px solid var(--l1-line);
+    box-shadow: 0 8px 20px -6px rgba(0,0,0,0.85), 0 0 0 6px rgba(251,90,60,0.07);
+  }
+
   /* reduce motion */
   @media (prefers-reduced-motion: reduce) {
     .pin--l1 .pin__ring { animation: none; }
@@ -427,8 +453,8 @@
         <span class="div"></span>
         <span class="sub">Sales Ops</span>
       </div>
-      <h1 class="title">DM mērķi <em>— skaistumkopšana</em></h1>
-      <p class="subtitle">Saloni bez īstas mājaslapas vai ar novecojušu lapu. Katrs pārbaudīts tīmeklī.</p>
+      <h1 class="title">DM mērķi <em>— visas nozares</em></h1>
+      <p class="subtitle">Latvijas biznesi bez īstas mājaslapas vai ar novecojušu lapu. Katrs pārbaudīts tīmeklī.</p>
 
       <div class="stats">
         <div class="stat">
@@ -456,6 +482,7 @@
         <button class="chip" data-f="l1" aria-pressed="false">Nav lapas <span class="c" id="cL1">8</span></button>
         <button class="chip" data-f="l2" aria-pressed="false">Sena lapa <span class="c" id="cL2">3</span></button>
       </div>
+      <select class="cat-filter" id="catFilter" aria-label="Filtrēt pēc nozares"></select>
     </div>
 
     <div class="list" id="list"></div>
@@ -463,6 +490,8 @@
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<script src="prospect_leads.js"></script>
 <script>
 /* ------------------------------------------------------------------ *
  * LĪDU DATI — place_id, koordinātes un piezīmes precīzi no oriģināla  *
@@ -695,6 +724,7 @@ const ICON = {
   fb:  '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3l.5-3H14V4.5c0-.8.3-1.5 1.5-1.5H17V.3C16.6.2 15.5 0 14.3 0 11.8 0 10 1.5 10 4.2V6H7v3h3v9h4z"/></svg>',
   web: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>',
   phone:'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>',
+  mail:'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>',
 };
 
 /* ---------- karte ---------- */
@@ -704,6 +734,11 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
   attribution: '&copy; OpenStreetMap &copy; CARTO',
   subdomains: 'abcd', maxZoom: 20,
 }).addTo(map);
+
+/* ---------- dati: esošie saloni + tīmeklī pārbaudītie prospekti ---------- */
+LEADS.forEach(l => { if (!l.category) l.category = 'skaistumkopsana'; });
+const DATA = LEADS.concat(typeof PROSPECT_LEADS !== 'undefined' ? PROSPECT_LEADS : []);
+const CATS = { skaistumkopsana:'Skaistumkopšana', frizieri:'Frizētavas', auto_servisi:'Autoservisi', juristi:'Juristi', restorani:'Restorāni', zobarsti:'Zobārsti' };
 
 function pinHtml(d) {
   const col = d.lvl === 1 ? 'var(--l1)' : 'var(--l2)';
@@ -717,10 +752,16 @@ function pinHtml(d) {
   </div>`;
 }
 
+const cluster = L.markerClusterGroup({
+  maxClusterRadius: 48, showCoverageOnHover: false, chunkedLoading: true, spiderfyOnMaxZoom: true,
+  iconCreateFunction: c => L.divIcon({ html: '<div class="cl">' + c.getChildCount() + '</div>', className: 'cl-wrap', iconSize: [40,40] }),
+});
+map.addLayer(cluster);
+
 const markers = {};
-LEADS.forEach(d => {
+DATA.forEach(d => {
   const icon = L.divIcon({ className: 'pin-wrap', html: pinHtml(d), iconSize: [36,46], iconAnchor: [18,46], popupAnchor: [0,-44] });
-  const m = L.marker([d.lat, d.lng], { icon, riseOnHover: true, title: d.name }).addTo(map);
+  const m = L.marker([d.lat, d.lng], { icon, riseOnHover: true, title: d.name });
   const links = d.links.map(l => `<a class="tag" href="${l.u}" target="_blank" rel="noopener">${ICON[l.k]||''} ${l.t}</a>`).join('');
   m.bindPopup(`<div class="pop">
       <span class="pop__lvl l${d.lvl}">${d.lvl===1?'Nav lapas':'Sena lapa'}</span>
@@ -737,10 +778,7 @@ LEADS.forEach(d => {
   markers[d.n] = m;
 });
 
-const group = L.featureGroup(Object.values(markers));
-function fitAll() { map.fitBounds(group.getBounds(), { padding: [70,70], maxZoom: 14 }); }
-// default to the Rīga cluster (a few leads sit in Jelgava/Jūrmala/Liepāja); "Visi" fits everything
-map.setView([56.9512, 24.122], 12);
+function fitAll() { try { map.fitBounds(cluster.getBounds(), { padding: [60,60] }); } catch (_) { map.setView([56.88, 24.6], 7); } }
 document.getElementById('fitBtn').addEventListener('click', fitAll);
 
 /* ---------- saraksts ---------- */
@@ -767,8 +805,8 @@ function cardHtml(d) {
 }
 
 const listEl = document.getElementById('list');
-const L1 = LEADS.filter(d => d.lvl === 1);
-const L2 = LEADS.filter(d => d.lvl === 2);
+const L1 = DATA.filter(d => d.lvl === 1);
+const L2 = DATA.filter(d => d.lvl === 2);
 listEl.innerHTML = `
   <div class="group group--l1" data-group="1">
     <div class="group__label"><span class="tick"></span> 1. līmenis — nav īstas lapas <span class="ct">${L1.length}</span></div>
@@ -795,6 +833,13 @@ document.getElementById('statL2').textContent = L2.length;
 document.getElementById('cL1').textContent = L1.length;
 document.getElementById('cL2').textContent = L2.length;
 
+// industry filter options (derived from data, busiest first)
+const catSel = document.getElementById('catFilter');
+const presentCats = [...new Set(DATA.map(d => d.category))]
+  .sort((a, b) => DATA.filter(d => d.category === b).length - DATA.filter(d => d.category === a).length);
+catSel.innerHTML = '<option value="all">Visas nozares (' + DATA.length + ')</option>' +
+  presentCats.map(c => `<option value="${c}">${CATS[c] || c} (${DATA.filter(d => d.category === c).length})</option>`).join('');
+
 /* ---------- aktīvais stāvoklis ---------- */
 let activeId = null;
 function setActive(id, openPopup = true) {
@@ -804,10 +849,10 @@ function setActive(id, openPopup = true) {
 }
 
 function focusLead(d) {
-  if (!map.hasLayer(markers[d.n])) return; // ignore leads filtered off the map
+  const m = markers[d.n];
+  if (!m || !cluster.hasLayer(m)) return; // ignore leads filtered out
   setActive(d.n, true);
-  map.flyTo([d.lat, d.lng], Math.max(map.getZoom(), 15), { duration: 0.7 });
-  markers[d.n].openPopup();
+  cluster.zoomToShowLayer(m, () => m.openPopup()); // declusters/zooms, then opens
 }
 
 /* ---------- saraksta notikumi ---------- */
@@ -837,12 +882,12 @@ listEl.addEventListener('click', e => {
     return;
   }
   const card = e.target.closest('.card');
-  if (card) { const d = LEADS.find(x => x.n === +card.dataset.id); if (d) focusLead(d); }
+  if (card) { const d = DATA.find(x => x.n === +card.dataset.id); if (d) focusLead(d); }
 });
 listEl.addEventListener('keydown', e => {
   if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('card')) {
     e.preventDefault();
-    const d = LEADS.find(x => x.n === +e.target.dataset.id); if (d) focusLead(d);
+    const d = DATA.find(x => x.n === +e.target.dataset.id); if (d) focusLead(d);
   }
 });
 listEl.addEventListener('mouseover', e => {
@@ -857,29 +902,29 @@ listEl.addEventListener('mouseout', e => {
 
 /* ---------- filtri ---------- */
 let filter = 'all';
+let catFilter = 'all';
 function applyFilter() {
   const q = document.getElementById('searchInput').value.trim().toLowerCase();
-  let visible = 0;
-  LEADS.forEach(d => {
+  let visible = 0; const shown = [];
+  DATA.forEach(d => {
     const okLvl = filter === 'all' || (filter === 'l1' && d.lvl === 1) || (filter === 'l2' && d.lvl === 2);
-    const okText = !q || d.name.toLowerCase().includes(q) || d.cat.toLowerCase().includes(q);
-    const show = okLvl && okText;
-    if (show) visible++;
+    const okCat = catFilter === 'all' || d.category === catFilter;
+    const okText = !q || d.name.toLowerCase().includes(q) || (d.cat || '').toLowerCase().includes(q);
+    const show = okLvl && okCat && okText;
+    if (show) { visible++; shown.push(markers[d.n]); }
     const card = document.querySelector(`.card[data-id="${d.n}"]`);
     if (card) {
       card.classList.toggle('is-dim', !show);
       card.tabIndex = show ? 0 : -1;
-      card.toggleAttribute('inert', !show); // also drops nested tel/copy/social from tab order
+      card.toggleAttribute('inert', !show);
     }
-    if (show) { if (!map.hasLayer(markers[d.n])) markers[d.n].addTo(map); }
-    else { if (map.hasLayer(markers[d.n])) map.removeLayer(markers[d.n]); }
   });
-  // hide empty groups
+  cluster.clearLayers();
+  cluster.addLayers(shown);
   document.querySelectorAll('.group').forEach(g => {
     const any = [...g.querySelectorAll('.card')].some(c => !c.classList.contains('is-dim'));
     g.style.display = any ? '' : 'none';
   });
-  // live counts (honest during search/filter) + empty state
   document.getElementById('cAll').textContent = visible;
   document.getElementById('statAll').textContent = visible;
   document.getElementById('tagCount').textContent = visible;
@@ -893,15 +938,18 @@ document.querySelectorAll('.chip').forEach(chip => {
     applyFilter();
   });
 });
+catSel.addEventListener('change', () => { catFilter = catSel.value; applyFilter(); });
 document.getElementById('searchInput').addEventListener('input', applyFilter);
-applyFilter(); // derive initial counts from data
+applyFilter(); // initial counts + populate cluster
+fitAll();      // frame all of Latvia
 
 /* ---------- ielādes animācija ---------- */
 requestAnimationFrame(() => {
   document.querySelectorAll('.card').forEach((c, i) => {
+    if (i > 24) return; // cap stagger — list now holds ~230 cards
     c.style.opacity = '0'; c.style.transform = 'translateY(8px)';
     c.style.transition = 'opacity .5s var(--ease), transform .5s var(--ease)';
-    setTimeout(() => { c.style.opacity = ''; c.style.transform = ''; }, 90 + i * 45);
+    setTimeout(() => { c.style.opacity = ''; c.style.transform = ''; }, 60 + i * 35);
   });
 });
 </script>

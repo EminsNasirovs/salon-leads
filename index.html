@@ -3,23 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Beauty Salon Outreach Leads</title>
+<title>Outreach Tracker — shared</title>
 <style>
   :root{
     --bg:#0f0e0f; --card:#1a181a; --line:#2a272a; --txt:#f2ede9; --muted:#9a9398;
-    --gold:#c9a96a; --hi:#e0484d; --med:#e0a23a; --low:#5a8f6b;
+    --gold:#c9a96a; --hi:#e0484d; --med:#e0a23a; --low:#5a8f6b; --ok:#5a8f6b; --blue:#5a7fbf;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);padding:32px 20px 80px;line-height:1.4}
-  .wrap{max-width:1200px;margin:0 auto}
+  body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.4}
+  .wrap{max-width:1200px;margin:0 auto;padding:32px 20px 80px}
   h1{font-size:28px;font-weight:700;letter-spacing:-.5px}
   h1 span{color:var(--gold)}
   .sub{color:var(--muted);margin:6px 0 24px;font-size:14px}
+  .apphead{display:flex;align-items:center;justify-content:space-between;gap:16px}
   .controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
-  .controls input{flex:1;min-width:220px;background:var(--card);border:1px solid var(--line);color:var(--txt);padding:10px 14px;border-radius:10px;font-size:14px}
+  .controls input[type=text]{flex:1;min-width:220px;background:var(--card);border:1px solid var(--line);color:var(--txt);padding:10px 14px;border-radius:10px;font-size:14px}
   .btn{background:var(--card);border:1px solid var(--line);color:var(--txt);padding:10px 16px;border-radius:10px;font-size:13px;cursor:pointer;transition:.15s}
   .btn:hover{border-color:var(--gold)}
   .btn.active{background:var(--gold);color:#1a160f;border-color:var(--gold);font-weight:600}
+  .btn.primary{background:var(--gold);color:#1a160f;border-color:var(--gold);font-weight:600}
+  select.sort,select.status-sel{background:var(--card);border:1px solid var(--line);color:var(--txt);padding:9px 12px;border-radius:9px;font-size:13px;cursor:pointer}
   .group{margin-bottom:34px}
   .group-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
   .group-head h2{font-size:16px;font-weight:600}
@@ -29,428 +32,295 @@
   .card.hi{border-left-color:var(--hi)}
   .card.med{border-left-color:var(--med)}
   .card.low{border-left-color:var(--low)}
-  .card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:4px}
+  .card .top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:4px}
   .card h3{font-size:16px;font-weight:600}
   .badge{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:3px 8px;border-radius:20px;white-space:nowrap}
   .badge.hi{background:rgba(224,72,77,.15);color:#ff8a8d}
   .badge.med{background:rgba(224,162,58,.15);color:#ffce7a}
   .badge.low{background:rgba(90,143,107,.15);color:#8fd4a6}
-  .type{color:var(--gold);font-size:12px;margin-bottom:10px}
   .meta{font-size:13px;color:var(--muted);margin:3px 0}
-  .meta b{color:var(--txt);font-weight:500}
-  .links{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-  .links a{font-size:12px;text-decoration:none;color:var(--txt);background:#252225;border:1px solid var(--line);padding:5px 10px;border-radius:7px;transition:.15s}
-  .links a:hover{border-color:var(--gold);color:var(--gold)}
   .note{font-size:12px;color:var(--muted);margin-top:11px;padding-top:11px;border-top:1px solid var(--line);font-style:italic}
-  .hidden{display:none}
-  select.sort{background:var(--card);border:1px solid var(--line);color:var(--txt);padding:10px 14px;border-radius:10px;font-size:13px;cursor:pointer}
-  .del{background:transparent;border:1px solid var(--line);color:var(--muted);width:24px;height:24px;border-radius:6px;cursor:pointer;font-size:14px;line-height:1;flex:none;transition:.15s}
-  .del:hover{border-color:var(--hi);color:#ff8a8d}
-  .card .top{align-items:center}
-  .top-right{display:flex;align-items:center;gap:8px}
-  .edit{margin-top:11px;padding-top:11px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
-  .edit .row{display:flex;align-items:center;gap:8px}
-  .edit label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-  select.pr-sel{background:#252225;border:1px solid var(--line);color:var(--txt);padding:5px 8px;border-radius:7px;font-size:12px;cursor:pointer}
-  textarea.cmt{width:100%;background:#252225;border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:8px 10px;font-size:12px;font-family:inherit;resize:vertical;min-height:38px}
-  textarea.cmt:focus{outline:none;border-color:var(--gold)}
-  textarea.cmt.saved{border-color:var(--low)}
-  .out-row{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none}
-  .out-row input{width:16px;height:16px;accent-color:var(--low);cursor:pointer;flex:none}
-  .out-row span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-  .card.done{opacity:.55}
-  .card.done h3{text-decoration:line-through;text-decoration-color:var(--muted)}
-  .card.done .out-row span{color:var(--low)}
-  .badge.done{background:rgba(90,143,107,.18);color:#8fd4a6}
-  .contacted{font-size:11px;color:var(--low);margin-top:6px}
-  /* --- session / connection chrome --- */
-  .topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
-  .who{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:10px}
-  .who .dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}
-  .who .dot.live{background:var(--low);box-shadow:0 0 0 3px rgba(90,143,107,.18)}
-  .who a{color:var(--gold);cursor:pointer}
-  /* --- login gate --- */
-  .gate{position:fixed;inset:0;background:rgba(15,14,15,.96);display:flex;align-items:center;justify-content:center;z-index:50}
-  .gate.hidden{display:none}
-  .gate .box{width:340px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px}
-  .gate h2{font-size:20px;margin-bottom:4px}
-  .gate h2 span{color:var(--gold)}
-  .gate p{font-size:12px;color:var(--muted);margin-bottom:18px}
-  .gate input{width:100%;background:#252225;border:1px solid var(--line);color:var(--txt);padding:11px 13px;border-radius:9px;font-size:14px;margin-bottom:10px}
-  .gate input:focus{outline:none;border-color:var(--gold)}
-  .gate button{width:100%;background:var(--gold);color:#1a160f;border:none;padding:11px;border-radius:9px;font-size:14px;font-weight:600;cursor:pointer;margin-top:4px}
-  .gate .err{color:#ff8a8d;font-size:12px;min-height:16px;margin-top:8px}
-  .banner{background:rgba(224,162,58,.12);border:1px solid var(--med);color:#ffce7a;font-size:13px;padding:12px 16px;border-radius:10px;margin-bottom:20px}
+  .hidden{display:none!important}
+  .card .top-right{display:flex;align-items:center;gap:8px}
+
+  /* status row */
+  .statusrow{display:flex;align-items:center;gap:8px;margin-top:12px;flex-wrap:wrap}
+  .st-badge{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:3px 9px;border-radius:20px}
+  .st-todo{background:#2a272a;color:var(--muted)}
+  .st-contacted{background:rgba(90,143,107,.18);color:#8fd4a6}
+  .st-replied{background:rgba(90,127,191,.18);color:#9db9ee}
+  .st-client{background:rgba(201,169,106,.2);color:#e8cd92}
+  .contacted-line{font-size:11.5px;color:var(--ok);margin-top:8px}
+  .card.done h3{opacity:.85}
+  .mark-btn{font-size:12px;padding:7px 12px;border-radius:8px;background:#252225;border:1px solid var(--line);color:var(--txt);cursor:pointer;transition:.15s}
+  .mark-btn:hover{border-color:var(--ok);color:#8fd4a6}
+
+  /* login */
+  .login-overlay{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(120% 80% at 50% 0%,#1a181a,#0f0e0f);z-index:50;padding:20px}
+  .login-card{width:100%;max-width:360px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px 26px;display:flex;flex-direction:column;gap:12px}
+  .login-card h1{font-size:22px}
+  .login-card input{background:#252225;border:1px solid var(--line);color:var(--txt);padding:11px 14px;border-radius:10px;font-size:14px}
+  .login-card input:focus{outline:none;border-color:var(--gold)}
+  .err{color:#ff8a8d;font-size:13px;min-height:16px;margin:0}
+  .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--line);color:var(--txt);padding:10px 16px;border-radius:10px;font-size:13px;z-index:60;opacity:0;transition:opacity .2s;pointer-events:none}
+  .toast.show{opacity:1}
 </style>
 </head>
 <body>
 
-<!-- ====================================================================
-     CONFIG — paste your Supabase creds here (anon key is safe to commit;
-     your data is protected by RLS + only your two accounts can log in)
-     ==================================================================== -->
-<script>
-  const SUPABASE_URL      = "https://wcwugxgyylvdorsrqzep.supabase.co";
-  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indjd3VneGd5eWx2ZG9yc3JxemVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1MzI2MzAsImV4cCI6MjA5NzEwODYzMH0.ZTKtbZOPevM39MVJYkuWqoZcYsDsjc7YwQsex72-Lmg"; // anon / public
-</script>
-
-<!-- login gate -->
-<div class="gate" id="gate">
-  <div class="box">
-    <h2>Outreach <span>Leads</span></h2>
-    <p>Sign in to view and update the shared list.</p>
-    <input id="gEmail" type="email" placeholder="Email" autocomplete="username">
-    <input id="gPass"  type="password" placeholder="Password" autocomplete="current-password">
-    <button id="gBtn">Sign in</button>
-    <div class="err" id="gErr"></div>
-  </div>
+<!-- ===== LOGIN GATE ===== -->
+<div id="login" class="login-overlay">
+  <form id="loginForm" class="login-card">
+    <h1>Outreach <span style="color:var(--gold)">Tracker</span></h1>
+    <p class="sub" style="margin:0 0 6px">Sign in — only the two of you have access.</p>
+    <input id="email" type="email" placeholder="email" autocomplete="username" required>
+    <input id="password" type="password" placeholder="password" autocomplete="current-password" required>
+    <button type="submit" class="btn primary" id="loginBtn">Sign in</button>
+    <p id="loginErr" class="err"></p>
+  </form>
 </div>
 
-<div class="wrap">
-  <div class="topbar">
-    <div>
-      <h1>Beauty Salon <span>Outreach Leads</span></h1>
-      <p class="sub" id="sub">Riga, Jurmala, Liepaja, Jelgava &middot; sorted by priority (no website = hottest)</p>
-    </div>
-    <div class="who" id="who"></div>
+<!-- ===== APP ===== -->
+<div id="app" class="wrap hidden">
+  <div class="apphead">
+    <h1>Beauty Salon <span>Outreach Leads</span></h1>
+    <button id="signout" class="btn">Sign out</button>
   </div>
-
-  <div id="cfgBanner" class="banner hidden">⚠️ Supabase is not configured yet — paste your Project URL + anon key in the CONFIG block at the top of this file.</div>
+  <p class="sub" id="who"></p>
 
   <div class="controls">
-    <input id="search" type="text" placeholder="Search name, type, city, note...">
+    <input id="search" type="text" placeholder="Search name, contact, notes...">
     <button class="btn active" data-f="all">All</button>
     <button class="btn" data-f="hi">High</button>
     <button class="btn" data-f="med">Medium</button>
     <button class="btn" data-f="low">Low</button>
     <select class="sort" id="sort">
-      <option value="default">Sort: Priority (default)</option>
+      <option value="updated">Sort: Recently updated</option>
       <option value="name">Sort: Name A–Z</option>
-      <option value="city">Sort: City</option>
-      <option value="type">Sort: Type</option>
+      <option value="status">Sort: Status</option>
     </select>
-    <button class="btn" id="hideDone">Hide outreached</button>
-    <button class="btn" id="restore">↺ Restore deleted (<span id="delCount">0</span>)</button>
+    <button class="btn" id="hideDone">Hide contacted</button>
   </div>
-  <p class="sub" style="margin-top:-16px"><b id="outStat" style="color:var(--low)">0 / 0 outreached</b></p>
+  <p class="sub" style="margin-top:-16px"><b id="outStat" style="color:var(--ok)"></b></p>
 
   <div id="board"></div>
 </div>
 
+<div id="toast" class="toast"></div>
+
 <script type="module">
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
-/* ====================================================================
-   STARTER LIST — only used to seed an EMPTY table (one click, once).
-   After seeding, the database is the source of truth.
-   ==================================================================== */
-const SEED = [
- // ===== HIGH PRIORITY — NO WEBSITE (Instagram / Facebook / Fresha / Versum only) =====
- {n:"RIGANAILS",t:"Nails / Brows",c:"Riga – Centrs",a:"Strelnieku iela 5",p:"+371 26922200",e:"",ig:"riganails",w:"",book:"Instagram only",pr:"hi",note:"Active IG only — no website at all."},
- {n:"Nail ID Riga",t:"Nails",c:"Riga – Zemgale Suburb",a:"Kalnciema iela 9A",p:"",e:"",ig:"",w:"",book:"Fresha",pr:"hi",note:"Riverside premium nail studio — only on Fresha."},
- {n:"nailed.it.riga",t:"Nails",c:"Riga – Centrs",a:"Strelnieku iela 13",p:"",e:"",ig:"nailed.it.riga",w:"",book:"Fresha",pr:"hi",note:"Open 10–23 daily — Fresha-only."},
- {n:"Glamour Nails Santa",t:"Nails",c:"Riga – Vidzeme Suburb",a:"Brivibas gatve 224",p:"",e:"",ig:"",w:"",book:"Fresha",pr:"hi",note:"Manicure/pedicure/nail art — Fresha-only."},
- {n:"Nails & Pearls",t:"Nails",c:"Riga – Centra rajons",a:"Marijas iela 23",p:"",e:"",ig:"",w:"",book:"Fresha",pr:"hi",note:"Manikira studija — Fresha-only."},
- {n:"kinyanails",t:"Nails",c:"Riga – Old Riga",a:"Aspazijas bulvaris 32",p:"",e:"",ig:"",w:"",book:"Fresha",pr:"hi",note:"Cozy 1-chair studio, master Kintija — Fresha-only."},
- {n:"Diamond Nails Riga",t:"Nails",c:"Riga – Vidzeme Suburb",a:"Braslas iela 29",p:"",e:"",ig:"",w:"",book:"Fresha",pr:"hi",note:"Fresha-only."},
- {n:"YOULI",t:"Nails",c:"Riga – Centrs",a:"Katrinas iela 16A",p:"",e:"",ig:"",w:"",book:"Fresha",pr:"hi",note:"Fresha-only."},
- {n:"LE STUDIO",t:"Nails / Beauty",c:"Riga – Centra rajons",a:"Baznicas iela 20/22",p:"",e:"",ig:"",w:"",book:"Fresha",pr:"hi",note:"Manicure/pedicure team — Fresha-only."},
- {n:"Reussi Studio",t:"Nails",c:"Riga – Centra rajons",a:"",p:"",e:"",ig:"",w:"",book:"Fresha",pr:"hi",note:"5.0 rating (53 reviews) — Fresha-only."},
- {n:"Miami Nails",t:"Nails",c:"Riga – Centra rajons",a:"",p:"",e:"",ig:"",w:"",book:"Fresha",pr:"hi",note:"4.9 rating (944 reviews) — busy, Fresha-only."},
- {n:"Podologs Agate Serzante",t:"Pedicure / Podology",c:"Riga – Centra rajons",a:"Perses iela 16",p:"",e:"",ig:"",w:"",book:"Fresha",pr:"hi",note:"Pedicure & foot-care specialist — Fresha-only."},
- {n:"Nagu Meistari",t:"Nails / Lash-brow",c:"Riga",a:"",p:"",e:"",ig:"nagu_meistari",w:"",book:"Instagram",pr:"hi",note:"3000+ followers, 24/7 booking link in bio. No website."},
- {n:"MyNails Riga",t:"Nails",c:"Riga – Centrs",a:"Krisjana Valdemara iela 45",p:"",e:"",ig:"mynails_riga",w:"",book:"Instagram only",pr:"hi",note:"3300+ followers, IG only."},
- {n:"Lemonail Riga",t:"Nails",c:"Riga – Centrs",a:"",p:"",e:"",ig:"lemonail.riga",w:"",book:"Instagram only",pr:"hi",note:"Small IG-only studio."},
- {n:"Manikirs Akvarele",t:"Nails",c:"Riga",a:"",p:"",e:"",ig:"manikirs.akvarele",w:"",book:"Instagram only",pr:"hi",note:"IG-only nail/design studio."},
- {n:"Noir Studio",t:"Nails",c:"Riga",a:"",p:"",e:"",ig:"",w:"",book:"Instagram only",pr:"hi",note:"Manicure/pedicure, IG-only."},
- {n:"Family Hair",t:"Hair salon",c:"Riga – Centra rajons",a:"Tallinas iela 38",p:"",e:"",ig:"",w:"",book:"Fresha",pr:"hi",note:"Family-friendly salon — Fresha-only."},
- {n:"Hairport Studija",t:"Hair salon",c:"Riga – Grizinkalns",a:"Lienes iela 10",p:"",e:"",ig:"",w:"",book:"Fresha",pr:"hi",note:"Modern hair studio — Fresha-only."},
- {n:"Dzirnavu 56 Salon",t:"Hair salon",c:"Riga – Centrs",a:"Brivibas iela 40",p:"",e:"",ig:"",w:"",book:"Fresha",pr:"hi",note:"Hair salon — Fresha-only."},
- {n:"Riga Frizetava",t:"Hair salon",c:"Riga – Latgale Suburb",a:"Zemitana iela 6",p:"",e:"",ig:"",w:"",book:"Fresha",pr:"hi",note:"Family hair salon — Fresha-only."},
- {n:"Skaistumkopsanas Salons Riga",t:"Hair / beauty",c:"Riga",a:"Stabu iela 29",p:"+371 67213123",e:"",ig:"rigatophair",w:"",book:"Instagram",pr:"hi",note:"IG-forward, no real website."},
- {n:"REGI Salons",t:"Full beauty",c:"Riga",a:"",p:"",e:"",ig:"regi.salons",w:"",book:"Instagram only",pr:"hi",note:"IG-only, self-described 'best beauty salon'."},
- {n:"Skropstu Studija",t:"Lash / Brow studio",c:"Riga – Teika",a:"Burtnieku iela 36a",p:"",e:"",ig:"skropstu_studija",w:"",book:"Instagram only",pr:"hi",note:"5400+ followers, 9+ yrs — no website."},
- {n:"Madam Lashes",t:"Lash studio",c:"Riga",a:"",p:"",e:"",ig:"madamlashes_",w:"",book:"Instagram only",pr:"hi",note:"IG-only lash studio."},
- {n:"Evija Lashes",t:"Lash / Brow",c:"Riga",a:"",p:"",e:"",ig:"evija_lashes_riga",w:"",book:"Instagram only",pr:"hi",note:"Solo master, 18 yrs experience. IG only."},
- {n:"Acis.ka",t:"Lash studio",c:"Riga",a:"",p:"",e:"",ig:"acis.ka",w:"",book:"Instagram only",pr:"hi",note:"IG-only lash extensions."},
- {n:"Skropstu Pieaudzesana",t:"Lash / Brow",c:"Riga",a:"",p:"",e:"",ig:"skropstupieaudzesana.lv",w:"",book:"Instagram only",pr:"hi",note:"IG-only lash & brow lamination."},
- {n:"Hanifa PMU",t:"Permanent make-up",c:"Riga",a:"",p:"",e:"",ig:"hanifa_pmu",w:"",book:"Instagram only",pr:"hi",note:"5400+ followers PMU artist. IG only."},
- {n:"Linda Ezera PMU",t:"Permanent make-up",c:"Riga",a:"",p:"",e:"",ig:"pmu_lindaezera",w:"",book:"Instagram only",pr:"hi",note:"PMU lips/brows. IG only."},
- {n:"Santa Guru Makeup",t:"Makeup artist",c:"Riga",a:"",p:"",e:"",ig:"santaguruu",w:"",book:"Instagram only",pr:"hi",note:"Celebrity makeup artist. IG only."},
- {n:"Kosmetologs Jurmala",t:"Cosmetology",c:"Jurmala",a:"",p:"",e:"",ig:"kosmetologs.jurmala",w:"",book:"Instagram only",pr:"hi",note:"IG-only cosmetologist."},
- {n:"Ilze Rimma Privatprakse",t:"Cosmetology",c:"Liepaja",a:"",p:"",e:"",ig:"ilzes.rimmas.privatprakse",w:"",book:"Instagram only",pr:"hi",note:"20 yrs experience, IG-only."},
- {n:"SIBI Beauty Salon",t:"Full beauty (hair/nails/spa)",c:"Riga – Old Riga",a:"Jekaba iela 26/28",p:"+371 27272510",e:"",ig:"sibi.beautysalon",w:"",book:"Versum",pr:"hi",note:"Strong brand, good reviews — only a Versum booking page."},
- {n:"Asia Spa Thai Massage",t:"Massage / Spa",c:"Riga – Centrs",a:"Dzirnavu iela 55",p:"",e:"",ig:"",w:"",book:"Fresha",pr:"hi",note:"Thai massage — Fresha-only."},
- {n:"Harmonia Studio",t:"Spa / Wellness",c:"Riga – Centrs",a:"Aleksandra Caka iela 33",p:"",e:"",ig:"",w:"",book:"Fresha",pr:"hi",note:"Wellness studio — Fresha-only."},
- {n:"SYRINGA Facial Studio",t:"Facials / Skincare",c:"Riga – Centrs",a:"Blaumana iela 11/13",p:"",e:"",ig:"",w:"",book:"Fresha",pr:"hi",note:"Facial studio — Fresha-only."},
- {n:"LAIMALUX Beauty Salon",t:"Full beauty",c:"Riga",a:"",p:"+371 29395087",e:"",ig:"laimaluxofficial",w:"",book:"Instagram only",pr:"hi",note:"IG-only. No website found."},
- {n:"Love My Life Beauty Salon",t:"Full beauty",c:"Riga",a:"Uzvaras Bulvaris 10",p:"+371 20008393",e:"salonslovemylife@gmail.com",ig:"lovemylifebeautysalon",w:"",book:"Facebook only",pr:"hi",note:"Has public email — easy to cold-email. FB/IG only."},
- {n:"Nails by Ieva",t:"Nails",c:"Jelgava",a:"",p:"",e:"",ig:"nails.by_ieva",w:"",book:"Instagram only",pr:"hi",note:"Gel/extensions/pedicure, booking via DM. IG only."},
- {n:"Skaistuma Era",t:"Full beauty",c:"Jelgava",a:"",p:"",e:"",ig:"skaistumaera",w:"",book:"Instagram",pr:"hi",note:"Largest salon in Jelgava, 150+ services — IG-forward (verify site)."},
- {n:"SKY BEAUTY",t:"Full beauty",c:"Jelgava",a:"",p:"",e:"",ig:"",w:"",book:"Facebook only",pr:"hi",note:"Hair/nails/cosmetology/solarium. FB only.", fb:"skybeautyjelgava"},
+/* ================= CONFIG — safe to commit (RLS protects data) ================= */
+const SUPABASE_URL  = 'https://wcwugxgyylvdorsrqzep.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indjd3VneGd5eWx2ZG9yc3JxemVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1MzI2MzAsImV4cCI6MjA5NzEwODYzMH0.ZTKtbZOPevM39MVJYkuWqoZcYsDsjc7YwQsex72-Lmg';
+/* =============================================================================== */
 
- // ===== MEDIUM — OUTDATED / BASIC WEBSITE (redesign pitch) =====
- {n:"Strogonovs",t:"Hair / beauty",c:"Riga – Centrs",a:"Marijas iela 8",p:"+371 67283122 / +371 27702277",e:"",ig:"",w:"strogonovs.lv",book:"",pr:"med",note:"Outdated website — redesign pitch is strong."},
- {n:"Salons Vecriga",t:"Full beauty",c:"Riga – Old Riga",a:"",p:"",e:"",ig:"",w:"salonsvecriga.lv",book:"",pr:"med",note:"Older site — redesign angle."},
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
- // ===== LOW — ALREADY HAS A DECENT SITE (redesign upsell only) =====
- {n:"Amane SPA",t:"Spa / Beauty",c:"Riga – Old Riga",a:"Vagnera iela 14",p:"+371 28213790",e:"amanespa@gmail.com",ig:"",w:"amanespa.lv",book:"",pr:"low",note:"Has site — pitch redesign/upgrade only."},
- {n:"Old Riga Spa",t:"Spa / Massage",c:"Riga – Old Riga",a:"Kaleju iela 39",p:"+371 29340341",e:"info@oldrigaspa.lv",ig:"",w:"oldrigaspa.lv",book:"Versum",pr:"low",note:"Has site + Versum."},
- {n:"Velvet Beauty",t:"Beauty studio",c:"Riga – Centrs",a:"",p:"",e:"",ig:"",w:"velvetbeauty.lv",book:"",pr:"low",note:"Has modern-ish site."},
- {n:"Siluets",t:"Full beauty",c:"Riga – Centrs",a:"Matisa iela 19",p:"+371 25150058",e:"",ig:"",w:"siluetsriga.lv",book:"",pr:"low",note:"Has website."},
- {n:"International Manicure Studio",t:"Nails / Training",c:"Riga",a:"Ernesta Birznieka-Upisa 20A",p:"+371 20004588",e:"info@manikirs.lv",ig:"",w:"manikirs.lv",book:"",pr:"low",note:"Has site."},
- {n:"MooN Beauty Studio",t:"Nails",c:"Riga",a:"",p:"",e:"",ig:"",w:"manikirs-riga.lv",book:"",pr:"low",note:"Has site."},
- {n:"ONE Beauty",t:"Full beauty / Nails",c:"Riga – Plavnieki",a:"Andreja Saharova iela 30 (TC Augusts)",p:"+371 28857000",e:"",ig:"one.beauty.nails",w:"onebeauty.lv",book:"",pr:"low",note:"Has site."},
- {n:"Catrin Salons",t:"Full beauty",c:"Riga",a:"",p:"",e:"",ig:"",w:"catrinsalons.lv",book:"",pr:"low",note:"Has site."},
- {n:"NailTime",t:"Nails",c:"Riga – Centrs",a:"",p:"",e:"",ig:"nailtimelv",w:"nailtime.lv",book:"",pr:"low",note:"Has site."},
- {n:"NailBee",t:"Nails",c:"Riga",a:"",p:"",e:"",ig:"",w:"nailbee.lv",book:"",pr:"low",note:"Has site."},
- {n:"Divi Meistari",t:"Nails / Hair",c:"Riga – Centrs",a:"",p:"",e:"",ig:"divimeistari",w:"divimeistari.lv",book:"",pr:"low",note:"Has site."},
- {n:"Grieze",t:"Full beauty",c:"Riga",a:"",p:"",e:"",ig:"",w:"grieze.lv",book:"",pr:"low",note:"Has site."},
- {n:"HairRiga Olimpia",t:"Hair salon",c:"Riga – TC Olimpia",a:"Olimpia mall, 2nd floor",p:"+371 25908271",e:"",ig:"",w:"hairriga.com",book:"Online booking",pr:"low",note:"Has site (chain)."},
- {n:"Salons Katrina",t:"Hair / beauty",c:"Riga",a:"Hospitalu iela 5",p:"+371 26605502",e:"salonskatrina@gmail.com",ig:"",w:"salonskatrina.lv",book:"",pr:"low",note:"Has site + email."},
- {n:"BAGIRA",t:"Hair / beauty studio",c:"Riga – Ziepniekkalns",a:"Islices iela 1",p:"+371 22831315",e:"",ig:"",w:"bagira.lv",book:"",pr:"low",note:"Has site."},
- {n:"Salons MAIJA",t:"Hair / beauty",c:"Riga",a:"Valdemara iela 16",p:"+371 67505193 / +371 25400103",e:"",ig:"",w:"maija.lv",book:"",pr:"low",note:"Has site (multi-location)."},
- {n:"Silvana",t:"Hair extensions / beauty",c:"Riga – Centrs",a:"",p:"+371 29293317",e:"",ig:"",w:"silvana.lv",book:"",pr:"low",note:"Has site."},
- {n:"Saules Salons",t:"Hair / beauty",c:"Riga – Centrs",a:"Stabu iela 14",p:"+371 22087688",e:"",ig:"",w:"saulessalons.lv",book:"",pr:"low",note:"Has site."},
- {n:"Skaistuma Pietura",t:"Full beauty",c:"Riga – Ciekurkalns",a:"",p:"",e:"",ig:"",w:"skaistumapietura.lv",book:"",pr:"low",note:"Has site."},
- {n:"Glorija Salons",t:"Full beauty / Lashes",c:"Riga",a:"Rupniecibas iela 3",p:"+371 20208118",e:"",ig:"",w:"gloria-salons.lv",book:"",pr:"low",note:"Has site."},
- {n:"Brows by Karlina",t:"Lash / Brow",c:"Riga",a:"",p:"",e:"",ig:"",w:"bbk.lv",book:"",pr:"low",note:"Has site."},
- {n:"Lash & Brow Studio Riga",t:"Lash / Brow",c:"Riga",a:"",p:"",e:"",ig:"",w:"lashandbrow.lv",book:"",pr:"low",note:"Has site."},
- {n:"Nautika",t:"Full beauty",c:"Liepaja",a:"Frica Brivzemnieka iela 38",p:"+371 29429444 / +371 63422210",e:"",ig:"",w:"nautika.lv",book:"",pr:"low",note:"Has site."},
- {n:"Nova Clinic",t:"Aesthetic medicine",c:"Jurmala",a:"",p:"",e:"",ig:"",w:"arstskosmetologs.lv",book:"",pr:"low",note:"Has site (clinic)."},
- {n:"ERA Esthetic",t:"Cosmetology",c:"Jurmala",a:"",p:"+371 20511113",e:"info@eraesthetic.lv",ig:"",w:"eraesthetic.lv",book:"",pr:"low",note:"Has site + email."},
- {n:"BABOR Beauty Spa",t:"Spa / Beauty",c:"Riga – Centrs",a:"Gertrudes iela 9",p:"+371 22333131",e:"info@baborbeautyspa.lv",ig:"",w:"baborbeautyspa.lv",book:"Fresha",pr:"low",note:"Has site (brand-backed)."},
- {n:"Taka Spa",t:"Day spa",c:"Riga",a:"",p:"",e:"",ig:"",w:"takaspa.lv",book:"",pr:"low",note:"Has site."},
- {n:"VSpa",t:"Massage / Spa",c:"Riga",a:"",p:"+371 26961181",e:"",ig:"",w:"vspa.lv",book:"",pr:"low",note:"Has site."}
-];
-// map a SEED row -> DB column shape
-const seedToRow = s => ({
-  name:s.n, type:s.t||null, city:s.c||null, address:s.a||null, phone:s.p||null,
-  email:s.e||null, ig:s.ig||null, fb:s.fb||null, website:s.w||null,
-  booking:s.book||null, note:s.note||null, priority:s.pr||'med'
+const loginEl = document.getElementById('login');
+const appEl   = document.getElementById('app');
+const boardEl = document.getElementById('board');
+const STATUS = { todo:'To do', contacted:'Contacted', replied:'Replied', client:'Client' };
+const PR_LABEL = { hi:'High priority', med:'Medium', low:'Low' };
+
+let clients = [];          // current rows
+let currentEmail = '';
+let filter = 'all', hideDone = false, sortMode = 'updated';
+
+/* ---------- auth ---------- */
+async function boot() {
+  const { data:{ session } } = await supabase.auth.getSession();
+  if (session) await startApp(session);
+}
+supabase.auth.onAuthStateChange((_e, session) => {
+  if (!session) { appEl.classList.add('hidden'); loginEl.classList.remove('hidden'); }
 });
 
-/* ==================================================================== */
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('loginBtn');
+  const err = document.getElementById('loginErr');
+  err.textContent = ''; btn.disabled = true; btn.textContent = 'Signing in…';
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: document.getElementById('email').value.trim(),
+    password: document.getElementById('password').value,
+  });
+  btn.disabled = false; btn.textContent = 'Sign in';
+  if (error) { err.textContent = error.message; return; }
+  await startApp(data.session);
+});
 
-const labels = {hi:"High priority — no website",med:"Medium — outdated website",low:"Low — already has a site"};
-const board  = document.getElementById('board');
-const $ = id => document.getElementById(id);
+document.getElementById('signout').addEventListener('click', async () => {
+  await supabase.auth.signOut();
+  location.reload();
+});
 
-const configured = SUPABASE_URL.startsWith('http') && !SUPABASE_ANON_KEY.startsWith('PASTE');
-if(!configured) $('cfgBanner').classList.remove('hidden');
-
-const sb = configured ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
-
-let state = [];          // all rows from DB (including deleted)
-let me    = null;        // current user email
-let sortMode = 'default';
-let filter = 'all';
-let hideDone = false;
-
-/* ---------------- auth ---------------- */
-async function initAuth(){
-  if(!configured){ $('gate').classList.add('hidden'); return; }
-  const { data:{ session } } = await sb.auth.getSession();
-  if(session) onSignedIn(session); else $('gate').classList.remove('hidden');
-  sb.auth.onAuthStateChange((_e, s)=>{ if(s) onSignedIn(s); });
-}
-async function signIn(){
-  $('gErr').textContent = '';
-  const email = $('gEmail').value.trim(), password = $('gPass').value;
-  const { error } = await sb.auth.signInWithPassword({ email, password });
-  if(error) $('gErr').textContent = error.message;
-}
-async function signOut(){ await sb.auth.signOut(); location.reload(); }
-async function onSignedIn(session){
-  me = session.user.email;
-  $('gate').classList.add('hidden');
-  renderWho(true);
-  await load();
-  subscribe();
-}
-function renderWho(live){
-  $('who').innerHTML = me
-    ? `<span class="dot ${live?'live':''}" title="${live?'Live sync on':'connecting…'}"></span> ${me} &middot; <a id="out">sign out</a>`
-    : '';
-  if($('out')) $('out').onclick = signOut;
+async function startApp(session) {
+  currentEmail = session.user.email;
+  document.getElementById('who').textContent = 'Signed in as ' + currentEmail;
+  loginEl.classList.add('hidden');
+  appEl.classList.remove('hidden');
+  // ensure realtime uses the authenticated token so RLS lets row changes through
+  try { supabase.realtime.setAuth(session.access_token); } catch (_) {}
+  await loadClients();
+  subscribeRealtime();
 }
 
-/* ---------------- data ---------------- */
-async function load(){
-  const { data, error } = await sb.from('leads').select('*');
-  if(error){ console.error(error); return; }
-  state = data || [];
+/* ---------- data ---------- */
+async function loadClients() {
+  const { data, error } = await supabase
+    .from('clients').select('*').order('updated_at', { ascending: false });
+  if (error) { toast('Load failed: ' + error.message); return; }
+  clients = data || [];
   render();
 }
-function subscribe(){
-  sb.channel('leads-live')
-    .on('postgres_changes', { event:'*', schema:'public', table:'leads' }, payload=>{
-      const r = payload.new || payload.old;
-      if(payload.eventType === 'DELETE'){ state = state.filter(x=>x.id!==r.id); }
-      else {
-        const i = state.findIndex(x=>x.id===r.id);
-        if(i>=0) state[i] = payload.new; else state.push(payload.new);
+
+async function changeStatus(client, status) {
+  const patch = { status };
+  if (status !== 'todo' && !client.contacted_at) {
+    patch.contacted_by = currentEmail;
+    patch.contacted_at = new Date().toISOString();
+  }
+  // optimistic
+  Object.assign(client, patch, { updated_at: new Date().toISOString() });
+  render();
+  const { error } = await supabase.from('clients').update(patch).eq('id', client.id);
+  if (error) { toast('Update failed: ' + error.message); await loadClients(); }
+  else toast(status === 'contacted' ? 'Marked contacted' : 'Status → ' + STATUS[status]);
+}
+
+/* ---------- realtime ---------- */
+function subscribeRealtime() {
+  supabase.channel('clients-rt')
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'clients' }, (payload) => {
+      const row = payload.new && payload.new.id ? payload.new : payload.old;
+      if (!row) return;
+      if (payload.eventType === 'DELETE') {
+        clients = clients.filter(c => c.id !== row.id);
+      } else {
+        const i = clients.findIndex(c => c.id === row.id);
+        if (i >= 0) clients[i] = payload.new; else clients.push(payload.new);
       }
       render();
     })
-    .subscribe(status=>{ renderWho(status==='SUBSCRIBED'); });
+    .subscribe();
 }
 
-// optimistic local patch + DB write
-async function patch(id, fields){
-  const i = state.findIndex(x=>x.id===id);
-  if(i>=0){ state[i] = {...state[i], ...fields}; }
-  const { error } = await sb.from('leads').update(fields).eq('id', id);
-  if(error){ console.error(error); alert('Save failed: '+error.message); await load(); }
-}
-
-async function seed(){
-  if(!confirm('Import the 66 starter leads into the shared database?')) return;
-  const rows = SEED.map(seedToRow);
-  const { error } = await sb.from('leads').insert(rows);
-  if(error){ alert('Import failed: '+error.message); return; }
-  await load();
-}
-
-/* ---------------- rendering ---------------- */
-function fmtWhen(ts){
-  if(!ts) return '';
+/* ---------- render ---------- */
+function fmtDate(ts) {
+  if (!ts) return '';
   const d = new Date(ts);
-  return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'}) + ' ' +
-         d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+  return d.toLocaleDateString('lv-LV', { day:'numeric', month:'short' }) + ' ' +
+         d.toLocaleTimeString('lv-LV', { hour:'2-digit', minute:'2-digit' });
 }
-function card(l){
-  const links = [];
-  if(l.phone)   links.push(`<a href="tel:${l.phone.split(' / ')[0].replace(/\s/g,'')}">📞 Call</a>`);
-  if(l.email)   links.push(`<a href="mailto:${l.email}">✉️ Email</a>`);
-  if(l.ig)      links.push(`<a href="https://instagram.com/${l.ig}" target="_blank">📷 @${l.ig}</a>`);
-  if(l.fb)      links.push(`<a href="https://facebook.com/${l.fb}" target="_blank">📘 Facebook</a>`);
-  if(l.website) links.push(`<a href="https://${l.website}" target="_blank">🌐 ${l.website}</a>`);
-  if(l.booking && !l.website) links.push(`<span style="font-size:12px;color:var(--muted);padding:5px 0">via ${l.booking}</span>`);
-  const pr = l.priority, done = l.outreached;
-  const cmt = l.comment || '';
-  const opt = (v,t)=>`<option value="${v}"${pr===v?' selected':''}>${t}</option>`;
-  const esc = s => (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
-  return `<div class="card ${pr}${done?' done':''}" data-pr="${pr}" data-out="${done?1:0}" data-id="${l.id}" data-s="${esc((l.name+' '+(l.type||'')+' '+(l.city||'')+' '+(l.note||'')+' '+cmt).toLowerCase())}">
-    <div class="top"><h3>${esc(l.name)}</h3><div class="top-right">${done?'<span class="badge done">✓ Sent</span>':''}<span class="badge ${pr}">${pr}</span><button class="del" title="Delete lead">&times;</button></div></div>
-    <div class="type">${esc(l.type)}</div>
-    ${l.city?`<div class="meta">📍 <b>${esc(l.city)}</b>${l.address?` — ${esc(l.address)}`:''}</div>`:''}
-    ${l.phone?`<div class="meta">${esc(l.phone)}</div>`:''}
-    ${l.email?`<div class="meta">${esc(l.email)}</div>`:''}
-    <div class="links">${links.join('')}</div>
-    ${l.note?`<div class="note">${esc(l.note)}</div>`:''}
-    <div class="edit">
-      <label class="out-row"><input type="checkbox" class="out-chk"${done?' checked':''}><span>Outreached</span></label>
-      ${done&&l.contacted_by?`<div class="contacted">✓ by ${esc(l.contacted_by)} · ${fmtWhen(l.contacted_at)}</div>`:''}
-      <div class="row"><label>Priority</label>
-        <select class="pr-sel">${opt('hi','High')}${opt('med','Mid')}${opt('low','Low')}</select>
-      </div>
-      <textarea class="cmt" placeholder="Add your comment / notes...">${esc(cmt)}</textarea>
+const esc = (s) => (s || '').replace(/[&<>]/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[m]));
+
+function cardHtml(c) {
+  const pr = (c.priority || 'low');
+  const done = c.status && c.status !== 'todo';
+  const opt = (v) => `<option value="${v}"${c.status===v?' selected':''}>${STATUS[v]}</option>`;
+  const contactedLine = (c.contacted_by)
+    ? `<div class="contacted-line">✓ ${esc(c.contacted_by)} · ${fmtDate(c.contacted_at)}</div>` : '';
+  const markBtn = (c.status === 'todo')
+    ? `<button class="mark-btn" data-mark="${c.id}">Mark contacted</button>` : '';
+  return `<div class="card ${pr}${done?' done':''}" data-id="${c.id}"
+      data-s="${esc(((c.name||'')+' '+(c.contact||'')+' '+(c.notes||'')).toLowerCase())}"
+      data-pr="${pr}" data-status="${c.status||'todo'}">
+    <div class="top"><h3>${esc(c.name)}</h3>
+      <div class="top-right"><span class="badge ${pr}">${pr}</span></div>
     </div>
+    ${c.contact ? `<div class="meta">${esc(c.contact)}</div>` : ''}
+    ${c.notes ? `<div class="note">${esc(c.notes)}</div>` : ''}
+    <div class="statusrow">
+      <span class="st-badge st-${c.status||'todo'}">${STATUS[c.status||'todo']}</span>
+      <select class="status-sel" data-sel="${c.id}">${opt('todo')}${opt('contacted')}${opt('replied')}${opt('client')}</select>
+      ${markBtn}
+    </div>
+    ${contactedLine}
   </div>`;
 }
 
-function sortItems(items){
-  if(sortMode==='name') return [...items].sort((a,b)=>a.name.localeCompare(b.name));
-  if(sortMode==='city') return [...items].sort((a,b)=>(a.city||'').localeCompare(b.city||'') || a.name.localeCompare(b.name));
-  if(sortMode==='type') return [...items].sort((a,b)=>(a.type||'').localeCompare(b.type||'') || a.name.localeCompare(b.name));
-  return items;
-}
-
-function render(){
-  if(!configured){ board.innerHTML = ''; return; }
-  const live = state.filter(l=>!l.deleted);
-  if(state.length===0){
-    board.innerHTML = `<div class="banner">The shared list is empty. <a id="seedBtn" style="color:var(--gold);cursor:pointer;text-decoration:underline">Import the 66 starter leads</a> to get going — or just start adding rows in Supabase.</div>`;
-    if($('seedBtn')) $('seedBtn').onclick = seed;
-    updateOutCount(); return;
-  }
-  let html='';
-  ['hi','med','low'].forEach(pr=>{
-    const items = sortItems(live.filter(l=>l.priority===pr));
-    if(!items.length) return;
+function render() {
+  const groups = { hi:[], med:[], low:[] };
+  sortItems(clients).forEach(c => (groups[c.priority] || groups.low).push(c));
+  let html = '';
+  ['hi','med','low'].forEach(pr => {
+    if (!groups[pr].length) return;
     html += `<div class="group" data-group="${pr}">
-      <div class="group-head"><h2>${labels[pr]}</h2><span class="count">${items.length} leads</span></div>
-      <div class="grid">${items.map(card).join('')}</div></div>`;
+      <div class="group-head"><h2>${PR_LABEL[pr]}</h2><span class="count">${groups[pr].length}</span></div>
+      <div class="grid">${groups[pr].map(cardHtml).join('')}</div></div>`;
   });
-  board.innerHTML = html;
-  bindCardEvents();
-  updateOutCount();
-  apply();
+  boardEl.innerHTML = html || '<p class="sub">No clients yet.</p>';
+  updateStat();
+  applyFilter();
 }
 
-function bindCardEvents(){
-  document.querySelectorAll('.del').forEach(b=>b.addEventListener('click',e=>{
-    const id = e.target.closest('.card').dataset.id;
-    patch(id, { deleted:true });
-  }));
-  document.querySelectorAll('.pr-sel').forEach(s=>s.addEventListener('change',e=>{
-    const id = e.target.closest('.card').dataset.id;
-    patch(id, { priority:e.target.value });
-  }));
-  document.querySelectorAll('.cmt').forEach(t=>{
-    let timer;
-    t.addEventListener('input',e=>{
-      const id = e.target.closest('.card').dataset.id;
-      e.target.classList.add('saved');
-      clearTimeout(timer);
-      timer = setTimeout(()=>patch(id, { comment:e.target.value }), 600);
-    });
-  });
-  document.querySelectorAll('.out-chk').forEach(c=>c.addEventListener('change',e=>{
-    const id = e.target.closest('.card').dataset.id;
-    if(e.target.checked) patch(id, { outreached:true,  contacted_by:me, contacted_at:new Date().toISOString() });
-    else                 patch(id, { outreached:false, contacted_by:null, contacted_at:null });
-  }));
+function sortItems(items) {
+  const a = [...items];
+  if (sortMode === 'name')   return a.sort((x,y) => (x.name||'').localeCompare(y.name||''));
+  if (sortMode === 'status') return a.sort((x,y) => (x.status||'').localeCompare(y.status||''));
+  return a.sort((x,y) => new Date(y.updated_at) - new Date(x.updated_at)); // recently updated
 }
 
-function updateOutCount(){
-  const live = state.filter(l=>!l.deleted);
-  const done = live.filter(l=>l.outreached).length;
-  $('outStat').textContent = done+' / '+live.length+' outreached';
-  $('delCount').textContent = state.filter(l=>l.deleted).length;
+function updateStat() {
+  const done = clients.filter(c => c.status && c.status !== 'todo').length;
+  document.getElementById('outStat').textContent = `${done} / ${clients.length} contacted`;
 }
 
-/* ---------------- controls ---------------- */
-const search = $('search');
-function apply(){
-  const q = search.value.toLowerCase();
-  document.querySelectorAll('.card').forEach(c=>{
-    const okF = filter==='all' || c.dataset.pr===filter;
-    const okQ = !q || c.dataset.s.includes(q);
-    const okD = !hideDone || c.dataset.out!=='1';
-    c.classList.toggle('hidden', !(okF&&okQ&&okD));
+/* ---------- filter / search / sort ---------- */
+const searchEl = document.getElementById('search');
+function applyFilter() {
+  const q = searchEl.value.toLowerCase();
+  document.querySelectorAll('.card').forEach(card => {
+    const okF = filter === 'all' || card.dataset.pr === filter;
+    const okQ = !q || card.dataset.s.includes(q);
+    const okD = !hideDone || card.dataset.status === 'todo';
+    card.classList.toggle('hidden', !(okF && okQ && okD));
   });
-  document.querySelectorAll('.group').forEach(g=>{
+  document.querySelectorAll('.group').forEach(g => {
     const vis = g.querySelectorAll('.card:not(.hidden)').length;
-    g.classList.toggle('hidden', vis===0);
-    g.querySelector('.count').textContent = vis+' leads';
+    g.classList.toggle('hidden', vis === 0);
+    g.querySelector('.count').textContent = vis;
   });
 }
-search.addEventListener('input', apply);
-document.querySelectorAll('.btn[data-f]').forEach(b=>b.addEventListener('click',()=>{
-  document.querySelectorAll('.btn[data-f]').forEach(x=>x.classList.remove('active'));
-  b.classList.add('active'); filter=b.dataset.f; apply();
+searchEl.addEventListener('input', applyFilter);
+document.querySelectorAll('.btn[data-f]').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.btn[data-f]').forEach(x => x.classList.remove('active'));
+  b.classList.add('active'); filter = b.dataset.f; applyFilter();
 }));
-$('hideDone').addEventListener('click',e=>{
-  hideDone=!hideDone; e.target.classList.toggle('active',hideDone);
-  e.target.textContent = hideDone?'Show outreached':'Hide outreached';
-  apply();
+document.getElementById('hideDone').addEventListener('click', (e) => {
+  hideDone = !hideDone; e.target.classList.toggle('active', hideDone);
+  e.target.textContent = hideDone ? 'Show contacted' : 'Hide contacted';
+  applyFilter();
 });
-$('restore').addEventListener('click', async ()=>{
-  const del = state.filter(l=>l.deleted);
-  if(!del.length) return;
-  if(!confirm(`Restore ${del.length} deleted lead(s)?`)) return;
-  await sb.from('leads').update({ deleted:false }).eq('deleted', true);
-  await load();
+document.getElementById('sort').addEventListener('change', (e) => { sortMode = e.target.value; render(); });
+
+/* ---------- card actions (event delegation) ---------- */
+boardEl.addEventListener('click', (e) => {
+  const mark = e.target.closest('[data-mark]');
+  if (mark) {
+    const c = clients.find(x => x.id === mark.dataset.mark);
+    if (c) changeStatus(c, 'contacted');
+  }
 });
-$('sort').addEventListener('change',e=>{ sortMode=e.target.value; render(); });
+boardEl.addEventListener('change', (e) => {
+  const sel = e.target.closest('[data-sel]');
+  if (sel) {
+    const c = clients.find(x => x.id === sel.dataset.sel);
+    if (c) changeStatus(c, sel.value);
+  }
+});
 
-// login gate handlers
-$('gBtn').addEventListener('click', signIn);
-$('gPass').addEventListener('keydown', e=>{ if(e.key==='Enter') signIn(); });
+/* ---------- toast ---------- */
+let toastT;
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 2200);
+}
 
-initAuth();
+boot();
 </script>
 </body>
 </html>
